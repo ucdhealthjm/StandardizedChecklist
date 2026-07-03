@@ -1,53 +1,60 @@
-# The Standardized Physical Examination — Rubric Builder
+# The Standardized Physical Examination
 
-A free, self-contained web tool for a nationwide-adoptable physical-exam and OSCE
-standard. It has two modes:
+A free, evidence-informed physical-examination and OSCE standard that any PA or
+medical program can adopt, extend, and print as its own rubric.
 
-1. **Comprehensive PE** — the evidence-graded head-to-toe checklist (likelihood
-   ratios, A–D yield tiers, ROS screens), for study and skills practice.
-2. **OSCE / SOAP grading** — one SOAP-ordered station rubric scored from the
-   student's note, with countable 0/1 (or 0/1/2) items, plus the three-rater model
-   (SOAP note → content checklist, faculty → global rating, SP → communication).
+**► Use it live: https://ucdhealthjm.github.io/StandardizedChecklist/**
 
-Programs can add their own items on top of the fixed evidence base, check items
-off, and export to **PDF** or **Word (.doc)**. Setup can be saved to a small file
-and shared with `Export setup` / `Import setup`.
+Nothing to install. It runs entirely in your browser, collects no data, and
+costs nothing to use or host.
 
-## What's here
+## Why this exists
 
-- `index.html` — the entire tool. One file, no dependencies, no build step.
+Programs vary enormously in what they teach and test on the physical exam, and
+much of that variation is based on local habit rather than evidence. This is a
+single, standardized starting point: teach the full breadth of the history and
+physical as a novice, then refine focused technique and reasonable omissions
+through clinicals, residency, and practice. Grading is made objective and
+countable so a score means the same thing everywhere.
 
-That's it. Everything (rendering, checkboxes, PDF/Word export, config save/load)
-runs in the visitor's browser. There is **no server, no database, no tracking,
-and no per-user cost.** A program's edits and checks live in that browser's local
-storage only, so `Export setup` is how you move or share them.
+## What it does
 
-## Publish it free on GitHub Pages
+The tool has two modes:
 
-1. Create a **public** repository (e.g. `standardized-pe`).
-2. Add `index.html` to the repository root (drag-and-drop in the web UI is fine).
-3. Repo **Settings → Pages → Build and deployment**: Source = *Deploy from a
-   branch*, Branch = `main`, Folder = `/ (root)`. Save.
-4. Wait ~1 minute. Your URL is `https://<user-or-org>.github.io/standardized-pe/`.
+- **Comprehensive PE** — the head-to-toe checklist for study and skills
+  practice, organized by system with review-of-systems screens and short
+  evidence adjuncts on modern, higher-yield approaches.
+- **OSCE / SOAP grading** — one SOAP-ordered station rubric scored from the
+  student's note. Items score 0/1 (or 0/1/2 where two components are named) and
+  the total populates automatically as you grade. It pairs with the three-rater
+  model: the SOAP note drives the content checklist, faculty give a global
+  rating, and the standardized patient scores communication.
 
-Notes for a UC Davis Health / enterprise account:
-- GitHub Pages must be enabled for the organization and the repo must be allowed
-  to be public. If org policy blocks public Pages, publish from a personal
-  `github.com` account instead — the tool is identical either way.
-- A `<user>.github.io` repository publishes at the root domain
-  `https://<user>.github.io/`.
-- Optional custom domain (e.g. a `standardizedpe.org` you buy for ~$10/yr):
-  Settings → Pages → Custom domain.
+## Make it yours
 
-## Cite / archive it (optional, free)
+- Pick a **Comprehensive** or a **Focused** station. A focused station is the
+  fixed base (history, vitals, heart and lung auscultation, assessment, plan,
+  closure) plus whichever exam sections your program selects.
+- **Add program-specific items** to any section. They are marked distinctly and
+  print shaded, so your additions never blur into the shared standard.
+- **Export** the finished sheet to PDF or Word, or **Save your setup** to a small
+  file you can reuse or share with colleagues.
 
-Connect the repo to **Zenodo** (zenodo.org) to mint a versioned DOI, so the tool
-and the companion handbook are citable in a paper and permanently archived.
+Programs may also remove select items. The base items were chosen to model the
+breadth a novice learner needs and the maneuvers tested on board examinations,
+even where practice has evolved. For standardized nationwide competence, teach
+the full breadth in the didactic phase and refine focused technique and
+omissions through clinicals, residency, and practice.
+
+## Cite
+
+> Moen, J. *The Standardized Physical Examination: a competency rubric for
+> physician assistant and medical education.* 2026.
+> https://ucdhealthjm.github.io/StandardizedChecklist/
 
 ## License
 
-© 2026 Joshua A. Moen, PhD, MPH, PA-C. Released under
-**Creative Commons Attribution–NonCommercial 4.0 International (CC BY-NC 4.0)**:
-https://creativecommons.org/licenses/by-nc/4.0/
-
-You may share and adapt this for non-commercial educational use with attribution.
+© 2026 Moen, J. Licensed under
+[Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).
+You may share and adapt this for non-commercial educational use with
+attribution. This is an educational resource and is not medical advice.
