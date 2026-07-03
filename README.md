@@ -46,6 +46,26 @@ even where practice has evolved. For standardized nationwide competence, teach
 the full breadth in the didactic phase and refine focused technique and
 omissions through clinicals, residency, and practice.
 
+## How this aligns with national frameworks
+
+No nationally adopted physical-exam checklist or shared OSCE rubric exists in US
+medical or PA education. The closest content consensus, a survey of all 132 US
+allopathic schools, endorsed a core of 37 maneuvers but was never operationalized
+(Gowda et al., *Acad Med* 2014). USMLE Step 2 CS was discontinued in 2021, COMLEX
+Level 2-PE in 2022, and PA education has never had a national clinical skills
+examination: ARC-PA requires a summative evaluation of clinical skills but
+prescribes no instrument, and the PANCE tests the physical exam only as
+multiple-choice knowledge. Educators have publicly called for defined national
+standards to fill this gap (*Acad Med* 2021;96:1242).
+
+This standard is built to current assessment best practice: a countable content
+checklist paired with a faculty global rating and a standardized-patient
+communication score, the combination recommended by the checklist and global
+rating literature (Ilgen et al., *Med Educ* 2015) and by AMEE Guide No. 81 and
+the 2020 Ottawa consensus. The 0/1/2 marking parallels MRCP(UK) PACES, and the
+checklist plus global rating structure directly supports borderline-regression
+standard setting.
+
 ## Cite
 
 > Moen, J. *The Standardized Physical Examination: a competency rubric for
