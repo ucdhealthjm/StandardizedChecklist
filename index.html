@@ -6,9 +6,11 @@
 <title>The Standardized Physical Examination</title>
 <style>
   :root{
-    --paper:#FBFCFD; --sheet:#FFFFFF; --ink:#1B2A3A; --muted:#5B6B7B;
-    --accent:#1F4E78; --accent-soft:#EAF1F8; --line:#D7DFE7; --line-soft:#E8EEF3;
-    --local:#8A4B12; --local-bg:#FDF3E7;
+    /* UC Davis: Aggie Blue #022851, Aggie Gold #FFBF00 */
+    --paper:#FAFBFC; --sheet:#FFFFFF; --ink:#1B2A3A; --muted:#5B6B7B;
+    --accent:#022851; --accent-soft:#E7EDF4; --line:#D5DCE5; --line-soft:#E7ECF2;
+    --gold:#FFBF00; --gold-dark:#E6AC00;
+    --local:#8A6D00; --local-bg:#FFF8E1;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
@@ -25,13 +27,13 @@
   .topbar .spacer{flex:1}
   .modeswitch{display:flex; background:rgba(255,255,255,.12); border-radius:6px; padding:3px}
   .modeswitch button{background:none; border:none; color:#fff; opacity:.8; padding:6px 14px; border-radius:4px; font-size:13px; font-weight:600}
-  .modeswitch button.on{background:#fff; color:var(--accent); opacity:1}
+  .modeswitch button.on{background:var(--gold); color:var(--accent); opacity:1}
   .chip{background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.25); border-radius:4px; padding:4px 10px; font-size:13px; font-variant-numeric:tabular-nums}
-  .btn-print{background:#fff; color:var(--accent); border:none; border-radius:4px; padding:7px 14px; font-weight:600; font-size:13px}
+  .btn-print{background:var(--gold); color:var(--accent); border:none; border-radius:4px; padding:7px 14px; font-weight:600; font-size:13px}
   .btn-print.ghost{background:rgba(255,255,255,.14); color:#fff; border:1px solid rgba(255,255,255,.35)}
-  .btn-print:hover{background:#E9F0F7; color:var(--accent)}
+  .btn-print:hover{background:var(--gold-dark); color:var(--accent)}
   .btn-print.ghost:hover{background:rgba(255,255,255,.24); color:#fff}
-  .btn-print:focus-visible,.toggle input:focus-visible,button:focus-visible,input.ck:focus-visible,.pick:focus-visible{outline:2px solid #9DB7D6; outline-offset:2px}
+  .btn-print:focus-visible,.toggle input:focus-visible,button:focus-visible,input.ck:focus-visible,.pick:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
 
   .wrap{display:flex; gap:26px; padding:22px; max-width:1360px; margin:0 auto; align-items:flex-start}
   aside{width:300px; flex:0 0 300px; display:flex; flex-direction:column; gap:16px}
@@ -73,7 +75,7 @@
   .sys-head{display:flex; align-items:baseline; gap:10px; background:var(--accent); color:#fff; border-radius:4px 4px 0 0; padding:7px 14px}
   .sys-head h3{margin:0; font-size:15px; font-weight:600; letter-spacing:.2px}
   .sys-head .pts{margin-left:auto; font-size:12.5px; opacity:.85; font-variant-numeric:tabular-nums}
-  .ros{border-left:3px solid #9DB7D6; background:var(--accent-soft); margin:0; padding:7px 14px; font-size:13px}
+  .ros{border-left:3px solid var(--gold); background:var(--accent-soft); margin:0; padding:7px 14px; font-size:13px}
   .ros b{color:var(--accent)}
   table.items{width:100%; border-collapse:collapse; border:1px solid var(--line-soft); border-top:none}
   tr.phase td{background:var(--accent); color:#fff; padding:6px 14px; font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase}
@@ -88,7 +90,7 @@
   .pick:hover{border-color:var(--accent); color:var(--accent)}
   .pick.on{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:700}
   tr.local td{background:var(--local-bg)}
-  tr.local:hover td{background:#FBEBD6}
+  tr.local:hover td{background:#FFF3C4}
   .local-chip{display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.06em; color:var(--local); border:1px solid var(--local); border-radius:3px; padding:0 5px; margin-left:7px; vertical-align:1px}
   .rm{border:none; background:none; color:var(--local); font-size:14px; padding:0 4px}
   .addrow td{border-top:1px solid var(--line-soft); padding:5px 8px 7px 8px}
@@ -114,7 +116,7 @@
     .rm,.addrow{display:none}
     .pick{border-color:#999}
     .pick.on{background:var(--accent) !important; color:#fff !important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
-    tr.local td{background:#F6EFE4 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+    tr.local td{background:#FFF8E1 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
   }
 </style>
 </head>
@@ -135,7 +137,6 @@
   <button class="btn-print" onclick="window.print()">Save PDF</button>
   <button class="btn-print ghost" onclick="exportDoc()">Download .doc</button>
 </div>
-<input type="file" id="cfgfile" accept="application/json,.json" style="display:none" onchange="importConfig(this)">
 
 <div class="wrap">
   <aside id="aside"></aside>
@@ -1156,10 +1157,8 @@ function asideComp(){
     <div class="panel"><h2>Display</h2>
       <label class="toggle"><input type="checkbox" ${o.ros?"checked":""} onchange="state.comp.opt.ros=this.checked;render()"> ROS screening lines</label>
       <label class="toggle"><input type="checkbox" ${o.ev?"checked":""} onchange="state.comp.opt.ev=this.checked;render()"> Evidence adjunct notes</label></div>
-    <div class="panel about"><h2>About</h2><p>Base items are the published standard and are fixed. Rows you add are marked <b>program-specific</b> and print shaded. Check items as they are mastered or observed; the score populates automatically.</p>
+    <div class="panel about"><h2>About</h2><p>Base items are the published standard and are fixed for every program. Rows you add are marked <b>program-specific</b> and print shaded, so additions never blur into the shared standard. Check items as they are mastered or observed; the score populates automatically. Additions and scores save on this device.</p>
       <p>${esc(BREADTH_NOTE)}</p>
-      <div class="mini" style="margin-top:2px"><button onclick="exportConfig()">Export setup</button><button onclick="document.getElementById('cfgfile').click()">Import setup</button></div>
-      <p style="margin-top:9px">Your program&rsquo;s additions and scores save on this device. <b>Export setup</b> to a file to move or share them.</p>
       <p>&copy; 2026 J. Moen &middot; CC BY-NC 4.0</p></div>`;
 }
 function compAll(v){ state.comp.enabled=COMP.map(()=>v); render(); }
@@ -1222,10 +1221,8 @@ function asideOsce(){
         <div class="rater"><span class="k">Faculty</span><span>a global rating of integrated performance (also enables borderline-regression standard setting).</span></div>
         <div class="rater"><span class="k">SP</span><span>scores communication: rapport, transitions, summaries, teach-back.</span></div>
       </div></div>
-    <div class="panel about"><h2>About</h2><p>Base + selected sections are the fixed standard. Add program-specific rows per section; they print shaded and chip-marked. Click a score on each row; the total populates automatically.</p>
+    <div class="panel about"><h2>About</h2><p>The base and selected sections are the fixed standard, identical for every program. Program-specific rows print shaded and chip-marked so they never blur into it. Click a score on each row; the total populates automatically. Additions and scores save on this device.</p>
       <p>${esc(BREADTH_NOTE)}</p>
-      <div class="mini" style="margin-top:2px"><button onclick="exportConfig()">Export setup</button><button onclick="document.getElementById('cfgfile').click()">Import setup</button></div>
-      <p style="margin-top:9px">Your program&rsquo;s additions and scores save on this device. <b>Export setup</b> to a file to move or share them.</p>
       <p>&copy; 2026 J. Moen &middot; CC BY-NC 4.0</p></div>`;
   return h;
 }
@@ -1288,16 +1285,16 @@ function exportDoc(){
   clone.querySelectorAll(".addrow, .rm").forEach(n=>n.remove());
   const docStyle="<style>"+
     "body{font-family:Calibri,Arial,sans-serif;font-size:11pt;color:#1B2A3A}"+
-    "h2{color:#1F4E78;font-size:16pt;margin:0 0 4pt}"+
+    "h2{color:#022851;font-size:16pt;margin:0 0 4pt}"+
     ".prog{color:#5B6B7B;font-size:9pt;letter-spacing:1pt;text-transform:uppercase}"+
     ".meta,.sheet-foot,.osce-banner{color:#5B6B7B;font-size:9pt}"+
     ".idline span{border-bottom:1px solid #999;padding-right:24pt}"+
     "table{width:100%;border-collapse:collapse;margin-top:6pt}"+
     "td{border:0.5pt solid #C7D2DC;padding:3pt 6pt;font-size:10pt;vertical-align:top}"+
-    "tr.phase td{background:#1F4E78;color:#fff;font-weight:bold;letter-spacing:1pt;text-transform:uppercase}"+
-    ".ghead td{background:#EAF1F8;color:#1F4E78;font-weight:bold}"+
+    "tr.phase td{background:#022851;color:#fff;font-weight:bold;letter-spacing:1pt;text-transform:uppercase}"+
+    ".ghead td{background:#E7EDF4;color:#022851;font-weight:bold}"+
     "td.bx{width:20pt;text-align:center}td.opts,td.score{text-align:right;color:#5B6B7B;white-space:nowrap}"+
-    "tr.local td{background:#FDF3E7}.local-chip{color:#8A4B12;font-size:7pt;font-weight:bold}"+
+    "tr.local td{background:#FFF8E1}.local-chip{color:#8A6D00;font-size:7pt;font-weight:bold}"+
     "</style>";
   const html="<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>"+
     "<head><meta charset='utf-8'><title>"+esc(fname())+"</title>"+docStyle+"</head><body>"+clone.innerHTML+"</body></html>";
@@ -1305,34 +1302,6 @@ function exportDoc(){
   const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=fname()+".doc";
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   setTimeout(()=>URL.revokeObjectURL(a.href),1500);
-}
-
-/* ---------- program setup: export / import config ---------- */
-function exportConfig(){
-  const cfg={ v:4, progname:document.getElementById("progname").textContent, state:state };
-  const blob=new Blob([JSON.stringify(cfg,null,2)],{type:"application/json"});
-  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=fname()+"-setup.json";
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  setTimeout(()=>URL.revokeObjectURL(a.href),1500);
-}
-function importConfig(input){
-  const f=input.files&&input.files[0]; if(!f){ return; }
-  const rd=new FileReader();
-  rd.onload=function(){
-    try{
-      const cfg=JSON.parse(rd.result); const s=(cfg&&cfg.state)?cfg.state:cfg;
-      if(s&&s.comp&&s.comp.local&&s.comp.local.length===COMP.length){
-        Object.assign(state,s);
-        if(!state.scores) state.scores={};
-        if(!state.osce.inc) state.osce.inc={};
-        if(!state.osce.ros) state.osce.ros={};
-        if(cfg&&cfg.progname) document.getElementById("progname").textContent=cfg.progname;
-        persist(); render();
-      } else { alert("That file does not match this rubric version and was not loaded."); }
-    }catch(e){ alert("Could not read that setup file."); }
-    input.value="";
-  };
-  rd.readAsText(f);
 }
 
 document.getElementById("progname").addEventListener("input", persist);

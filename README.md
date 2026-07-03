@@ -37,8 +37,8 @@ The tool has two modes:
   closure) plus whichever exam sections your program selects.
 - **Add program-specific items** to any section. They are marked distinctly and
   print shaded, so your additions never blur into the shared standard.
-- **Export** the finished sheet to PDF or Word, or **Save your setup** to a small
-  file you can reuse or share with colleagues.
+- **Export** the finished sheet to PDF or Word. Additions and scores save in
+  your browser on that device.
 
 Programs may also remove select items. The base items were chosen to model the
 breadth a novice learner needs and the maneuvers tested on board examinations,
