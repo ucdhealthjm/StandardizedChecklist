@@ -1142,8 +1142,9 @@ try {
   if (!state.osce.ros) state.osce.ros = {};
   if (!state.osce.vitals) state.osce.vitals = "verbalize";
   if (!state.osce.removed) state.osce.removed = {};
-  if (!state.practice) state.practice = { dur: 15, history: [] };
+  if (!state.practice) state.practice = { dur: 15, history: [], src: "osce" };
   if (!state.practice.history) state.practice.history = [];
+  if (!state.practice.src) state.practice.src = "osce";
   const pn = localStorage.getItem("rubric_progname"); if (pn) setTimeout(()=>{document.getElementById("progname").textContent=pn;},0);
 } catch(e){}
 function persist(){ try{
@@ -1349,9 +1350,15 @@ function pracStart(){
 function pracPause(){ prac.run=false; if(prac.iv){ clearInterval(prac.iv); prac.iv=null; } pracDisp(); }
 function pracReset(){ pracPause(); prac.left=state.practice.dur*60; pracDisp(); }
 function pracDur(v){ const n=Math.max(1,Math.min(120,parseInt(v,10)||15)); state.practice.dur=n; pracReset(); persist(); }
+function practiceSrc(){ return state.practice.src==="comp" ? "comp" : "osce"; }
+function practiceModel(){
+  if(practiceSrc()==="comp") return compModel().map(s=>({section:s.section, phase:null, rows:s.rows}));
+  return osceModel();
+}
 function pracTally(){
   let total=0, earned=0; const missed=[];
-  osceModel().forEach(m=>m.rows.forEach(r=>{
+  practiceModel().forEach(m=>m.rows.forEach(r=>{
+    if(r.head) return;
     total+=r.max; const v=state.scores["p|"+r.id]||0; earned+=v;
     if(v<r.max) missed.push(r.text.split(" (")[0]);
   }));
@@ -1368,14 +1375,15 @@ function finishAttempt(){
 function clearHistory(){ if(confirm("Delete all saved attempts on this device?")){ state.practice.history=[]; render(); } }
 function asidePractice(){
   const hist=state.practice.history, last=hist[0];
-  let h=`<div class="panel"><h2>Peer practice</h2><p style="font-size:12.5px;color:var(--muted);margin:0">Hand this device to a classmate. They grade with the same national standard while you perform the station, ask the history, or talk through the exam. Scores here never touch the grading sheet.</p>
-    <p style="font-size:12px;color:var(--muted);margin:8px 0 0">Uses the station set up on the OSCE tab: ${isComprehensive()?"comprehensive":"focused"} template, ${state.osce.vitals==="perform"?"vitals performed":"vitals verbalized"}, plus your ROS picks.</p></div>`;
-  h+=`<div class="panel"><h2>Station timer</h2>
+  const isComp=practiceSrc()==="comp";
+  let h=`<div class="panel"><h2>Practice</h2>
+    <label class="radio"><input type="radio" name="psrc" ${!isComp?"checked":""} onchange="state.practice.src='osce';render()"> OSCE station</label>
+    <label class="radio"><input type="radio" name="psrc" ${isComp?"checked":""} onchange="state.practice.src='comp';render()"> Comprehensive PE checklist</label></div>`;
+  h+=`<div class="panel"><h2>Timer</h2>
     <div class="tclock" id="pclock">${tfmt(pracLeft())}</div>
     <div class="tdur"><label for="pdur">Minutes</label><input id="pdur" type="number" min="1" max="120" value="${state.practice.dur}" onchange="pracDur(this.value)"></div>
     <div class="mini"><button id="pstart" onclick="pracStart()">${prac.run?"Pause":"Start"}</button><button onclick="pracReset()">Reset</button></div></div>`;
-  h+=`<div class="panel"><h2>This attempt</h2><button class="btn-finish" onclick="finishAttempt()">Finish &amp; save attempt</button>
-    <p style="font-size:11.5px;color:var(--muted);margin:8px 0 0">Saves the score and every missed item, then clears the sheet for the next run.</p></div>`;
+  h+=`<div class="panel"><h2>This attempt</h2><button class="btn-finish" onclick="finishAttempt()">Finish &amp; save attempt</button></div>`;
   if(last){
     const shown=last.missed.slice(0,14);
     h+=`<div class="panel"><h2>Missed last attempt (${last.missed.length})</h2>`+
@@ -1385,27 +1393,29 @@ function asidePractice(){
       hist.slice(0,10).map(a=>`<div class="attempt"><span>${esc(a.when)}</span><span class="pct">${a.score} / ${a.total} (${a.total?Math.round(100*a.score/a.total):0}%)</span></div>`).join("")+
       `<div class="mini"><button onclick="clearHistory()">Clear history</button></div></div>`;
   }
-  h+=`<div class="panel about"><h2>About</h2><p>Same standard, bigger tap targets, no editing. Attempts save on this device only.</p><p>&copy; 2026 J. Moen &middot; CC BY-NC 4.0</p></div>`;
+  h+=`<div class="panel about"><p>&copy; 2026 J. Moen &middot; CC BY-NC 4.0</p></div>`;
   return h;
 }
 function renderPractice(){
-  const model=osceModel();
+  const isComp=practiceSrc()==="comp";
+  const model=practiceModel();
   let html="", total=0, earned=0, lastPhase=null;
   html+=`<table class="items">`;
   model.forEach(m=>{
     if(m.phase && m.phase!==lastPhase){ html+=`<tr class="phase"><td colspan="2">${esc(m.phase)}</td></tr>`; lastPhase=m.phase; }
     html+=`<tr class="ghead"><td colspan="2">${esc(m.section)}</td></tr>`;
     m.rows.forEach(r=>{
+      if(r.head){ html+=`<tr class="ghead"><td colspan="2">${esc(r.head)}</td></tr>`; return; }
       const pid="p|"+r.id;
       total+=r.max; earned+=state.scores[pid]||0;
       html+=`<tr class="item${r.local?" local":""}"><td class="what">${esc(r.text)}${r.local?` <span class="local-chip">PROGRAM-SPECIFIC</span>`:""}</td><td class="opts">${pickCells(pid,r.max)}</td></tr>`;
     });
   });
   html+=`</table>`;
-  document.getElementById("sheettitle").textContent="Practice Station (peer-graded)";
-  document.getElementById("sheetmeta").textContent=(isComprehensive()?"Comprehensive station":"Focused station")+" · tap the score as your partner performs each item";
-  document.getElementById("osceBanner").innerHTML=`<div class="osce-banner"><b>Practice run.</b> Grade honestly and to the criterion: incorrect technique scores 0, same as omitted. When the encounter ends, press <b>Finish &amp; save attempt</b> to log the score and the missed items for review.</div>`;
-  document.getElementById("sheetfoot").innerHTML="<p>Practice attempts and scores stay on this device and never affect the grading rubric.</p><p>&copy; 2026 J. Moen &middot; CC BY-NC 4.0.</p>";
+  document.getElementById("sheettitle").textContent=isComp?"Practice: Comprehensive PE":"Practice Station";
+  document.getElementById("sheetmeta").textContent=(isComp?"Head-to-toe checklist":(isComprehensive()?"Comprehensive station":"Focused station"))+" · tap the score as each item is performed";
+  document.getElementById("osceBanner").innerHTML=`<div class="osce-banner"><b>Practice run.</b> Grade to the criterion: incorrect technique scores 0, same as omitted. Press <b>Finish &amp; save attempt</b> to log the score and missed items.</div>`;
+  document.getElementById("sheetfoot").innerHTML="<p>Practice attempts stay on this device and never affect the grading rubric.</p><p>&copy; 2026 J. Moen &middot; CC BY-NC 4.0.</p>";
   return {html, total, earned};
 }
 
@@ -1422,7 +1432,8 @@ function render(){
 /* ---------- export to Word (.doc) ---------- */
 function fname(){
   const pn=(document.getElementById("progname").textContent||"rubric").replace(/[^A-Za-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40)||"rubric";
-  return pn+"-"+(mode==="comp"?"PE-checklist":(mode==="practice"?"practice-":"OSCE-")+state.osce.station);
+  if(mode==="practice") return pn+"-practice-"+(practiceSrc()==="comp"?"PE-checklist":"OSCE-"+state.osce.station);
+  return pn+"-"+(mode==="comp"?"PE-checklist":"OSCE-"+state.osce.station);
 }
 function compModel(){
   const secs=[];
@@ -1437,8 +1448,9 @@ function compModel(){
   return secs;
 }
 function exportDoc(){
-  const isOsce = mode!=="comp";
-  const model = isOsce ? osceModel() : compModel();
+  const src = mode==="practice" ? practiceSrc() : mode;   // "comp" or "osce"
+  const isOsce = src!=="comp";
+  const model = mode==="practice" ? practiceModel() : (isOsce ? osceModel() : compModel());
   const cols = isOsce ? 3 : 2;   // score columns: 0/1/2 or 0/1
   const width = 1+cols;
   let total=0, body="", lastPhase=null, hasVerify=false;
