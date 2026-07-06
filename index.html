@@ -650,6 +650,17 @@ const COMP = [
       "text": "Allen test (before radial access)"
      },
      {
+      "text": "PAD cluster (absent pedal pulse + femoral bruit; +LR 34.2 for PAD; Armstrong 2010)"
+     },
+     {
+      "text": "Absent dorsalis pedis / posterior tibial pulse",
+      "sub": true
+     },
+     {
+      "text": "Femoral artery bruit",
+      "sub": true
+     },
+     {
       "text": "Homan sign",
       "lr": "(unreliable for DVT; use Wells score + D-dimer + compression ultrasound)",
       "tier": "D"
@@ -777,41 +788,145 @@ const COMP = [
   "note": "Ottawa ankle/foot/knee and Canadian C-Spine rules safely exclude fracture and cut imaging (high-sensitivity screens). Clusters beat single tests: the Park cluster (painful arc + Hawkins + infraspinatus weakness), all three positive, gives +LR 10.6 for impingement; CTS-6 is the AAOS-preferred construct (2024) over Phalen or Tinel alone. Most single low-back red flags carry +LR ~1; a cancer history is the exception (+LR ~15).",
   "groups": [
    {
-    "name": "Screen and regional inspection/palpation/ROM",
+    "name": "TMJ",
     "items": [
      {
-      "text": "TMJ: inspect, palpate, ROM (open/close, lateral, protrude/retract)"
+      "text": "Inspect for symmetry, swelling, redness"
      },
      {
-      "text": "Shoulders: inspect; palpate SC/AC joints, clavicle, subacromial bursa, bicipital groove; ROM in all planes"
+      "text": "Palpate joint and muscles of mastication"
      },
      {
-      "text": "Elbows: inspect; palpate olecranon, epicondyles, groove, ulnar nerve; ROM flex/extend, pronate/supinate"
-     },
-     {
-      "text": "Wrists/Hands: inspect; palpate distal radius/ulna, snuffbox, carpals, MCPs; ROM wrist and digits"
-     },
-     {
-      "text": "Spine: inspect curves/posture; palpate spinous processes, paravertebrals, SI joints; ROM cervical and thoracolumbar"
-     },
-     {
-      "text": "Hips: inspect; assess leg length; palpate ASIS/iliac crest/greater trochanter/PSIS; ROM all planes"
-     },
-     {
-      "text": "Knees: inspect; palpate 3 compartments and bursae; ROM flex/extend"
-     },
-     {
-      "text": "Feet/Ankles: inspect (weight-bearing and non-weight-bearing); palpate joint lines, plantar fascia, MTPs; ROM"
+      "text": "AROM: opening/closing, lateral, protrusion/retraction"
      }
     ]
    },
    {
-    "name": "Shoulder \u2014 special tests",
+    "name": "Shoulders",
     "items": [
      {
-      "text": "Painful arc sign (rotator cuff)",
-      "lr": "(+LR 3.7; Park/JAMA 2013)",
-      "tier": "C"
+      "text": "Inspect for swelling, deformity, atrophy, scars, positioning"
+     },
+     {
+      "text": "Palpate SC/AC joints, clavicle, subacromial bursa, bicipital groove, humerus, scapula"
+     },
+     {
+      "text": "AROM: abduction/adduction, flexion/extension, internal/external rotation"
+     }
+    ]
+   },
+   {
+    "name": "Elbows",
+    "items": [
+     {
+      "text": "Inspect for swelling or abnormal contours"
+     },
+     {
+      "text": "Palpate olecranon, epicondyles, groove, ulnar nerve, bursa"
+     },
+     {
+      "text": "AROM: flexion/extension, pronation/supination"
+     }
+    ]
+   },
+   {
+    "name": "Wrists / hands",
+    "items": [
+     {
+      "text": "Inspect hands in motion and at rest, palmar and dorsal surfaces"
+     },
+     {
+      "text": "Palpate distal radius/ulna, snuffbox, carpals, MCPs, phalanges"
+     },
+     {
+      "text": "AROM wrist: flexion/extension, ulnar/radial deviation"
+     },
+     {
+      "text": "AROM digits: flexion/extension, abduction/adduction, opposition"
+     }
+    ]
+   },
+   {
+    "name": "Spine",
+    "items": [
+     {
+      "text": "Inspect cervical/thoracic/lumbar curves and posture"
+     },
+     {
+      "text": "Palpate spinous processes, paravertebral muscles, SI joints"
+     },
+     {
+      "text": "AROM cervical: flexion/extension, rotation, lateral bending"
+     },
+     {
+      "text": "AROM thoracolumbar: flexion/extension, rotation, lateral bending"
+     }
+    ]
+   },
+   {
+    "name": "Hips",
+    "items": [
+     {
+      "text": "Inspect lumbar spine and hips for atrophy or bruising; assess leg-length symmetry"
+     },
+     {
+      "text": "Palpate ASIS/iliac crest/greater trochanter/PSIS, SI joints, trochanteric bursa, inguinal nodes"
+     },
+     {
+      "text": "AROM: flexion/extension, abduction/adduction, internal/external rotation"
+     }
+    ]
+   },
+   {
+    "name": "Knees",
+    "items": [
+     {
+      "text": "Inspect alignment, contours, atrophy, swelling, bruising"
+     },
+     {
+      "text": "Palpate 3 compartments (medial, lateral, patellofemoral) and bursae"
+     },
+     {
+      "text": "AROM: flexion/extension"
+     }
+    ]
+   },
+   {
+    "name": "Feet / ankles",
+    "items": [
+     {
+      "text": "Inspect all surfaces (weight-bearing and non-weight-bearing): arches, deformity, swelling, calluses"
+     },
+     {
+      "text": "Palpate joint lines, malleoli, plantar fascia, MTPs, metatarsal heads"
+     },
+     {
+      "text": "AROM ankle (plantar/dorsiflexion, inversion/eversion) and toes"
+     }
+    ]
+   },
+   {
+    "name": "Special tests: shoulder",
+    "items": [
+     {
+      "text": "Park impingement cluster (all 3 positive, +LR 10.56)"
+     },
+     {
+      "text": "Hawkins-Kennedy",
+      "sub": true
+     },
+     {
+      "text": "Infraspinatus (resisted external rotation) test",
+      "sub": true
+     },
+     {
+      "text": "Painful arc",
+      "sub": true
+     },
+     {
+      "text": "Neer impingement sign",
+      "lr": "(+LR ~1.9)",
+      "tier": "D"
      },
      {
       "text": "Drop-arm test (cuff tear)",
@@ -824,22 +939,7 @@ const COMP = [
       "tier": "D"
      },
      {
-      "text": "External rotation lag sign (infraspinatus)",
-      "lr": "(+LR 7.2; single small study \u2014 fragile)",
-      "tier": "B"
-     },
-     {
       "text": "Internal rotation lag / lift-off (subscapularis)"
-     },
-     {
-      "text": "Neer impingement sign",
-      "lr": "(+LR ~1.9)",
-      "tier": "D"
-     },
-     {
-      "text": "Hawkins-Kennedy impingement sign",
-      "lr": "(+LR ~1.7)",
-      "tier": "D"
      },
      {
       "text": "Cross-body adduction / scarf (AC joint)"
@@ -858,7 +958,7 @@ const COMP = [
     ]
    },
    {
-    "name": "Elbow / wrist \u2014 special tests",
+    "name": "Special tests: elbow and wrist",
     "items": [
      {
       "text": "Elbow flexion test (cubital tunnel)"
@@ -882,34 +982,71 @@ const COMP = [
     ]
    },
    {
-    "name": "Spine \u2014 special tests",
+    "name": "Special tests: spine",
     "items": [
      {
+      "text": "Wainner cervical radiculopathy cluster (4/4 +LR 30.3, 3/4 +LR 6.1)"
+     },
+     {
+      "text": "Spurling A",
+      "sub": true
+     },
+     {
+      "text": "Cervical distraction",
+      "sub": true
+     },
+     {
+      "text": "Upper limb tension test A (median)",
+      "sub": true
+     },
+     {
+      "text": "Cervical rotation <60 deg to the involved side",
+      "sub": true
+     },
+     {
       "text": "Straight-leg raise (lumbar radiculopathy)",
-      "lr": "(+LR ~1.5; a rule-out test \u2014 the negative is the informative result)",
+      "lr": "(+LR ~1.5; a rule-out test)",
       "tier": "D"
      },
      {
       "text": "Crossed straight-leg raise (disc herniation)",
       "lr": "(+LR 3.4)",
       "tier": "C"
-     },
-     {
-      "text": "Spurling test (cervical radiculopathy)",
-      "lr": "(+LR 3.3\u20134.2)",
-      "tier": "C"
      }
     ]
    },
    {
-    "name": "Hip \u2014 special tests",
+    "name": "Special tests: hip",
     "items": [
+     {
+      "text": "Sutlive hip-OA cluster (4/5 +LR 24.3; derivation cohort, not yet externally validated)"
+     },
+     {
+      "text": "Hip scour test positive",
+      "sub": true
+     },
+     {
+      "text": "Passive internal rotation <=25 deg",
+      "sub": true
+     },
+     {
+      "text": "Pain with squatting",
+      "sub": true
+     },
+     {
+      "text": "Lateral hip pain on active flexion",
+      "sub": true
+     },
+     {
+      "text": "Painful active hip extension",
+      "sub": true
+     },
      {
       "text": "FABER (Patrick) test"
      },
      {
       "text": "FADIR test (intra-articular / labral)",
-      "lr": "(a rule-out test; +LR ~1\u20132)",
+      "lr": "(a rule-out test; +LR ~1-2)",
       "tier": "D"
      },
      {
@@ -918,7 +1055,7 @@ const COMP = [
     ]
    },
    {
-    "name": "Knee \u2014 special tests",
+    "name": "Special tests: knee",
     "items": [
      {
       "text": "Effusion: bulge, ballottement, sweep"
@@ -929,7 +1066,7 @@ const COMP = [
       "tier": "C"
      },
      {
-      "text": "Valgus stress at 30\u00b0 (MCL)",
+      "text": "Valgus stress at 30 deg (MCL)",
       "lr": "(+LR 6.4 with laxity + pain + history; Kastelein 2008)",
       "tier": "B"
      },
@@ -938,7 +1075,7 @@ const COMP = [
      },
      {
       "text": "Lachman test (ACL)",
-      "lr": "(+LR 17\u201325; strongest ACL test)",
+      "lr": "(+LR 17-25; strongest ACL test)",
       "tier": "A"
      },
      {
@@ -958,13 +1095,13 @@ const COMP = [
      },
      {
       "text": "Posterior drawer (PCL)",
-      "lr": "(+LR ~21; a single small high-bias study reports ~98 \u2014 treat with caution)",
+      "lr": "(+LR ~21; a single small high-bias study reports ~98)",
       "tier": "A"
      }
     ]
    },
    {
-    "name": "Ankle / foot \u2014 special tests",
+    "name": "Special tests: ankle and foot",
     "items": [
      {
       "text": "Thompson / calf-squeeze (Achilles rupture)",
@@ -1035,20 +1172,63 @@ const COMP = [
     ]
    },
    {
-    "name": "Motor, coordination, sensory, reflexes",
+    "name": "Motor",
     "items": [
      {
-      "text": "Motor: inspect bulk/tone; strength UE and LE (MRC 0\u20135)"
+      "text": "Inspect bulk, tone, and involuntary movements"
      },
      {
-      "text": "Coordination: rapid alternating movements, finger-to-nose, heel-to-shin"
+      "text": "UE strength: elbow flexion/extension"
      },
      {
-      "text": "Romberg test; pronator drift"
+      "text": "UE strength: wrist flexion/extension"
      },
      {
-      "text": "Gait: casual, heel-to-toe, toes, heels, shallow knee bend"
+      "text": "UE strength: fingers abduction/adduction, thumb opposition, grip"
      },
+     {
+      "text": "LE strength: hip flexion/extension/abduction/adduction"
+     },
+     {
+      "text": "LE strength: knee flexion/extension"
+     },
+     {
+      "text": "LE strength: ankle dorsiflexion/plantarflexion"
+     }
+    ]
+   },
+   {
+    "name": "Coordination and gait",
+    "items": [
+     {
+      "text": "Rapid alternating movements (bilateral)"
+     },
+     {
+      "text": "Point-to-point (finger-to-nose or heel-to-shin)"
+     },
+     {
+      "text": "Romberg test"
+     },
+     {
+      "text": "Pronator drift"
+     },
+     {
+      "text": "Observe gait"
+     },
+     {
+      "text": "Heel-to-toe (tandem) walk"
+     },
+     {
+      "text": "Walk on toes and heels"
+     },
+     {
+      "text": "Shallow knee bend"
+     }
+    ]
+   },
+   {
+    "name": "Sensory",
+    "items": [
      {
       "text": "Pain (sharp/dull)"
      },
@@ -1071,7 +1251,12 @@ const COMP = [
      },
      {
       "text": "Graphesthesia"
-     },
+     }
+    ]
+   },
+   {
+    "name": "Reflexes",
+    "items": [
      {
       "text": "DTR biceps or brachioradialis"
      },
@@ -1090,7 +1275,7 @@ const COMP = [
     "name": "Special tests",
     "items": [
      {
-      "text": "Babinski (plantar) response"
+      "text": "Babinski (plantar response)"
      },
      {
       "text": "Ankle clonus"
@@ -1100,13 +1285,23 @@ const COMP = [
      },
      {
       "text": "Kernig and Brudzinski signs",
-      "lr": "(poor, non-reproducible sensitivity; do not use to exclude meningitis \u2014 an LP does that)",
+      "lr": "(poor, non-reproducible sensitivity; do not use to exclude meningitis - an LP does that)",
       "tier": "D"
      },
      {
-      "text": "HINTS for acute vestibular syndrome (head-impulse, nystagmus, test of skew)",
-      "lr": "(expert-performed +LR 25, -LR 0.00; competency-gated)",
-      "tier": "A"
+      "text": "HINTS for acute vestibular syndrome (expert-performed +LR 25, -LR 0.00; competency-gated)"
+     },
+     {
+      "text": "Head impulse test",
+      "sub": true
+     },
+     {
+      "text": "Nystagmus (direction-changing)",
+      "sub": true
+     },
+     {
+      "text": "Test of skew (alternate cover)",
+      "sub": true
      },
      {
       "text": "Dix-Hallpike for positional vertigo (pc-BPPV); if positive, treat with Epley",
@@ -1167,7 +1362,7 @@ const COMP = [
   ]
  }
 ];
-const OSCE = {"spine":[{"section":"Introduction, identification & hand hygiene","phase":"SUBJECTIVE","rows":[{"text":"Introduces self by name and states role to the patient (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true,"verify":"sp"},{"text":"Confirms patient identity: full name and a second identifier (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true,"verify":"sp"},{"text":"Asks the patient's pronouns and uses them throughout (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true,"verify":"sp"},{"text":"Washes or sanitizes hands before patient contact","max":1,"base":true,"verify":"sp"}]},{"section":"HPI: chief complaint & symptom characterization (OLDCARTS)","phase":"SUBJECTIVE","rows":[{"text":"Elicits chief complaint in the patient's own words","max":1,"base":true},{"text":"Opens with an open-ended question before narrowing to closed questions","max":1,"base":true,"verify":"sp"},{"text":"Elicits the patient's ideas, concerns, and expectations (ICE)","max":1,"base":true,"verify":"sp"},{"text":"Responds to emotion with empathy (PEARLS: partnership, empathy, apology, respect, support)","max":1,"base":true,"verify":"sp"},{"text":"Onset","max":1,"base":true},{"text":"Location","max":1,"base":true},{"text":"Duration","max":1,"base":true},{"text":"Character / quality","max":1,"base":true},{"text":"Aggravating factors","max":1,"base":true},{"text":"Alleviating factors (incl. self-treatment and response)","max":1,"base":true},{"text":"Radiation","max":1,"base":true},{"text":"Timing (constant vs. intermittent; frequency)","max":1,"base":true},{"text":"Severity (0-10 or functional impact)","max":1,"base":true},{"text":"Associated symptoms","max":1,"base":true},{"text":"Recent travel or sick contacts","max":1,"base":true}]},{"section":"Summarize & transition (after HPI)","phase":"SUBJECTIVE","rows":[{"text":"Summarizes the HPI back to the patient and checks accuracy (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true,"verify":"sp"},{"text":"Transition statement from HPI into the review of systems","max":1,"base":true,"verify":"sp"}]},{"section":"Review of systems","phase":"SUBJECTIVE","rows":[{"text":"Constitutional (fever/chills, weight change, fatigue, night sweats, appetite) - criterion: asks >=3 of the 5","max":1,"base":true}],"ros_slot":true},{"section":"Summarize & transition (after ROS)","phase":"SUBJECTIVE","rows":[{"text":"Transition statement from ROS into the histories","max":1,"base":true,"verify":"sp"}]},{"section":"Past histories, medications, allergies & immunizations","phase":"SUBJECTIVE","rows":[{"text":"PMH - each condition with diagnosis and year if known (or none)","max":1,"base":true},{"text":"PSH - each surgery with year and complications (or none)","max":1,"base":true},{"text":"FH - first-degree relatives: age, alive/deceased (cause), chronic conditions","max":1,"base":true},{"text":"Social Hx (FED TACOS) - Food / diet","max":1,"base":true},{"text":"Social Hx - Exercise / physical activity","max":1,"base":true},{"text":"Social Hx - Drugs (recreational / illicit)","max":1,"base":true},{"text":"Social Hx - Tobacco / nicotine","max":1,"base":true},{"text":"Social Hx - Alcohol","max":1,"base":true},{"text":"Social Hx - Caffeine","max":1,"base":true},{"text":"Social Hx - Occupation","max":1,"base":true},{"text":"Social Hx - Stress, sleep, SES, sex, support - criterion: asks >=3 of the 5","max":1,"base":true},{"text":"Medications - name, dose, route, frequency incl. OTC/supplements (or none)","max":1,"base":true},{"text":"Allergies - allergen and reaction (or NKDA)","max":1,"base":true},{"text":"Immunizations and age-appropriate screenings - UTD or not","max":1,"base":true}]},{"section":"Summarize & transition (after histories)","phase":"SUBJECTIVE","rows":[{"text":"Summarizes the histories / medications / allergies","max":1,"base":true,"verify":"sp"},{"text":"Transition statement from histories into the physical exam","max":1,"base":true,"verify":"sp"}]},{"section":"Physical exam: general survey","phase":"OBJECTIVE","rows":[{"text":"General survey - reports all components: LOC/orientation, distress, posture/habitus, grooming, stated age (criterion: all 5)","max":1,"base":true},{"text":"General survey - reports vital signs","max":1,"base":true}]},{"section":"Physical exam: vital signs","phase":"OBJECTIVE","rows":[{"text":"Blood pressure (correct technique) and report","max":1,"base":true},{"text":"Pulse: rate, rhythm, amplitude, and report","max":1,"base":true},{"text":"Respiratory rate and report","max":1,"base":true},{"text":"Temperature (document route) and report","max":1,"base":true},{"text":"Height","max":1,"base":true},{"text":"Weight and calculated BMI","max":1,"base":true}],"vitals_slot":true,"alt":[{"text":"Acknowledges the recorded vital signs and verbalizes each (BP, HR, RR, T, and SpO2/BMI as available)","max":1,"base":true},{"text":"Identifies abnormal vital signs and states their clinical significance (or states all within normal limits)","max":1,"base":true}]},{"section":"Skin, hair & nails","phase":"OBJECTIVE","rows":[{"text":"Inspect overall skin appearance: color, moisture, texture","max":1},{"text":"Inspect/palpate temperature, turgor, mobility","max":1},{"text":"Inspect/palpate lesions (size, shape, color, asymmetry, distribution)","max":1},{"text":"Inspect/palpate hair and scalp","max":1},{"text":"Inspect/palpate finger and toe nails","max":1}]},{"section":"HEENT: head","phase":"OBJECTIVE","rows":[{"text":"Inspect/palpate skull for symmetry, shape, deformity, trauma","max":1},{"text":"Inspect/palpate scalp and hair","max":1},{"text":"Inspect facial bones and features for symmetry and position","max":1}]},{"section":"HEENT: eyes","phase":"OBJECTIVE","rows":[{"text":"Test visual acuity (Snellen)","max":1},{"text":"Test visual fields by confrontation","max":1},{"text":"Inspect position/shape/symmetry of eyes, conjunctiva, sclera, pupil","max":1},{"text":"Inspect/palpate brows, eyelids, lacrimal system","max":1},{"text":"Check extra-ocular movements; convergence; accommodation","max":1},{"text":"Ophthalmoscope: red reflex, iris, cornea","max":1},{"text":"Ophthalmoscope: pupil and light reaction (PERRLA)","max":1},{"text":"Ophthalmoscope: retina, vessels, optic disc","max":1}]},{"section":"HEENT: ears","phase":"OBJECTIVE","rows":[{"text":"Inspect auricle shape, size, symmetry, placement","max":1},{"text":"Palpate auricle, mastoid, TMJ, parotid","max":1},{"text":"Auditory acuity (whisper test 2-3 ft, bilateral)","max":1},{"text":"Otoscope: external canal and TM (bilateral)","max":1},{"text":"Weber test","max":1},{"text":"Rinne test","max":1}]},{"section":"HEENT: nose","phase":"OBJECTIVE","rows":[{"text":"Inspect position, symmetry, skin changes","max":1},{"text":"Palpate nasal bones","max":1},{"text":"Test nasal patency of each nostril","max":1},{"text":"Test smell sensation (CN I)","max":1},{"text":"Palpate sinuses","max":1},{"text":"Percuss sinuses","max":1},{"text":"Transilluminate sinuses","max":1},{"text":"Otoscope: mucosa, septum, turbinate","max":1}]},{"section":"HEENT: throat, mouth & neck","phase":"OBJECTIVE","rows":[{"text":"Inspect lips and mouth (symmetry, color, lesions, moisture)","max":1},{"text":"Inspect teeth, gums, tongue, palate, pharynx, buccal mucosa","max":1},{"text":"Inspect floor of mouth","max":1},{"text":"Palpate floor of mouth (bimanual), tongue (incl. lateral borders), buccal mucosa, gums, teeth","max":1},{"text":"Tongue protrusion (CN XII)","max":1},{"text":"Say 'Ah': observe palate rise (CN IX/X)","max":1},{"text":"Assess swallowing","max":1},{"text":"Inspect neck for symmetry, contour, masses","max":1},{"text":"Palpate cervical lymph nodes","max":1},{"text":"Palpate thyroid","max":1},{"text":"Palpate neck midline: vessels, cartilage, trachea","max":1}]},{"section":"Physical exam: thorax & lungs","phase":"OBJECTIVE","rows":[{"text":"Inspect rate, rhythm, depth, effort, expiratory time","max":1},{"text":"Inspect shape, size, symmetry of chest","max":1},{"text":"Inspect skin and chest landmarks","max":1},{"text":"Compress anterior, lateral, posterior chest wall","max":1},{"text":"Assess chest expansion (anterior and posterior)","max":1},{"text":"Assess tactile fremitus (anterior and posterior)","max":1},{"text":"Percuss >=6 areas anterior/posterior incl. 2 lateral (criterion: >=6 areas)","max":1},{"text":"Identify diaphragmatic excursion posteriorly","max":1},{"text":"Auscultate lungs: >=6 areas anterior/posterior incl. 2 lateral, bilaterally (criterion: >=6 areas)","max":1,"base":true},{"text":"Special: bronchophony","max":1},{"text":"Special: egophony","max":1},{"text":"Special: whispered pectoriloquy","max":1}]},{"section":"Physical exam: cardiovascular","phase":"OBJECTIVE","rows":[{"text":"Inspect precordium for the apical impulse","max":1},{"text":"Assess JVP at 45 degrees","max":1},{"text":"Palpate carotids one at a time","max":1},{"text":"Auscultate carotids for bruits","max":1},{"text":"Palpate precordium for PMI, heaves, thrills","max":1},{"text":"Auscultate heart: all valve areas, bell and diaphragm (criterion: all valve areas)","max":1,"base":true},{"text":"Auscultate in left lateral decubitus (mitral, S3/S4)","max":1},{"text":"Auscultate leaning forward (aortic regurgitation)","max":1},{"text":"Palpate peripheral pulses (radial, femoral, popliteal, DP, PT) (criterion: all 5 sites)","max":1},{"text":"Assess for peripheral edema","max":1}]},{"section":"Physical exam: peripheral vascular","phase":"OBJECTIVE","rows":[{"text":"Inspect extremities for color, hair, ulcers, varicosities","max":1},{"text":"Assess extremity temperature","max":1},{"text":"Assess capillary refill","max":1},{"text":"Palpate peripheral pulses bilaterally","max":1},{"text":"Assess for edema","max":1},{"text":"Special: Allen test / ankle-brachial index","max":1}]},{"section":"Physical exam: abdomen / GI","phase":"OBJECTIVE","rows":[{"text":"Inspect contour, scars, distension, pulsations","max":1},{"text":"Auscultate bowel sounds in 4 quadrants","max":1},{"text":"Auscultate for aortic / renal bruits","max":1},{"text":"Percuss all 4 quadrants","max":1},{"text":"Percuss liver span","max":1},{"text":"Percuss spleen","max":1},{"text":"Light palpation of all 4 quadrants","max":1},{"text":"Deep palpation of all 4 quadrants","max":1},{"text":"Palpate liver edge","max":1},{"text":"Palpate spleen","max":1},{"text":"Assess CVA tenderness","max":1},{"text":"Special: rebound tenderness","max":1},{"text":"Special: Rovsing sign","max":1},{"text":"Special: psoas sign","max":1},{"text":"Special: Murphy sign","max":1}]},{"section":"Musculoskeletal: TMJ","phase":"OBJECTIVE","rows":[{"text":"Inspect for symmetry, swelling, redness","max":1},{"text":"Palpate joint and muscles","max":1},{"text":"ROM: opening/closing, lateral, protrusion/retraction","max":1}]},{"section":"Musculoskeletal: shoulders","phase":"OBJECTIVE","rows":[{"text":"Inspect for swelling, deformity, atrophy, scars, positioning","max":1},{"text":"Inspect/palpate SC/AC joints, clavicle, bursa, bicipital groove, humerus, scapula","max":1},{"text":"ROM: abd/add, flex/ext, internal/external rotation","max":1},{"text":"Special: Park impingement cluster (all 3 positive, +LR 10.56)","max":1},{"text":"Hawkins-Kennedy","sub":true},{"text":"Infraspinatus (resisted external rotation) test","sub":true},{"text":"Painful arc","sub":true},{"text":"Special (impingement): Neer","max":1},{"text":"Special (rotator cuff): drop-arm / empty-can / ER or IR lag","max":1},{"text":"Special (AC joint): cross-body / scarf","max":1},{"text":"Special (biceps): Yergason","max":1},{"text":"Special (instability): apprehension-relocation / O'Brien","max":1}]},{"section":"Musculoskeletal: elbows","phase":"OBJECTIVE","rows":[{"text":"Inspect for swelling or abnormal contours","max":1},{"text":"Palpate olecranon, epicondyles, grooves, bursa, ulnar nerve","max":1},{"text":"ROM: flex/ext, supination/pronation","max":1},{"text":"Special: elbow flexion test (cubital tunnel)","max":1}]},{"section":"Musculoskeletal: wrists / hands","phase":"OBJECTIVE","rows":[{"text":"Inspect hands in motion and rest, palmar/dorsal surfaces","max":1},{"text":"Palpate radius/ulna, snuff box, carpals, metacarpals, phalanges","max":1},{"text":"ROM wrist: flex/ext, ulnar/radial deviation","max":1},{"text":"ROM digits: flex/ext, abd/add, opposition","max":1},{"text":"Special: Finkelstein (de Quervain)","max":1},{"text":"Special: Phalen (carpal tunnel)","max":1},{"text":"Special: Tinel (carpal tunnel)","max":1}]},{"section":"Musculoskeletal: spine","phase":"OBJECTIVE","rows":[{"text":"Inspect cervical/thoracic/lumbar curves, posture","max":1},{"text":"Palpate spinous processes, iliac crests, PSIS incl. C7/L4","max":1},{"text":"Palpate paravertebral muscles","max":1},{"text":"Palpate sciatic nerve","max":1},{"text":"ROM cervical: flex/ext, rotation, lateral bending","max":1},{"text":"ROM thoracolumbar: flex/ext, rotation, lateral bending","max":1},{"text":"Special: Wainner cervical radiculopathy cluster (4/4 +LR 30.3, 3/4 +LR 6.1)","max":1},{"text":"Spurling A","sub":true},{"text":"Cervical distraction","sub":true},{"text":"Upper limb tension test A (median)","sub":true},{"text":"Cervical rotation <60 deg to the involved side","sub":true},{"text":"Special: straight-leg raise","max":1},{"text":"Special: crossed straight-leg raise","max":1}]},{"section":"Musculoskeletal: hips","phase":"OBJECTIVE","rows":[{"text":"Inspect lumbar spine and hips for atrophy/bruising","max":1},{"text":"Assess leg-length symmetry","max":1},{"text":"Palpate anterior structures: iliac crest, ASIS, greater trochanter","max":1},{"text":"Palpate posterior structures: PSIS and SI joints","max":1},{"text":"Palpate inguinal ligament and lymph nodes","max":1},{"text":"Palpate trochanteric bursa","max":1},{"text":"ROM: flex/ext, abd/add, internal/external rotation","max":1},{"text":"Special: Sutlive hip-OA cluster (4/5 +LR 24.3; derivation cohort, not yet externally validated)","max":1},{"text":"Hip scour test positive","sub":true},{"text":"Passive internal rotation <=25 deg","sub":true},{"text":"Pain with squatting","sub":true},{"text":"Lateral hip pain on active flexion","sub":true},{"text":"Painful active hip extension","sub":true},{"text":"Special: FABER","max":1},{"text":"Special: FADIR","max":1},{"text":"Special: log roll","max":1}]},{"section":"Musculoskeletal: knees","phase":"OBJECTIVE","rows":[{"text":"Inspect alignment, contours, atrophy, swelling, bruising","max":1},{"text":"Palpate medial compartment (condyle, plateau, MCL, meniscus)","max":1},{"text":"Palpate lateral compartment (condyle, plateau, LCL, meniscus)","max":1},{"text":"Palpate patellofemoral (patella, tendon, tibial tuberosity)","max":1},{"text":"Palpate suprapatellar, pre-patellar, pes anserine, popliteal bursa","max":1},{"text":"ROM: flex/ext","max":1},{"text":"Special: effusion (bulge/ballottement/sweep)","max":1},{"text":"Special: McMurray (meniscus)","max":1},{"text":"Special: MCL valgus stress","max":1},{"text":"Special: LCL varus stress","max":1},{"text":"Special: Lachman (ACL)","max":1},{"text":"Special: anterior drawer (ACL)","max":1},{"text":"Special: posterior drawer (PCL)","max":1}]},{"section":"Musculoskeletal: feet / ankles","phase":"OBJECTIVE","rows":[{"text":"Inspect all surfaces for deformity, swelling, calluses","max":1},{"text":"Inspect weight-bearing & non-weight-bearing; arches, inversion/eversion","max":1},{"text":"Palpate anterior ankle joint, medial and lateral malleoli","max":1},{"text":"Palpate heel and plantar fascia","max":1},{"text":"Palpate MTP joints incl. metatarsal heads","max":1},{"text":"ROM ankle (plantar/dorsiflexion, inversion/eversion) and toes","max":1},{"text":"Special: Thompson / calf-squeeze (Achilles)","max":1},{"text":"Special: Matles knee-flexion test (Achilles)","max":1},{"text":"Special: tendon-gap palpation (Achilles)","max":1},{"text":"Special: anterior drawer (ankle)","max":1},{"text":"Special: talar tilt","max":1},{"text":"Special: squeeze test (syndesmosis)","max":1}]},{"section":"Neurologic: mental status & cranial nerves","phase":"OBJECTIVE","rows":[{"text":"Mental status: alertness, appropriateness, orientation","max":1},{"text":"CN I - smell","max":1},{"text":"CN II - visual acuity and fields","max":1},{"text":"CN III - EOM","max":1},{"text":"CN III - pupillary light reflex","max":1},{"text":"CN III - accommodation","max":1},{"text":"CN IV - EOM","max":1},{"text":"CN V - motor (clench / jaw excursion)","max":1},{"text":"CN V - sensory (V1/V2/V3, sharp-dull, light touch)","max":1},{"text":"CN VI - EOM","max":1},{"text":"CN VII - brow, eye closure, cheeks, smile","max":1},{"text":"CN VIII - auditory acuity (whisper test)","max":1},{"text":"CN IX/X - speech","max":1},{"text":"CN IX/X - swallow","max":1},{"text":"CN IX/X - palate rise with 'Ah'","max":1},{"text":"CN XI - shoulder shrug against resistance","max":1},{"text":"CN XI - head turn against resistance","max":1},{"text":"CN XII - tongue protrudes without deviation","max":1}]},{"section":"Neurologic: motor","phase":"OBJECTIVE","rows":[{"text":"Inspect bulk, tone, involuntary movements","max":1},{"text":"UE strength: elbow flexion/extension","max":1},{"text":"UE strength: wrist flexion/extension","max":1},{"text":"UE strength: fingers abd/add, thumb opposition, grip","max":1},{"text":"LE strength: hip flexion/extension/abd/add","max":1},{"text":"LE strength: knee flexion/extension","max":1},{"text":"LE strength: ankle dorsiflexion/plantarflexion","max":1}]},{"section":"Neurologic: coordination / cerebellar","phase":"OBJECTIVE","rows":[{"text":"Rapid alternating movements (bilateral)","max":1},{"text":"Point-to-point (finger-to-nose or heel-to-shin)","max":1},{"text":"Romberg test","max":1},{"text":"Pronator drift","max":1},{"text":"Observe gait","max":1},{"text":"Heel-to-toe walk","max":1},{"text":"Walk on toes and heels","max":1},{"text":"Shallow knee bend","max":1},{"text":"Special: HINTS for acute vestibular syndrome (expert / competency-gated)","max":1},{"text":"Head impulse test","sub":true},{"text":"Nystagmus (direction-changing)","sub":true},{"text":"Test of skew (alternate cover)","sub":true},{"text":"Special: Dix-Hallpike for positional vertigo (pc-BPPV); if positive, treat with Epley maneuver","max":1}]},{"section":"Neurologic: sensory","phase":"OBJECTIVE","rows":[{"text":"Pain (sharp/dull)","max":1},{"text":"Light touch (cotton wisp, compare symmetry)","max":1},{"text":"Vibratory sense (tuning fork)","max":1},{"text":"10-g monofilament at plantar sites (loss of protective sensation)","max":1},{"text":"Proprioception (big toe)","max":1},{"text":"Stereognosis","max":1},{"text":"Graphesthesia","max":1}]},{"section":"Neurologic: reflexes & special tests","phase":"OBJECTIVE","rows":[{"text":"DTR biceps or brachioradialis","max":1},{"text":"DTR triceps","max":1},{"text":"DTR patellar","max":1},{"text":"DTR ankle","max":1},{"text":"Special: Babinski (plantar response)","max":1},{"text":"Special: ankle clonus","max":1},{"text":"Special: asterixis","max":1},{"text":"Special: Kernig and Brudzinski","max":1}]},{"section":"Assessment & plan","phase":"ASSESSMENT & PLAN","rows":[{"text":"States the primary (most likely) diagnosis","max":1,"base":true},{"text":"Differential 1 - names it and gives >=3 supporting/refuting data points (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true},{"text":"Differential 2 - names it and gives >=3 supporting/refuting data points (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true},{"text":"Differential 3 - names it and gives >=3 supporting/refuting data points (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true},{"text":"Plan - states the diagnostic workup and the management steps (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true},{"text":"Teach-back - confirms patient understanding of the assessment and plan","max":1,"base":true,"verify":"sp"}]},{"section":"Closure","phase":"CLOSURE","rows":[{"text":"Invites final questions and addresses patient concerns","max":1,"base":true,"verify":"sp"}]}],"ros_options":[{"text":"Skin (rashes, lumps, sores, itching, color change) - criterion: asks >=3 of the 5","max":1},{"text":"HEENT (headache, vision change, hearing change, congestion, sore throat) - criterion: asks >=3 of the 5","max":1},{"text":"Respiratory (cough, dyspnea, wheeze, sputum, hemoptysis) - criterion: asks >=3 of the 5","max":1},{"text":"Cardiovascular (chest pain, palpitations, edema, orthopnea, PND) - criterion: asks >=3 of the 5","max":1},{"text":"Peripheral vascular (claudication, leg swelling, varicosities, cold extremities, non-healing wounds) - criterion: asks >=3 of the 5","max":1},{"text":"Gastrointestinal (nausea/vomiting, abdominal pain, bowel changes, blood in stool, heartburn) - criterion: asks >=3 of the 5","max":1},{"text":"Genitourinary (dysuria, frequency, hematuria, flank pain, discharge) - criterion: asks >=3 of the 5","max":1},{"text":"Musculoskeletal (joint pain, stiffness, swelling, weakness, back pain) - criterion: asks >=3 of the 5","max":1},{"text":"Neurologic (dizziness, numbness/tingling, weakness, seizures, syncope) - criterion: asks >=3 of the 5","max":1},{"text":"Psychiatric (mood, anxiety, sleep, memory, SI/HI) - criterion: asks >=3 of the 5","max":1},{"text":"Endocrine (heat/cold intolerance, polyuria/polydipsia, weight change, hair/skin change) - criterion: asks >=3 of the 4","max":1},{"text":"Hematologic/lymphatic (easy bruising, bleeding, swollen glands) - criterion: asks >=2 of the 3","max":1}]};
+const OSCE = {"spine":[{"section":"Introduction, identification & hand hygiene","phase":"SUBJECTIVE","rows":[{"text":"Introduces self by name and states role to the patient (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true,"verify":"sp"},{"text":"Confirms patient identity: full name and a second identifier (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true,"verify":"sp"},{"text":"Asks the patient's pronouns and uses them throughout (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true,"verify":"sp"},{"text":"Washes or sanitizes hands before patient contact","max":1,"base":true,"verify":"sp"}]},{"section":"HPI: chief complaint & symptom characterization (OLDCARTS)","phase":"SUBJECTIVE","rows":[{"text":"Elicits chief complaint in the patient's own words","max":1,"base":true},{"text":"Opens with an open-ended question before narrowing to closed questions","max":1,"base":true,"verify":"sp"},{"text":"Elicits the patient's ideas, concerns, and expectations (ICE)","max":1,"base":true,"verify":"sp"},{"text":"Responds to emotion with empathy (PEARLS: partnership, empathy, apology, respect, support)","max":1,"base":true,"verify":"sp"},{"text":"Onset","max":1,"base":true},{"text":"Location","max":1,"base":true},{"text":"Duration","max":1,"base":true},{"text":"Character / quality","max":1,"base":true},{"text":"Aggravating factors","max":1,"base":true},{"text":"Alleviating factors (incl. self-treatment and response)","max":1,"base":true},{"text":"Radiation","max":1,"base":true},{"text":"Timing (constant vs. intermittent; frequency)","max":1,"base":true},{"text":"Severity (0-10 or functional impact)","max":1,"base":true},{"text":"Associated symptoms","max":1,"base":true},{"text":"Recent travel or sick contacts","max":1,"base":true}]},{"section":"Summarize & transition (after HPI)","phase":"SUBJECTIVE","rows":[{"text":"Summarizes the HPI back to the patient and checks accuracy (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true,"verify":"sp"},{"text":"Transition statement from HPI into the review of systems","max":1,"base":true,"verify":"sp"}]},{"section":"Review of systems","phase":"SUBJECTIVE","rows":[{"text":"Constitutional (fever/chills, weight change, fatigue, night sweats, appetite) - criterion: asks >=3 of the 5","max":1,"base":true}],"ros_slot":true},{"section":"Summarize & transition (after ROS)","phase":"SUBJECTIVE","rows":[{"text":"Transition statement from ROS into the histories","max":1,"base":true,"verify":"sp"}]},{"section":"Past histories, medications, allergies & immunizations","phase":"SUBJECTIVE","rows":[{"text":"PMH - each condition with diagnosis and year if known (or none)","max":1,"base":true},{"text":"PSH - each surgery with year and complications (or none)","max":1,"base":true},{"text":"FH - first-degree relatives: age, alive/deceased (cause), chronic conditions","max":1,"base":true},{"text":"Social Hx (FED TACOS) - Food / diet","max":1,"base":true},{"text":"Social Hx - Exercise / physical activity","max":1,"base":true},{"text":"Social Hx - Drugs (recreational / illicit)","max":1,"base":true},{"text":"Social Hx - Tobacco / nicotine","max":1,"base":true},{"text":"Social Hx - Alcohol","max":1,"base":true},{"text":"Social Hx - Caffeine","max":1,"base":true},{"text":"Social Hx - Occupation","max":1,"base":true},{"text":"Social Hx - Stress, sleep, SES, sex, support - criterion: asks >=3 of the 5","max":1,"base":true},{"text":"Medications - name, dose, route, frequency incl. OTC/supplements (or none)","max":1,"base":true},{"text":"Allergies - allergen and reaction (or NKDA)","max":1,"base":true},{"text":"Immunizations and age-appropriate screenings - UTD or not","max":1,"base":true}]},{"section":"Summarize & transition (after histories)","phase":"SUBJECTIVE","rows":[{"text":"Summarizes the histories / medications / allergies","max":1,"base":true,"verify":"sp"},{"text":"Transition statement from histories into the physical exam","max":1,"base":true,"verify":"sp"}]},{"section":"Physical exam: general survey","phase":"OBJECTIVE","rows":[{"text":"General survey - reports all components: LOC/orientation, distress, posture/habitus, grooming, stated age (criterion: all 5)","max":1,"base":true},{"text":"General survey - reports vital signs","max":1,"base":true}]},{"section":"Physical exam: vital signs","phase":"OBJECTIVE","rows":[{"text":"Blood pressure (correct technique) and report","max":1,"base":true},{"text":"Pulse: rate, rhythm, amplitude, and report","max":1,"base":true},{"text":"Respiratory rate and report","max":1,"base":true},{"text":"Temperature (document route) and report","max":1,"base":true},{"text":"Height","max":1,"base":true},{"text":"Weight and calculated BMI","max":1,"base":true}],"vitals_slot":true,"alt":[{"text":"Acknowledges the recorded vital signs and verbalizes each (BP, HR, RR, T, and SpO2/BMI as available)","max":1,"base":true},{"text":"Identifies abnormal vital signs and states their clinical significance (or states all within normal limits)","max":1,"base":true}]},{"section":"Skin, hair & nails","phase":"OBJECTIVE","rows":[{"text":"Inspect overall skin appearance: color, moisture, texture","max":1},{"text":"Inspect/palpate temperature, turgor, mobility","max":1},{"text":"Inspect/palpate lesions (size, shape, color, asymmetry, distribution)","max":1},{"text":"Inspect/palpate hair and scalp","max":1},{"text":"Inspect/palpate finger and toe nails","max":1}]},{"section":"HEENT: head","phase":"OBJECTIVE","rows":[{"text":"Inspect/palpate skull for symmetry, shape, deformity, trauma","max":1},{"text":"Inspect/palpate scalp and hair","max":1},{"text":"Inspect facial bones and features for symmetry and position","max":1}]},{"section":"HEENT: eyes","phase":"OBJECTIVE","rows":[{"text":"Test visual acuity (Snellen)","max":1},{"text":"Test visual fields by confrontation","max":1},{"text":"Inspect position/shape/symmetry of eyes, conjunctiva, sclera, pupil","max":1},{"text":"Inspect/palpate brows, eyelids, lacrimal system","max":1},{"text":"Check extra-ocular movements; convergence; accommodation","max":1},{"text":"Ophthalmoscope: red reflex, iris, cornea","max":1},{"text":"Ophthalmoscope: pupil and light reaction (PERRLA)","max":1},{"text":"Ophthalmoscope: retina, vessels, optic disc","max":1}]},{"section":"HEENT: ears","phase":"OBJECTIVE","rows":[{"text":"Inspect auricle shape, size, symmetry, placement","max":1},{"text":"Palpate auricle, mastoid, TMJ, parotid","max":1},{"text":"Auditory acuity (whisper test 2-3 ft, bilateral)","max":1},{"text":"Otoscope: external canal and TM (bilateral)","max":1},{"text":"Weber test","max":1},{"text":"Rinne test","max":1}]},{"section":"HEENT: nose","phase":"OBJECTIVE","rows":[{"text":"Inspect position, symmetry, skin changes","max":1},{"text":"Palpate nasal bones","max":1},{"text":"Test nasal patency of each nostril","max":1},{"text":"Test smell sensation (CN I)","max":1},{"text":"Palpate sinuses","max":1},{"text":"Percuss sinuses","max":1},{"text":"Transilluminate sinuses","max":1},{"text":"Otoscope: mucosa, septum, turbinate","max":1}]},{"section":"HEENT: throat, mouth & neck","phase":"OBJECTIVE","rows":[{"text":"Inspect lips and mouth (symmetry, color, lesions, moisture)","max":1},{"text":"Inspect teeth, gums, tongue, palate, pharynx, buccal mucosa","max":1},{"text":"Inspect floor of mouth","max":1},{"text":"Palpate floor of mouth (bimanual), tongue (incl. lateral borders), buccal mucosa, gums, teeth","max":1},{"text":"Tongue protrusion (CN XII)","max":1},{"text":"Say 'Ah': observe palate rise (CN IX/X)","max":1},{"text":"Assess swallowing","max":1},{"text":"Inspect neck for symmetry, contour, masses","max":1},{"text":"Palpate cervical lymph nodes","max":1},{"text":"Palpate thyroid","max":1},{"text":"Palpate neck midline: vessels, cartilage, trachea","max":1}]},{"section":"Physical exam: thorax & lungs","phase":"OBJECTIVE","rows":[{"text":"Inspect rate, rhythm, depth, effort, expiratory time","max":1},{"text":"Inspect shape, size, symmetry of chest","max":1},{"text":"Inspect skin and chest landmarks","max":1},{"text":"Compress anterior, lateral, posterior chest wall","max":1},{"text":"Assess chest expansion (anterior and posterior)","max":1},{"text":"Assess tactile fremitus (anterior and posterior)","max":1},{"text":"Percuss >=6 areas anterior/posterior incl. 2 lateral (criterion: >=6 areas)","max":1},{"text":"Identify diaphragmatic excursion posteriorly","max":1},{"text":"Auscultate lungs: >=6 areas anterior/posterior incl. 2 lateral, bilaterally (criterion: >=6 areas)","max":1,"base":true},{"text":"Special: bronchophony","max":1},{"text":"Special: egophony","max":1},{"text":"Special: whispered pectoriloquy","max":1}]},{"section":"Physical exam: cardiovascular","phase":"OBJECTIVE","rows":[{"text":"Inspect precordium for the apical impulse","max":1},{"text":"Assess JVP at 45 degrees","max":1},{"text":"Palpate carotids one at a time","max":1},{"text":"Auscultate carotids for bruits","max":1},{"text":"Palpate precordium for PMI, heaves, thrills","max":1},{"text":"Auscultate heart: all valve areas, bell and diaphragm (criterion: all valve areas)","max":1,"base":true},{"text":"Auscultate in left lateral decubitus (mitral, S3/S4)","max":1},{"text":"Auscultate leaning forward (aortic regurgitation)","max":1},{"text":"Palpate peripheral pulses (radial, femoral, popliteal, DP, PT) (criterion: all 5 sites)","max":1},{"text":"Assess for peripheral edema","max":1}]},{"section":"Physical exam: peripheral vascular","phase":"OBJECTIVE","rows":[{"text":"Inspect extremities for color, hair, ulcers, varicosities","max":1},{"text":"Assess extremity temperature","max":1},{"text":"Assess capillary refill","max":1},{"text":"Palpate peripheral pulses bilaterally","max":1},{"text":"Assess for edema","max":1},{"text":"Special: Allen test / ankle-brachial index","max":1},{"text":"Special: PAD cluster (absent pedal pulse + femoral bruit, +LR 34.2)","max":1},{"text":"Absent dorsalis pedis / posterior tibial pulse","sub":true},{"text":"Femoral artery bruit","sub":true}]},{"section":"Physical exam: abdomen / GI","phase":"OBJECTIVE","rows":[{"text":"Inspect contour, scars, distension, pulsations","max":1},{"text":"Auscultate bowel sounds in 4 quadrants","max":1},{"text":"Auscultate for aortic / renal bruits","max":1},{"text":"Percuss all 4 quadrants","max":1},{"text":"Percuss liver span","max":1},{"text":"Percuss spleen","max":1},{"text":"Light palpation of all 4 quadrants","max":1},{"text":"Deep palpation of all 4 quadrants","max":1},{"text":"Palpate liver edge","max":1},{"text":"Palpate spleen","max":1},{"text":"Assess CVA tenderness","max":1},{"text":"Special: rebound tenderness","max":1},{"text":"Special: Rovsing sign","max":1},{"text":"Special: psoas sign","max":1},{"text":"Special: Murphy sign","max":1}]},{"section":"Musculoskeletal: TMJ","phase":"OBJECTIVE","rows":[{"text":"Inspect for symmetry, swelling, redness","max":1},{"text":"Palpate joint and muscles","max":1},{"text":"ROM: opening/closing, lateral, protrusion/retraction","max":1}]},{"section":"Musculoskeletal: shoulders","phase":"OBJECTIVE","rows":[{"text":"Inspect for swelling, deformity, atrophy, scars, positioning","max":1},{"text":"Inspect/palpate SC/AC joints, clavicle, bursa, bicipital groove, humerus, scapula","max":1},{"text":"ROM: abd/add, flex/ext, internal/external rotation","max":1},{"text":"Special: Park impingement cluster (all 3 positive, +LR 10.56)","max":1},{"text":"Hawkins-Kennedy","sub":true},{"text":"Infraspinatus (resisted external rotation) test","sub":true},{"text":"Painful arc","sub":true},{"text":"Special (impingement): Neer","max":1},{"text":"Special (rotator cuff): drop-arm / empty-can / ER or IR lag","max":1},{"text":"Special (AC joint): cross-body / scarf","max":1},{"text":"Special (biceps): Yergason","max":1},{"text":"Special (instability): apprehension-relocation / O'Brien","max":1}]},{"section":"Musculoskeletal: elbows","phase":"OBJECTIVE","rows":[{"text":"Inspect for swelling or abnormal contours","max":1},{"text":"Palpate olecranon, epicondyles, grooves, bursa, ulnar nerve","max":1},{"text":"ROM: flex/ext, supination/pronation","max":1},{"text":"Special: elbow flexion test (cubital tunnel)","max":1}]},{"section":"Musculoskeletal: wrists / hands","phase":"OBJECTIVE","rows":[{"text":"Inspect hands in motion and rest, palmar/dorsal surfaces","max":1},{"text":"Palpate radius/ulna, snuff box, carpals, metacarpals, phalanges","max":1},{"text":"ROM wrist: flex/ext, ulnar/radial deviation","max":1},{"text":"ROM digits: flex/ext, abd/add, opposition","max":1},{"text":"Special: Finkelstein (de Quervain)","max":1},{"text":"Special: Phalen (carpal tunnel)","max":1},{"text":"Special: Tinel (carpal tunnel)","max":1}]},{"section":"Musculoskeletal: spine","phase":"OBJECTIVE","rows":[{"text":"Inspect cervical/thoracic/lumbar curves, posture","max":1},{"text":"Palpate spinous processes, iliac crests, PSIS incl. C7/L4","max":1},{"text":"Palpate paravertebral muscles","max":1},{"text":"Palpate sciatic nerve","max":1},{"text":"ROM cervical: flex/ext, rotation, lateral bending","max":1},{"text":"ROM thoracolumbar: flex/ext, rotation, lateral bending","max":1},{"text":"Special: Wainner cervical radiculopathy cluster (4/4 +LR 30.3, 3/4 +LR 6.1)","max":1},{"text":"Spurling A","sub":true},{"text":"Cervical distraction","sub":true},{"text":"Upper limb tension test A (median)","sub":true},{"text":"Cervical rotation <60 deg to the involved side","sub":true},{"text":"Special: straight-leg raise","max":1},{"text":"Special: crossed straight-leg raise","max":1}]},{"section":"Musculoskeletal: hips","phase":"OBJECTIVE","rows":[{"text":"Inspect lumbar spine and hips for atrophy/bruising","max":1},{"text":"Assess leg-length symmetry","max":1},{"text":"Palpate anterior structures: iliac crest, ASIS, greater trochanter","max":1},{"text":"Palpate posterior structures: PSIS and SI joints","max":1},{"text":"Palpate inguinal ligament and lymph nodes","max":1},{"text":"Palpate trochanteric bursa","max":1},{"text":"ROM: flex/ext, abd/add, internal/external rotation","max":1},{"text":"Special: Sutlive hip-OA cluster (4/5 +LR 24.3; derivation cohort, not yet externally validated)","max":1},{"text":"Hip scour test positive","sub":true},{"text":"Passive internal rotation <=25 deg","sub":true},{"text":"Pain with squatting","sub":true},{"text":"Lateral hip pain on active flexion","sub":true},{"text":"Painful active hip extension","sub":true},{"text":"Special: FABER","max":1},{"text":"Special: FADIR","max":1},{"text":"Special: log roll","max":1}]},{"section":"Musculoskeletal: knees","phase":"OBJECTIVE","rows":[{"text":"Inspect alignment, contours, atrophy, swelling, bruising","max":1},{"text":"Palpate medial compartment (condyle, plateau, MCL, meniscus)","max":1},{"text":"Palpate lateral compartment (condyle, plateau, LCL, meniscus)","max":1},{"text":"Palpate patellofemoral (patella, tendon, tibial tuberosity)","max":1},{"text":"Palpate suprapatellar, pre-patellar, pes anserine, popliteal bursa","max":1},{"text":"ROM: flex/ext","max":1},{"text":"Special: effusion (bulge/ballottement/sweep)","max":1},{"text":"Special: McMurray (meniscus)","max":1},{"text":"Special: MCL valgus stress","max":1},{"text":"Special: LCL varus stress","max":1},{"text":"Special: Lachman (ACL)","max":1},{"text":"Special: anterior drawer (ACL)","max":1},{"text":"Special: posterior drawer (PCL)","max":1}]},{"section":"Musculoskeletal: feet / ankles","phase":"OBJECTIVE","rows":[{"text":"Inspect all surfaces for deformity, swelling, calluses","max":1},{"text":"Inspect weight-bearing & non-weight-bearing; arches, inversion/eversion","max":1},{"text":"Palpate anterior ankle joint, medial and lateral malleoli","max":1},{"text":"Palpate heel and plantar fascia","max":1},{"text":"Palpate MTP joints incl. metatarsal heads","max":1},{"text":"ROM ankle (plantar/dorsiflexion, inversion/eversion) and toes","max":1},{"text":"Special: Thompson / calf-squeeze (Achilles)","max":1},{"text":"Special: Matles knee-flexion test (Achilles)","max":1},{"text":"Special: tendon-gap palpation (Achilles)","max":1},{"text":"Special: anterior drawer (ankle)","max":1},{"text":"Special: talar tilt","max":1},{"text":"Special: squeeze test (syndesmosis)","max":1}]},{"section":"Neurologic: mental status & cranial nerves","phase":"OBJECTIVE","rows":[{"text":"Mental status: alertness, appropriateness, orientation","max":1},{"text":"CN I - smell","max":1},{"text":"CN II - visual acuity and fields","max":1},{"text":"CN III - EOM","max":1},{"text":"CN III - pupillary light reflex","max":1},{"text":"CN III - accommodation","max":1},{"text":"CN IV - EOM","max":1},{"text":"CN V - motor (clench / jaw excursion)","max":1},{"text":"CN V - sensory (V1/V2/V3, sharp-dull, light touch)","max":1},{"text":"CN VI - EOM","max":1},{"text":"CN VII - brow, eye closure, cheeks, smile","max":1},{"text":"CN VIII - auditory acuity (whisper test)","max":1},{"text":"CN IX/X - speech","max":1},{"text":"CN IX/X - swallow","max":1},{"text":"CN IX/X - palate rise with 'Ah'","max":1},{"text":"CN XI - shoulder shrug against resistance","max":1},{"text":"CN XI - head turn against resistance","max":1},{"text":"CN XII - tongue protrudes without deviation","max":1}]},{"section":"Neurologic: motor","phase":"OBJECTIVE","rows":[{"text":"Inspect bulk, tone, involuntary movements","max":1},{"text":"UE strength: elbow flexion/extension","max":1},{"text":"UE strength: wrist flexion/extension","max":1},{"text":"UE strength: fingers abd/add, thumb opposition, grip","max":1},{"text":"LE strength: hip flexion/extension/abd/add","max":1},{"text":"LE strength: knee flexion/extension","max":1},{"text":"LE strength: ankle dorsiflexion/plantarflexion","max":1}]},{"section":"Neurologic: coordination / cerebellar","phase":"OBJECTIVE","rows":[{"text":"Rapid alternating movements (bilateral)","max":1},{"text":"Point-to-point (finger-to-nose or heel-to-shin)","max":1},{"text":"Romberg test","max":1},{"text":"Pronator drift","max":1},{"text":"Observe gait","max":1},{"text":"Heel-to-toe walk","max":1},{"text":"Walk on toes and heels","max":1},{"text":"Shallow knee bend","max":1},{"text":"Special: HINTS for acute vestibular syndrome (expert / competency-gated)","max":1},{"text":"Head impulse test","sub":true},{"text":"Nystagmus (direction-changing)","sub":true},{"text":"Test of skew (alternate cover)","sub":true},{"text":"Special: Dix-Hallpike for positional vertigo (pc-BPPV); if positive, treat with Epley maneuver","max":1}]},{"section":"Neurologic: sensory","phase":"OBJECTIVE","rows":[{"text":"Pain (sharp/dull)","max":1},{"text":"Light touch (cotton wisp, compare symmetry)","max":1},{"text":"Vibratory sense (tuning fork)","max":1},{"text":"10-g monofilament at plantar sites (loss of protective sensation)","max":1},{"text":"Proprioception (big toe)","max":1},{"text":"Stereognosis","max":1},{"text":"Graphesthesia","max":1}]},{"section":"Neurologic: reflexes & special tests","phase":"OBJECTIVE","rows":[{"text":"DTR biceps or brachioradialis","max":1},{"text":"DTR triceps","max":1},{"text":"DTR patellar","max":1},{"text":"DTR ankle","max":1},{"text":"Special: Babinski (plantar response)","max":1},{"text":"Special: ankle clonus","max":1},{"text":"Special: asterixis","max":1},{"text":"Special: Kernig and Brudzinski","max":1}]},{"section":"Assessment & plan","phase":"ASSESSMENT & PLAN","rows":[{"text":"States the primary (most likely) diagnosis","max":1,"base":true},{"text":"Differential 1 - names it and gives >=3 supporting/refuting data points (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true},{"text":"Differential 2 - names it and gives >=3 supporting/refuting data points (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true},{"text":"Differential 3 - names it and gives >=3 supporting/refuting data points (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true},{"text":"Plan - states the diagnostic workup and the management steps (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true},{"text":"Teach-back - confirms patient understanding of the assessment and plan","max":1,"base":true,"verify":"sp"}]},{"section":"Closure","phase":"CLOSURE","rows":[{"text":"Invites final questions and addresses patient concerns","max":1,"base":true,"verify":"sp"}]}],"ros_options":[{"text":"Skin (rashes, lumps, sores, itching, color change) - criterion: asks >=3 of the 5","max":1},{"text":"HEENT (headache, vision change, hearing change, congestion, sore throat) - criterion: asks >=3 of the 5","max":1},{"text":"Respiratory (cough, dyspnea, wheeze, sputum, hemoptysis) - criterion: asks >=3 of the 5","max":1},{"text":"Cardiovascular (chest pain, palpitations, edema, orthopnea, PND) - criterion: asks >=3 of the 5","max":1},{"text":"Peripheral vascular (claudication, leg swelling, varicosities, cold extremities, non-healing wounds) - criterion: asks >=3 of the 5","max":1},{"text":"Gastrointestinal (nausea/vomiting, abdominal pain, bowel changes, blood in stool, heartburn) - criterion: asks >=3 of the 5","max":1},{"text":"Genitourinary (dysuria, frequency, hematuria, flank pain, discharge) - criterion: asks >=3 of the 5","max":1},{"text":"Musculoskeletal (joint pain, stiffness, swelling, weakness, back pain) - criterion: asks >=3 of the 5","max":1},{"text":"Neurologic (dizziness, numbness/tingling, weakness, seizures, syncope) - criterion: asks >=3 of the 5","max":1},{"text":"Psychiatric (mood, anxiety, sleep, memory, SI/HI) - criterion: asks >=3 of the 5","max":1},{"text":"Endocrine (heat/cold intolerance, polyuria/polydipsia, weight change, hair/skin change) - criterion: asks >=3 of the 4","max":1},{"text":"Hematologic/lymphatic (easy bruising, bleeding, swollen glands) - criterion: asks >=2 of the 3","max":1}]};
 
 const BREADTH_NOTE = "Programs may remove select items. The base items were selected to model the breadth a novice learner needs and the maneuvers tested on boards, even where practice has evolved. For standardized nationwide competence, teach the full breadth in the didactic phase and refine focused techniques and omissions through clinicals, residency, and practice.";
 
@@ -1234,7 +1429,7 @@ function syncLensBtns(){
 }
 
 /* ---------- COMPREHENSIVE PE ---------- */
-function compCount(i){ let n=COMP[i].groups.reduce((a,g)=>a+g.items.length,0); return n+state.comp.local[i].length; }
+function compCount(i){ let n=COMP[i].groups.reduce((a,g)=>a+g.items.filter(it=>!it.sub).length,0); return n+state.comp.local[i].length; }
 function asideComp(){
   const o=state.comp.opt;
   return `<div class="panel"><h2>Systems in this rubric</h2><div id="systoggles">`+
@@ -1249,6 +1444,7 @@ function asideComp(){
 }
 function compAll(v){ state.comp.enabled=COMP.map(()=>v); render(); }
 function compRow(it,id){
+  if(it.sub){ return `<tr class="item subrow"><td class="bx"></td><td class="what subc">${esc(it.text)}</td><td class="opts"></td></tr>`; }
   const on = state.scores[id]===1;
   return `<tr class="item"><td class="bx"><input type="checkbox" class="ck" ${on?"checked":""} onchange="ckToggle('${id}',this.checked)"></td><td class="what">${esc(it.text)}</td><td class="opts">${pickCells(id,1)}</td></tr>`;
 }
@@ -1261,7 +1457,7 @@ function renderComp(){
     if(o.ros&&s.ros) html+=`<div class="ros"><b>ROS screen (ask &ge; 3):</b> ${esc(s.ros)}</div>`;
     html+=`<table class="items">`;
     s.groups.forEach((g,gi)=>{ html+=`<tr class="ghead"><td colspan="3">${esc(g.name)}</td></tr>`;
-      g.items.forEach((it,ii)=>{ const id="c:"+i+":"+gi+":"+ii; earned+=state.scores[id]||0; html+=compRow(it,id); }); });
+      g.items.forEach((it,ii)=>{ const id="c:"+i+":"+gi+":"+ii; if(!it.sub) earned+=state.scores[id]||0; html+=compRow(it,id); }); });
     if(state.comp.local[i].length){ html+=`<tr class="ghead"><td colspan="3">Program-specific additions</td></tr>`;
       state.comp.local[i].forEach((t,li)=>{ const id="cl:"+i+":"+li; earned+=state.scores[id]||0;
         html+=`<tr class="item local"><td class="bx"><input type="checkbox" class="ck" ${state.scores[id]===1?"checked":""} onchange="ckToggle('${id}',this.checked)"></td><td class="what">${esc(t)}<span class="local-chip">PROGRAM-SPECIFIC</span><button class="rm" onclick="state.comp.local[${i}].splice(${li},1);render()">&#x2715;</button></td><td class="opts">${pickCells(id,1)}</td></tr>`; }); }
@@ -1523,7 +1719,7 @@ function compModel(){
   COMP.forEach((s,i)=>{
     if(!state.comp.enabled[i]) return;
     const rows=[];
-    s.groups.forEach((g,gi)=>{ rows.push({head:g.name}); g.items.forEach((it,ii)=>rows.push({id:"c:"+i+":"+gi+":"+ii, text:it.text, max:1})); });
+    s.groups.forEach((g,gi)=>{ rows.push({head:g.name}); g.items.forEach((it,ii)=>rows.push({id:"c:"+i+":"+gi+":"+ii, text:it.text, max:it.sub?0:1, sub:it.sub})); });
     if(state.comp.local[i].length){ rows.push({head:"Program-specific additions"});
       state.comp.local[i].forEach((t,li)=>rows.push({id:"cl:"+i+":"+li, text:t, max:1, local:true})); }
     secs.push({section:s.title, rows:rows});
