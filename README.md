@@ -19,16 +19,31 @@ countable so a score means the same thing everywhere.
 
 ## What it does
 
-The tool has two modes:
+The tool has three modes:
 
 - **Comprehensive PE** — the head-to-toe checklist for study and skills
   practice, organized by system with review-of-systems screens and short
-  evidence adjuncts on modern, higher-yield approaches.
+  evidence adjuncts on modern, higher-yield approaches. A rubric-scope toggle
+  can exclude the history from grading while retaining professional appearance
+  and identification, introduction, patient verification, permission, hand
+  hygiene, privacy, draping, and comfort for institutions assessing the physical
+  examination alone. Cranial-nerve skills
+  already completed in HEENT are mirrored in Neurological and are not scored or
+  performed twice.
 - **OSCE / SOAP grading** — one SOAP-ordered station rubric scored from the
   student's note. Items score 0/1 (or 0/1/2 where two components are named) and
   the total populates automatically as you grade. It pairs with the three-rater
   model: the SOAP note drives the content checklist, faculty give a global
   rating, and the standardized patient scores communication.
+- **Practice** — a timer-supported solo-review and peer-assessment checklist.
+  General Bates and Stanford Medicine 25 references appear once at each
+  applicable section heading. Special tests do not inherit those general
+  references: each special-test row receives its own public, test-specific
+  Physiopedia demonstration. Rows without a verified demonstration are visibly
+  flagged for review before adoption into the final standard. Bates remains the
+  course standard where institutional access is available; its link intentionally
+  uses the generic publisher destination so the public repository does not depend
+  on a UC Davis-only URL.
 
 ## Make it yours
 

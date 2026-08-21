@@ -118,6 +118,15 @@
   body.practice td.opts{width:180px}
   body.practice tr.item td{padding:10px 10px; font-size:15.5px}
   body.practice .addrow,body.practice .rmspec,body.practice .vchip{display:none}
+  .video-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  .video-link{display:inline-flex;align-items:center;gap:5px;border:1px solid #B8C7D8;background:#F3F7FA;color:var(--accent);border-radius:5px;padding:3px 8px;font-size:11.5px;font-weight:700;text-decoration:none;line-height:1.25}
+  .video-link:hover{background:var(--accent-soft);border-color:var(--accent)}
+  .video-link.public{background:#FFF8E1;border-color:#D9BD63;color:#5E4B00}
+  .video-link.special{background:#F0F8F2;border-color:#78A985;color:#245E33}
+  .video-note{display:block;margin-top:4px;color:var(--muted);font-size:11px;line-height:1.3}
+  .video-missing{display:inline-block;margin:5px 0 0 6px;border:1px solid #C66;background:#FFF1F1;color:#8B2525;border-radius:5px;padding:3px 8px;font-size:11px;font-weight:700}
+  .video-optional{display:inline-block;margin:5px 0 0 6px;border:1px solid #AAB6C2;background:#F5F7F9;color:#536273;border-radius:5px;padding:3px 8px;font-size:11px;font-weight:700}
+  .linked-note{display:inline-block;margin-left:7px;color:#526579;font-size:11px;font-weight:700}
   .tclock{font-size:34px; font-weight:700; text-align:center; font-variant-numeric:tabular-nums; color:var(--accent); margin:2px 0 8px; letter-spacing:1px}
   .tclock.low{color:#B3261E}
   .tdur{display:flex; align-items:center; gap:8px; font-size:13px; margin-bottom:8px}
@@ -138,7 +147,7 @@
     section.sys{break-inside:auto}
     .sys-head,tr.phase td{border-radius:0; -webkit-print-color-adjust:exact; print-color-adjust:exact}
     tr.item{break-inside:avoid}
-    .rm,.addrow{display:none}
+    .rm,.addrow,.video-links,.video-note,.video-missing,.video-optional{display:none}
     .pick{border-color:#999}
     .pick.on{background:var(--accent) !important; color:#fff !important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
     tr.local td{background:#FFF8E1 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
@@ -190,7 +199,7 @@
 <script>
 const COMP = [
  {
-  "title": "Setting the Stage and the Comprehensive History",
+  "title": "Encounter Set-up and Introduction",
   "ros": null,
   "note": null,
   "groups": [
@@ -213,7 +222,10 @@ const COMP = [
       "text": "Ask how the patient wishes to be addressed (including pronouns)"
      },
      {
-      "text": "Set the agenda and expected visit length"
+      "text": "Explain the physical examination and obtain permission to proceed"
+     },
+     {
+      "text": "Maintain patient comfort and privacy with appropriate positioning and draping"
      }
     ]
    },
@@ -1366,11 +1378,168 @@ const OSCE = {"spine":[{"section":"Introduction, identification & hand hygiene",
 
 const BREADTH_NOTE = "Programs may remove select items. The base items were selected to model the breadth a novice learner needs and the maneuvers tested on boards, even where practice has evolved. For standardized nationwide competence, teach the full breadth in the didactic phase and refine focused techniques and omissions through clinicals, residency, and practice.";
 
+/* ---------- PRACTICE VIDEO LIBRARY ----------
+   General Bates / Stanford references appear once at the section heading.
+   Special tests never inherit a general-exam video: each must resolve to a
+   test-specific public Physiopedia demonstration or be flagged for review. */
+const BATES_HOME = "https://www.wolterskluwer.com/en/solutions/lippincott-clinical-context/bates-visual-guide-to-examination";
+const BATES = {
+  full:"Bates 1.0 · Head-to-Toe Assessment: Adult",
+  survey:"Bates 1.3 · General Survey & Vital Signs",
+  skin:"Bates 1.4 · The Skin",
+  heent:"Bates 1.5 · HEENT",
+  cranial:"Bates 1.6 · Cranial Nerves",
+  neck:"Bates 1.7 · The Neck",
+  posteriorLungs:"Bates 1.8 · Back, Posterior Thorax & Lungs",
+  upper:"Bates 1.9 · Upper Extremities",
+  breast:"Bates 1.10 · Breasts",
+  anteriorLungs:"Bates 1.11 · Anterior Thorax & Lungs",
+  cardio:"Bates 1.12 · Cardiovascular System",
+  abdomen:"Bates 1.13 · Abdomen",
+  vascular:"Bates 1.14 · Peripheral Vascular System",
+  lower:"Bates 1.15 · Lower Extremities",
+  neuro:"Bates 1.16 · Nervous System",
+  genital:"Bates 1.17 · Genital & Rectal"
+};
+const STANFORD_SECTION_RULES = [
+  [/skin/i,"Stanford Medicine 25 · Dermatology exam","https://stanfordmedicine25.stanford.edu/the25/dermatology.html"],
+  [/eye|heent|head, eyes/i,"Stanford Medicine 25 · Fundoscopic exam","https://stanfordmedicine25.stanford.edu/the25/fundoscopic.html"],
+  [/throat|mouth|neck/i,"Stanford Medicine 25 · Thyroid / neck exam","https://stanfordmedicine25.stanford.edu/the25/thyroid.html"],
+  [/thorax|lung/i,"Stanford Medicine 25 · Pulmonary exam","https://stanfordmedicine25.stanford.edu/the25/pulmonary.html"],
+  [/cardiovascular/i,"Stanford Medicine 25 · Cardiac exam","https://stanfordmedicine25.stanford.edu/the25/cardiac.html"],
+  [/abdomen/i,"Stanford Medicine 25 · Abdominal exam","https://stanfordmedicine25.stanford.edu/the25/abdominal.html"],
+  [/shoulder/i,"Stanford Medicine 25 · Shoulder exam","https://stanfordmedicine25.stanford.edu/the25/shoulder.html"],
+  [/wrist|hand/i,"Stanford Medicine 25 · Hand and wrist exam","https://stanfordmedicine25.stanford.edu/the25/hand.html"],
+  [/knee/i,"Stanford Medicine 25 · Knee exam","https://stanfordmedicine25.stanford.edu/the25/knee.html"],
+  [/coordination|cerebellar/i,"Stanford Medicine 25 · Cerebellar exam","https://stanfordmedicine25.stanford.edu/the25/cerebellar.html"],
+  [/reflex/i,"Stanford Medicine 25 · Reflex exam","https://stanfordmedicine25.stanford.edu/the25/tendon.html"]
+];
+const SPECIAL_VIDEO_RULES = [
+  [/rinne/i,"Rinne test","https://www.physio-pedia.com/Rinne_Test"],
+  [/weber/i,"Weber test","https://www.physio-pedia.com/Weber_Test"],
+  [/bronchophony|egophony|pectoriloquy/i,"Transmitted voice sounds","https://www.physio-pedia.com/Lung_Sounds"],
+  [/allen test/i,"Allen test","https://www.physio-pedia.com/Allen%27s_Test"],
+  [/ankle.brachial|\babi\b/i,"Ankle-brachial index","https://www.physio-pedia.com/Ankle_Brachial_Pressure_Index"],
+  [/homan/i,"Homan sign","https://www.physio-pedia.com/Homan%27s_Sign_Test"],
+  [/buerger/i,"Buerger test","https://www.physio-pedia.com/Peripheral_Vascular_Examination"],
+  [/rebound|blumberg/i,"Rebound tenderness","https://www.physio-pedia.com/Abdominal_Examination"],
+  [/murphy/i,"Murphy sign","https://www.physio-pedia.com/Murphy%27s_Sign"],
+  [/mcburney/i,"McBurney point","https://www.physio-pedia.com/Abdominal_Examination"],
+  [/rovsing/i,"Rovsing sign","https://www.physio-pedia.com/Rovsing_Sign"],
+  [/psoas/i,"Psoas sign","https://www.physio-pedia.com/Psoas_Sign"],
+  [/shifting dullness/i,"Shifting dullness","https://www.physio-pedia.com/Abdominal_Examination"],
+  [/fluid wave|fluid thrill/i,"Fluid-wave test","https://www.physio-pedia.com/Abdominal_Examination"],
+  [/hawkins/i,"Hawkins-Kennedy test","https://www.physio-pedia.com/Hawkins-Kennedy_Test"],
+  [/infraspinatus|resisted external rotation/i,"Infraspinatus test","https://www.physio-pedia.com/Infraspinatus_Test"],
+  [/painful arc/i,"Painful arc","https://www.physio-pedia.com/Painful_Arc"],
+  [/neer/i,"Neer test","https://www.physio-pedia.com/Neer%27s_Test"],
+  [/drop.arm/i,"Drop-arm test","https://www.physio-pedia.com/Drop_Arm_Test"],
+  [/empty.can|jobe/i,"Empty-can / Jobe test","https://www.physio-pedia.com/Empty_Can_Test"],
+  [/internal rotation lag|lift.off/i,"Internal-rotation lag / lift-off","https://www.physio-pedia.com/Internal_Rotation_Lag_Sign"],
+  [/cross.body|scarf/i,"Scarf test","https://www.physio-pedia.com/Scarf_Test"],
+  [/yergason/i,"Yergason test","https://www.physio-pedia.com/Yergason%27s_Test"],
+  [/o.?brien|active compression/i,"O'Brien active-compression test","https://www.physio-pedia.com/O%27Brien%27s_Test"],
+  [/apprehension|relocation/i,"Apprehension / relocation test","https://www.physio-pedia.com/Apprehension_Test"],
+  [/elbow flexion test/i,"Elbow-flexion test","https://www.physio-pedia.com/Elbow_Flexion_Test"],
+  [/finkelstein/i,"Finkelstein test","https://www.physio-pedia.com/Finkelstein_Test"],
+  [/phalen/i,"Phalen test","https://www.physio-pedia.com/Phalen%27s_Test"],
+  [/tinel/i,"Tinel sign at wrist","https://www.physio-pedia.com/Tinel%27s_Sign_at_the_Wrist"],
+  [/spurling/i,"Spurling test","https://www.physio-pedia.com/Spurling%27s_Test"],
+  [/cervical distraction/i,"Cervical-distraction test","https://www.physio-pedia.com/Cervical_Distraction_Test"],
+  [/upper limb tension/i,"Upper-limb tension test","https://www.physio-pedia.com/Upper_Limb_Tension_Tests"],
+  [/wainner cervical radiculopathy cluster/i,"Wainner cervical-radiculopathy rule","https://www.physio-pedia.com/CPR_for_Cervical_Radiculopathy"],
+  [/cervical rotation.*60/i,"Cervical rotation component","https://www.physio-pedia.com/CPR_for_Cervical_Radiculopathy"],
+  [/straight.leg raise/i,"Straight-leg raise","https://www.physio-pedia.com/Straight_Leg_Raise_Test"],
+  [/faber|patrick/i,"FABER / Patrick test","https://www.physio-pedia.com/FABER_Test"],
+  [/fadir/i,"FADIR test","https://www.physio-pedia.com/FADIR_(Flexion,_Adduction,_Internal_Rotation)_Test"],
+  [/log roll/i,"Hip log-roll test","https://www.physio-pedia.com/Hip_Examination"],
+  [/hip scour/i,"Hip scour test","https://www.physio-pedia.com/Hip_Quadrant_Test"],
+  [/effusion|bulge|ballottement|sweep/i,"Knee-effusion tests","https://www.physio-pedia.com/Knee_Swelling"],
+  [/mcmurray/i,"McMurray test","https://www.physio-pedia.com/McMurrays_Test"],
+  [/valgus stress/i,"Valgus-stress test","https://www.physio-pedia.com/Valgus_Stress_Test"],
+  [/varus stress/i,"Varus-stress test","https://www.physio-pedia.com/Varus_Stress_Test"],
+  [/lachman/i,"Lachman test","https://www.physio-pedia.com/Lachman_Test"],
+  [/anterior drawer \(acl\)/i,"Anterior-drawer test (knee)","https://www.physio-pedia.com/Anterior_Drawer_Test_of_Knee"],
+  [/pivot shift/i,"Pivot-shift test","https://www.physio-pedia.com/Pivot_Shift"],
+  [/lever|lelli/i,"Lever / Lelli test","https://www.physio-pedia.com/Lever_Sign_Test"],
+  [/posterior drawer/i,"Posterior-drawer test (knee)","https://www.physio-pedia.com/Posterior_Drawer_Test_(Knee)"],
+  [/thompson|calf.squeez/i,"Thompson test","https://www.physio-pedia.com/Thompson_Test"],
+  [/matles/i,"Matles test","https://www.physio-pedia.com/Matles_Test"],
+  [/tendon.gap/i,"Achilles tendon-gap palpation","https://www.physio-pedia.com/Achilles_Tendon_Rupture"],
+  [/anterior drawer.*ankle|anterior drawer of the ankle/i,"Anterior drawer (ankle)","https://www.physio-pedia.com/Anterior_Drawer_of_the_Ankle"],
+  [/talar tilt/i,"Talar-tilt test","https://www.physio-pedia.com/Talar_Tilt"],
+  [/squeeze test.*syndesmosis/i,"Syndesmosis squeeze test","https://www.physio-pedia.com/Squeeze_Test"],
+  [/babinski|plantar response/i,"Babinski / plantar response","https://www.physio-pedia.com/Babinski_Sign"],
+  [/ankle clonus/i,"Ankle clonus","https://www.physio-pedia.com/Clonus"],
+  [/asterixis/i,"Asterixis","https://www.physio-pedia.com/Asterixis"],
+  [/kernig/i,"Kernig sign","https://www.physio-pedia.com/Kernig%27s_Sign"],
+  [/brudzinski/i,"Brudzinski sign","https://www.physio-pedia.com/Brudzinski%27s_Sign"],
+  [/head impulse/i,"Head-impulse test","https://www.physio-pedia.com/Head_Impulse_Test"],
+  [/nystagmus.*direction|direction.changing.*nystagmus/i,"Direction-changing nystagmus in HINTS","https://www.physio-pedia.com/HINTS"],
+  [/test of skew|alternate cover/i,"Test of skew","https://www.physio-pedia.com/HINTS"],
+  [/hints/i,"HINTS examination","https://www.physio-pedia.com/HINTS"],
+  [/dix.hallpike/i,"Dix-Hallpike test","https://www.physio-pedia.com/Dix-Hallpike_Test"]
+];
+const NO_VIDEO_NEEDED_RULES = [
+  /pad cluster/i, /park impingement cluster/i, /sutlive hip.oa cluster/i,
+  /absent dorsalis pedis|posterior tibial pulse/i, /femoral artery bruit/i,
+  /median.*ulnar.*radial sensory/i,
+  /passive internal rotation.*25/i, /pain with squatting/i,
+  /lateral hip pain on active flexion/i, /painful active hip extension/i,
+  /rigidity$/i, /guarding$/i
+];
+function isPhysicalVideoSection(section,group){
+  const k=(section+" "+(group||"")).toLowerCase();
+  if(k.includes("setting the stage")||k.includes("history")||k.includes("review of systems")||k.includes("assessment & plan")||k.includes("closure")||k.includes("psychiatric")) return false;
+  return /general survey|vital sign|skin|head|eye|ear|nose|throat|mouth|neck|thorax|lung|cardiovascular|peripheral vascular|abdomen|musculoskeletal|neurologic|cranial|motor|coordination|sensory|reflex|breast|genital|rectal/.test(k);
+}
+function batesVideoFor(section){
+  const k=section.toLowerCase();
+  if(!isPhysicalVideoSection(section,"")) return null;
+  if(/general survey|vital sign|blood pressure|pulse oxim|temperature|height|weight|bmi/.test(k)) return BATES.survey;
+  if(/skin|hair|nail|lesion|clubbing/.test(k)) return BATES.skin;
+  if(/cranial nerve|\bcn [ivx]+\b|neurologic: mental status/.test(k)) return BATES.cranial;
+  if(/neurolog|motor|coordination|cerebellar|sensory|reflex|romberg|pronator|gait|hints|hallpike|epley|asterixis|kernig|brudzinski/.test(k)) return BATES.neuro;
+  if(/neck/.test(k)&&!/c-spine|cervical/.test(k)) return BATES.neck;
+  if(/head|eye|ear|nose|mouth|throat|heent|tmj|sinus|ophthal|otoscop|weber|rinne/.test(k)) return BATES.heent;
+  if(/thorax|lung|pulmonary|fremitus|bronchophony|egophony|pectoriloquy|diaphragm/.test(k)) return BATES.posteriorLungs+" + "+BATES.anteriorLungs.replace("Bates ","");
+  if(/cardiovascular|cardiac|heart|precord|jvp|carotid|valsalva|squatting-to-standing/.test(k)) return BATES.cardio;
+  if(/peripheral vascular|pulse|edema|capillary|allen|ankle-brachial|abi|buerger|varicos/.test(k)) return BATES.vascular;
+  if(/abdomen|abdominal|bowel|liver|spleen|cva|rovsing|psoas|obturator|murphy|rebound|mcburney/.test(k)) return BATES.abdomen;
+  if(/breast|axilla/.test(k)) return BATES.breast;
+  if(/genital|rectal|prostate|pelvic/.test(k)) return BATES.genital;
+  if(/shoulder|elbow|wrist|hand|upper limb|c-spine|cervical/.test(k)) return BATES.upper;
+  if(/hip|knee|ankle|foot|lower limb|thoracolumbar|lumbar|spine/.test(k)) return BATES.lower;
+  if(/musculoskeletal/.test(k)) return BATES.upper+" + "+BATES.lower.replace("Bates ","");
+  return BATES.full;
+}
+function sectionVideoRefs(section){
+  const primary=batesVideoFor(section);
+  if(!primary) return [];
+  const refs=[{label:primary,url:BATES_HOME,kind:"bates"}];
+  for(const rule of STANFORD_SECTION_RULES){ if(rule[0].test(section)){ refs.push({label:rule[1],url:rule[2],kind:"public"}); break; } }
+  return refs;
+}
+function specialVideoRefs(text){
+  return SPECIAL_VIDEO_RULES.filter(rule=>rule[0].test(text))
+    .map(rule=>({label:"Physiopedia · "+rule[1],url:rule[2],kind:"special"}));
+}
+function noVideoNeeded(text){ return NO_VIDEO_NEEDED_RULES.some(rule=>rule.test(text)); }
+function videoLinksHtml(refs){
+  if(!refs||!refs.length) return "";
+  return `<span class="video-links">${refs.map(r=>`<a class="video-link ${r.kind==="public"?"public":r.kind==="special"?"special":""}" href="${r.url}" target="_blank" rel="noopener" title="Open demonstration in a new tab">&#9654; ${esc(r.label)}</a>`).join("")}</span>`;
+}
+function missingVideoHtml(isSpecial,refs,text){
+  if(!isSpecial || (refs&&refs.length)) return "";
+  if(noVideoNeeded(text||"")) return `<span class="video-optional">No separate video needed · simple finding or scoring criterion</span>`;
+  return `<span class="video-missing" title="No test-specific public demonstration has been verified">Video not verified · review for final checklist</span>`;
+}
+
 let mode = "comp";
 const state = {
   scores: {},
   comp: { enabled: COMP.map(()=>true), local: COMP.map(()=>[]),
-          opt:{ros:true, ev:true} },
+          opt:{ros:true, ev:true, history:true} },
   osce: { station: "comprehensive", inc: {}, ros: {}, local: {}, vitals: "verbalize", removed: {}, lens: "combined" },
   practice: { dur: 15, history: [] }
 };
@@ -1378,6 +1547,8 @@ try {
   const s = JSON.parse(localStorage.getItem("rubric_v04")||"null");
   if (s && s.comp && s.comp.local && s.comp.local.length===COMP.length){ Object.assign(state, s); }
   if (!state.scores) state.scores = {};
+  if (!state.comp.opt) state.comp.opt = {ros:true, ev:true, history:true};
+  if (state.comp.opt.history==null) state.comp.opt.history = true;
   if (!state.osce.inc) state.osce.inc = {};
   if (!state.osce.ros) state.osce.ros = {};
   if (!state.osce.vitals) state.osce.vitals = "verbalize";
@@ -1396,6 +1567,22 @@ function persist(){ try{
 function esc(t){ return String(t).replace(/&(?!amp;|lt;|gt;|#)/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
 /* ---------- scoring ---------- */
+/* Cranial-nerve maneuvers already performed in HEENT are mirrored in Neuro.
+   The Neuro mirror rows are informational and do not add points a second time. */
+const COMP_MIRRORS = {
+  "c:10:0:1":["c:3:4:2"],
+  "c:10:0:2":["c:3:1:2","c:3:1:3"],
+  "c:10:0:3":["c:3:1:4","c:3:1:6"],
+  "c:10:0:6":["c:3:2:1"],
+  "c:10:0:7":["c:3:5:3"],
+  "c:10:0:9":["c:3:5:2"]
+};
+function mirrorSources(id){ return COMP_MIRRORS[id]||null; }
+function mirrorChecked(id,prefix){ const src=mirrorSources(id); return !!src&&src.every(k=>state.scores[(prefix||"")+k]===1); }
+function mirrorToggle(id,checked,prefix){
+  (mirrorSources(id)||[]).forEach(k=>{ const key=(prefix||"")+k; if(checked) state.scores[key]=1; else delete state.scores[key]; });
+  render();
+}
 function setScore(id,v){
   if (state.scores[id]===v) delete state.scores[id]; else state.scores[id]=v;
   render();
@@ -1429,12 +1616,23 @@ function syncLensBtns(){
 }
 
 /* ---------- COMPREHENSIVE PE ---------- */
-function compCount(i){ let n=COMP[i].groups.reduce((a,g)=>a+g.items.filter(it=>!it.sub).length,0); return n+state.comp.local[i].length; }
+function historyIncluded(){ return state.comp.opt.history!==false; }
+function compCount(i){
+  let n=0;
+  COMP[i].groups.forEach((g,gi)=>{
+    if(i===0&&gi===1&&!historyIncluded()) return;
+    g.items.forEach((it,ii)=>{ if(!it.sub&&!mirrorSources("c:"+i+":"+gi+":"+ii)) n++; });
+  });
+  return n+state.comp.local[i].length;
+}
 function asideComp(){
   const o=state.comp.opt;
   return `<div class="panel"><h2>Systems in this rubric</h2><div id="systoggles">`+
     COMP.map((s,i)=>`<label class="toggle"><input type="checkbox" ${state.comp.enabled[i]?"checked":""} onchange="state.comp.enabled[${i}]=this.checked;render()"> ${esc(s.title)}<span class="pts">${compCount(i)}</span></label>`).join("")+
     `</div><div class="mini"><button onclick="compAll(true)">All</button><button onclick="compAll(false)">None</button></div></div>
+    <div class="panel"><h2>Rubric scope</h2>
+      <label class="toggle"><input type="checkbox" ${historyIncluded()?"checked":""} onchange="state.comp.opt.history=this.checked;render()"> Include history as a graded component</label>
+      <p style="font-size:11.5px;color:var(--muted);margin:7px 0 0">Turn off for a physical-examination-only assessment. Professional appearance and identification, introduction, patient verification, permission, hand hygiene, privacy, draping, and comfort remain graded.</p></div>
     <div class="panel"><h2>Display</h2>
       <label class="toggle"><input type="checkbox" ${o.ros?"checked":""} onchange="state.comp.opt.ros=this.checked;render()"> ROS screening lines</label>
       <label class="toggle"><input type="checkbox" ${o.ev?"checked":""} onchange="state.comp.opt.ev=this.checked;render()"> Evidence adjunct notes</label></div>
@@ -1445,6 +1643,10 @@ function asideComp(){
 function compAll(v){ state.comp.enabled=COMP.map(()=>v); render(); }
 function compRow(it,id){
   if(it.sub){ return `<tr class="item subrow"><td class="bx"></td><td class="what subc">${esc(it.text)}</td><td class="opts"></td></tr>`; }
+  if(mirrorSources(id)){
+    const on=mirrorChecked(id,"");
+    return `<tr class="item subrow"><td class="bx"><input type="checkbox" class="ck" ${on?"checked":""} onchange="mirrorToggle('${id}',this.checked,'')"></td><td class="what subc">${esc(it.text)}<span class="linked-note">Linked from HEENT · not scored twice</span></td><td class="opts"></td></tr>`;
+  }
   const on = state.scores[id]===1;
   return `<tr class="item"><td class="bx"><input type="checkbox" class="ck" ${on?"checked":""} onchange="ckToggle('${id}',this.checked)"></td><td class="what">${esc(it.text)}</td><td class="opts">${pickCells(id,1)}</td></tr>`;
 }
@@ -1456,8 +1658,11 @@ function renderComp(){
     html+=`<section class="sys"><div class="sys-head"><h3>${esc(s.title)}</h3><span class="pts">${n} items &middot; ${n} pts</span></div>`;
     if(o.ros&&s.ros) html+=`<div class="ros"><b>ROS screen (ask &ge; 3):</b> ${esc(s.ros)}</div>`;
     html+=`<table class="items">`;
-    s.groups.forEach((g,gi)=>{ html+=`<tr class="ghead"><td colspan="3">${esc(g.name)}</td></tr>`;
-      g.items.forEach((it,ii)=>{ const id="c:"+i+":"+gi+":"+ii; if(!it.sub) earned+=state.scores[id]||0; html+=compRow(it,id); }); });
+    s.groups.forEach((g,gi)=>{
+      if(i===0&&gi===1&&!historyIncluded()) return;
+      html+=`<tr class="ghead"><td colspan="3">${esc(g.name)}</td></tr>`;
+      g.items.forEach((it,ii)=>{ const id="c:"+i+":"+gi+":"+ii; if(!it.sub&&!mirrorSources(id)) earned+=state.scores[id]||0; html+=compRow(it,id); });
+    });
     if(state.comp.local[i].length){ html+=`<tr class="ghead"><td colspan="3">Program-specific additions</td></tr>`;
       state.comp.local[i].forEach((t,li)=>{ const id="cl:"+i+":"+li; earned+=state.scores[id]||0;
         html+=`<tr class="item local"><td class="bx"><input type="checkbox" class="ck" ${state.scores[id]===1?"checked":""} onchange="ckToggle('${id}',this.checked)"></td><td class="what">${esc(t)}<span class="local-chip">PROGRAM-SPECIFIC</span><button class="rm" onclick="state.comp.local[${i}].splice(${li},1);render()">&#x2715;</button></td><td class="opts">${pickCells(id,1)}</td></tr>`; }); }
@@ -1499,14 +1704,15 @@ function osceModel(){
       const id=(useAlt?"ov:":"o:")+si+":"+ri;
       ROWLABEL[id]=row.text;
       if(state.osce.removed[id]) return;
+      const special = row.text.indexOf("Special")===0 || !!row.sub || specialVideoRefs(row.text).length>0;
       rows.push({id, text:row.text, max:row.sub?0:(row.max||1), verify:row.verify, sub:row.sub,
-                 removable: !row.sub && row.text.indexOf("Special")===0});
+                 special:special, video:special?specialVideoRefs(row.text):[], removable: !row.sub && row.text.indexOf("Special")===0});
     });
     if(sec.ros_slot){
       OSCE.ros_options.forEach((o,oi)=>{ if(state.osce.ros[oi]) rows.push({id:"or:"+oi, text:o.text, max:o.max||1}); });
     }
     (state.osce.local[localKey(si)]||[]).forEach((t,li)=>rows.push({id:"ol:"+state.osce.station+":"+si+":"+li, text:t, max:1, local:true, li:li}));
-    if(rows.length) secs.push({si:si, phase:sec.phase, section:sec.section, rows:rows});
+    if(rows.length) secs.push({si:si, phase:sec.phase, section:sec.section, video:sectionVideoRefs(sec.section), rows:rows});
   });
   return secs;
 }
@@ -1628,7 +1834,7 @@ function pracReset(){ pracPause(); prac.left=state.practice.dur*60; pracDisp(); 
 function pracDur(v){ const n=Math.max(1,Math.min(120,parseInt(v,10)||15)); state.practice.dur=n; pracReset(); persist(); }
 function practiceSrc(){ return state.practice.src==="comp" ? "comp" : "osce"; }
 function practiceModel(){
-  if(practiceSrc()==="comp") return compModel().map(s=>({section:s.section, phase:null, rows:s.rows}));
+  if(practiceSrc()==="comp") return compModel().map(s=>({section:s.section, phase:null, video:s.video, rows:s.rows}));
   return osceModel();
 }
 function pracTally(){
@@ -1679,19 +1885,21 @@ function renderPractice(){
   html+=`<table class="items">`;
   model.forEach(m=>{
     if(m.phase && m.phase!==lastPhase){ html+=`<tr class="phase"><td colspan="2">${esc(m.phase)}</td></tr>`; lastPhase=m.phase; }
-    html+=`<tr class="ghead"><td colspan="2">${esc(m.section)}</td></tr>`;
+    html+=`<tr class="ghead"><td colspan="2">${esc(m.section)}${videoLinksHtml(m.video)}</td></tr>`;
     m.rows.forEach(r=>{
       if(r.head){ html+=`<tr class="ghead"><td colspan="2">${esc(r.head)}</td></tr>`; return; }
-      if(r.sub){ html+=`<tr class="item subrow"><td class="what subc">${esc(r.text)}</td><td class="opts"></td></tr>`; return; }
+      if(r.mirror){ const on=mirrorChecked(r.id,"p|");
+        html+=`<tr class="item subrow"><td class="what subc"><input type="checkbox" class="ck" ${on?"checked":""} onchange="mirrorToggle('${r.id}',this.checked,'p|')"> ${esc(r.text)}<span class="linked-note">Linked from HEENT · not scored twice</span></td><td class="opts"></td></tr>`; return; }
+      if(r.sub){ html+=`<tr class="item subrow"><td class="what subc">${esc(r.text)}${videoLinksHtml(r.video)}${missingVideoHtml(r.special,r.video,r.text)}</td><td class="opts"></td></tr>`; return; }
       const pid="p|"+r.id;
       total+=r.max; earned+=state.scores[pid]||0;
-      html+=`<tr class="item${r.local?" local":""}"><td class="what">${esc(r.text)}${r.local?` <span class="local-chip">PROGRAM-SPECIFIC</span>`:""}</td><td class="opts">${pickCells(pid,r.max)}</td></tr>`;
+      html+=`<tr class="item${r.local?" local":""}"><td class="what">${esc(r.text)}${r.local?` <span class="local-chip">PROGRAM-SPECIFIC</span>`:""}${videoLinksHtml(r.video)}${missingVideoHtml(r.special,r.video,r.text)}</td><td class="opts">${pickCells(pid,r.max)}</td></tr>`;
     });
   });
   html+=`</table>`;
   document.getElementById("sheettitle").textContent=isComp?"Practice: Comprehensive PE":"Practice Station";
   document.getElementById("sheetmeta").textContent=(isComp?"Head-to-toe checklist":(isComprehensive()?"Comprehensive station":"Focused station"))+" · tap the score as each item is performed";
-  document.getElementById("osceBanner").innerHTML=`<div class="osce-banner"><b>Practice run.</b> Grade to the criterion: incorrect technique scores 0, same as omitted. Press <b>Finish &amp; save attempt</b> to log the score and missed items.</div>`;
+  document.getElementById("osceBanner").innerHTML=`<div class="osce-banner"><b>Practice run.</b> Grade to the criterion: incorrect technique scores 0, same as omitted. General Bates / Stanford references appear once at each applicable section heading. Special-test rows use only test-specific public demonstrations. A red flag means the test needs a verified demonstration before the final standard is adopted. Press <b>Finish &amp; save attempt</b> to log the score and missed items.</div>`;
   document.getElementById("sheetfoot").innerHTML="<p>Practice attempts stay on this device and never affect the grading rubric.</p><p>&copy; 2026 J. Moen &middot; CC BY-NC 4.0.</p>";
   return {html, total, earned};
 }
@@ -1719,10 +1927,18 @@ function compModel(){
   COMP.forEach((s,i)=>{
     if(!state.comp.enabled[i]) return;
     const rows=[];
-    s.groups.forEach((g,gi)=>{ rows.push({head:g.name}); g.items.forEach((it,ii)=>rows.push({id:"c:"+i+":"+gi+":"+ii, text:it.text, max:it.sub?0:1, sub:it.sub})); });
+    s.groups.forEach((g,gi)=>{
+      if(i===0&&gi===1&&!historyIncluded()) return;
+      const specialGroup=/special|peritoneal/i.test(g.name);
+      rows.push({head:g.name});
+      g.items.forEach((it,ii)=>{ const id="c:"+i+":"+gi+":"+ii, mirror=!!mirrorSources(id);
+        rows.push({id:id, text:it.text, max:(it.sub||mirror)?0:1, sub:it.sub,
+          mirror:mirror, special:specialGroup, video:specialGroup?specialVideoRefs(it.text):[]});
+      });
+    });
     if(state.comp.local[i].length){ rows.push({head:"Program-specific additions"});
       state.comp.local[i].forEach((t,li)=>rows.push({id:"cl:"+i+":"+li, text:t, max:1, local:true})); }
-    secs.push({section:s.title, rows:rows});
+    secs.push({section:s.title, video:sectionVideoRefs(s.title), rows:rows});
   });
   return secs;
 }
@@ -1739,6 +1955,7 @@ function exportDoc(){
     let secPts=0, rowsHtml="";
     m.rows.forEach(r=>{
       if(r.head){ rowsHtml+=`<tr class="gh"><td colspan="${width}">${esc(r.head)}</td></tr>`; return; }
+      if(r.mirror){ rowsHtml+=`<tr><td class="it" style="padding-left:22pt;color:#526579">${esc(r.text)} <b>[Linked from HEENT; not scored twice]</b></td><td colspan="${cols}"></td></tr>`; return; }
       if(r.sub){ rowsHtml+=`<tr><td class="it" style="padding-left:22pt;font-style:italic;color:#5B6B7B">${esc(r.text)}</td><td colspan="${cols}"></td></tr>`; return; }
       secPts+=r.max; total+=r.max;
       if(r.verify) hasVerify=true;
