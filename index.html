@@ -175,6 +175,20 @@
 
   .offrubric.pocus{background:#F2F8F5;border-color:#BBD9C9;border-style:solid}
   .offrubric.pocus .oflabel{color:#2E6B4F}
+
+  /* ---- practice guidance toggle ---- */
+  .info{flex:0 0 auto;width:18px;height:18px;margin-right:7px;border-radius:50%;
+        border:1.3px solid var(--line);background:#fff;color:var(--muted);font-size:10.5px;
+        font-weight:700;line-height:1;cursor:pointer;vertical-align:1px;padding:0}
+  .info:hover{border-color:var(--accent);color:var(--accent)}
+  .info.open{background:var(--accent);border-color:var(--accent);color:#fff}
+  .rtxt{display:inline}
+  .fnbtn{margin-right:8px}
+  .fnstub{font-size:11.5px;font-weight:700;color:var(--muted)}
+  .notesbtns button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .hint-sm{font-size:11.5px;color:var(--muted);margin:7px 0 0}
+  body:not(.practice) .info{display:none}
+  @media print{ .info{display:none} }
 </style>
 </head>
 <body>
@@ -1288,7 +1302,7 @@ const COMP = [
      {
       "text": "AROM: flexion/extension, pronation/supination",
       "hk": "say",
-      "d": "Bend your knee up, then straighten it out. — Bates: knee flexion 0 to about 135 degrees; also check medial rotation 10–30 degrees and lateral rotation 30–40 degrees with the knee flexed."
+      "d": "Bend and straighten your elbow, then turn your palm up and down. — Bates: elbow flexion 0 to about 150 degrees; pronation and supination about 90 degrees each, tested with the elbow held at 90 degrees against the side."
      },
      {
       "text": "Palpate the radial head (about two fingerbreadths distal to the lateral epicondyle) during pronation/supination",
@@ -1367,7 +1381,7 @@ const COMP = [
      {
       "text": "AROM: flexion/extension, abduction/adduction, internal/external rotation",
       "hk": "say",
-      "d": "Bend your knee up, then straighten it out. — Bates: knee flexion 0 to about 135 degrees; also check medial rotation 10–30 degrees and lateral rotation 30–40 degrees with the knee flexed."
+      "d": "Bring your knee toward your chest, then take your leg out to the side and across. — Bates: hip flexion 90 degrees (120 with the knee flexed), extension 15, abduction 45, adduction 30, internal rotation 40, external rotation 60."
      }
     ]
    },
@@ -1421,21 +1435,18 @@ const COMP = [
     "items": [
      {
       "text": "Hawkins-Kennedy",
-      "sub": true,
       "hk": "how",
       "d": "Bates: flex the shoulder and elbow to 90 degrees, then internally rotate. The modified Hawkins–Kennedy passively brings the forearm across the body instead of forcing internal rotation. Pain suggests subacromial impingement, rotator cuff pathology or bicipital tendinitis.",
       "url": "https://www.physio-pedia.com/Hawkins_/_Kennedy_Impingement_Test_of_the_Shoulder"
      },
      {
       "text": "Infraspinatus (resisted external rotation) test",
-      "sub": true,
       "hk": "how",
       "d": "Elbows at 90 degrees tucked at the sides; the patient externally rotates against your resistance. Weakness or pain suggests infraspinatus pathology.",
       "url": "https://www.physio-pedia.com/Infraspinatus_Test"
      },
      {
       "text": "Painful arc",
-      "sub": true,
       "hk": "say",
       "d": "Raise your arm out to the side all the way up. — Pain between about 60 and 120 degrees suggests subacromial impingement.",
       "url": "https://www.physio-pedia.com/Painful_Arc"
@@ -1593,7 +1604,6 @@ const COMP = [
     "items": [
      {
       "text": "Spurling A",
-      "sub": true,
       "hk": "how",
       "d": "Side-bend the head toward the symptomatic side and apply gentle axial compression. Reproduction of radicular arm pain is positive.",
       "url": "https://www.physio-pedia.com/Spurling%27s_Test"
@@ -1611,7 +1621,7 @@ const COMP = [
       "lr": "(+LR 3.4)",
       "tier": "C",
       "hk": "how",
-      "d": "Bates: supine, raise the straight leg until pain occurs, then dorsiflex the foot. Radicular pain below the knee is positive. Sensitive (65–98%) but not specific (10–60%), so it is a rule-out test.",
+      "d": "Bates: raise the UNAFFECTED leg. Pain reproduced in the affected leg is positive. Less sensitive than the ipsilateral straight-leg raise but considerably more specific for disc herniation.",
       "url": "https://www.physio-pedia.com/Straight_Leg_Raise_Test"
      }
     ]
@@ -1621,7 +1631,6 @@ const COMP = [
     "items": [
      {
       "text": "Hip scour test",
-      "sub": true,
       "hk": "how",
       "d": "Hip flexed 90 degrees, apply axial load through the femur while circumducting. Groin pain or catching is positive.",
       "url": "https://www.physio-pedia.com/Hip_Quadrant_Test",
@@ -1799,7 +1808,7 @@ const COMP = [
       "text": "CN III/IV/VI — EOMs in the six cardinal directions of gaze; note nystagmus and ptosis",
       "short": "CN III/IV/VI — EOMs, six cardinal directions; nystagmus, ptosis",
       "hk": "say",
-      "d": "Keep your head still and follow my finger with just your eyes. Now watch it come in toward your nose."
+      "d": "Keep your head still and follow my finger with just your eyes. — Bates: trace an H through the six cardinal directions, pausing at the extremes. Note any nystagmus, and check the lids for ptosis."
      },
      {
       "text": "CN II/III — pupillary light reflex, direct and consensual",
@@ -2047,7 +2056,7 @@ const COMP = [
       "text": "Nuchal rigidity (confirm no cervical injury before neck flexion)",
       "short": "Nuchal rigidity",
       "hk": "how",
-      "d": "Involuntary, board-like, persistent wall tightening that does not relax with distraction. Component of the peritoneal picture."
+      "d": "Bates: with the patient supine, passively flex the neck toward the chest. Resistance or pain, or involuntary hip and knee flexion, suggests meningeal irritation. Confirm there is no cervical injury before flexing."
      },
      {
       "text": "HINTS for acute vestibular syndrome (expert-performed +LR 25, -LR 0.00; competency-gated)",
@@ -2178,7 +2187,7 @@ const state = {
   practice: { dur: 15, history: [] }
 };
 try {
-  const s = JSON.parse(localStorage.getItem("rubric_v04")||"null");
+  const s = JSON.parse(localStorage.getItem("rubric_v06")||"null");
   if (s && s.comp && s.comp.local && s.comp.local.length===COMP.length){ Object.assign(state, s); }
   if (!state.scores) state.scores = {};
   if (!state.osce.inc) state.osce.inc = {};
@@ -2186,13 +2195,15 @@ try {
   if (!state.osce.vitals) state.osce.vitals = "verbalize";
   if (!state.osce.removed) state.osce.removed = {};
   if (!state.osce.lens) state.osce.lens = "combined";
-  if (!state.practice) state.practice = { dur: 15, history: [], src: "osce" };
+  if (!state.practice) state.practice = { dur: 15, history: [], src: "osce", notes: "all", open: {} };
+  if (!state.practice.notes) state.practice.notes = "all";
+  if (!state.practice.open) state.practice.open = {};
   if (!state.practice.history) state.practice.history = [];
   if (!state.practice.src) state.practice.src = "osce";
   const pn = localStorage.getItem("rubric_progname"); if (pn) setTimeout(()=>{document.getElementById("progname").textContent=pn;},0);
 } catch(e){}
 function persist(){ try{
-  localStorage.setItem("rubric_v04", JSON.stringify(state));
+  localStorage.setItem("rubric_v06", JSON.stringify(state));
   localStorage.setItem("rubric_progname", document.getElementById("progname").textContent);
 }catch(e){} }
 
@@ -2309,9 +2320,11 @@ function osceModel(){
       OSCE.ros_options.forEach((o,oi)=>{ if(state.osce.ros[oi]) rows.push({id:"or:"+oi, text:o.text, max:o.max||1}); });
     }
     (state.osce.local[localKey(si)]||[]).forEach((t,li)=>rows.push({id:"ol:"+state.osce.station+":"+si+":"+li, text:t, max:1, local:true, li:li}));
-    if(sec.footnote) rows.push({footnote:sec.footnote, fkind:"boards"});
-    if(sec.pocus) rows.push({footnote:sec.pocus, fkind:"pocus"});
-    if(rows.length) secs.push({si:si, phase:sec.phase, section:sec.section, rows:rows});
+        if(rows.length){
+      if(sec.footnote) rows.push({footnote:sec.footnote, fkind:"boards"});
+      if(sec.pocus) rows.push({footnote:sec.pocus, fkind:"pocus"});
+      secs.push({si:si, phase:sec.phase, section:sec.section, rows:rows});
+    }
   });
   return secs;
 }
@@ -2436,6 +2449,19 @@ function practiceModel(){
   if(practiceSrc()==="comp") return compModel().map(s=>({section:s.section, phase:null, rows:s.rows}));
   return osceModel();
 }
+function noteOpen(id){
+  const d = state.practice.notes==="all";
+  return state.practice.open[id]===undefined ? d : state.practice.open[id];
+}
+function noteToggle(id){
+  state.practice.open[id] = !noteOpen(id);
+  persist(); render();
+}
+function notesAll(v){
+  state.practice.notes = v ? "all" : "none";
+  state.practice.open = {};          // clear per-row overrides
+  persist(); render();
+}
 function pracTally(){
   let total=0, earned=0; const missed=[];
   practiceModel().forEach(m=>m.rows.forEach(r=>{ if(r.footnote) return;
@@ -2460,6 +2486,13 @@ function asidePractice(){
   let h=`<div class="panel"><h2>Practice</h2>
     <label class="radio"><input type="radio" name="psrc" ${!isComp?"checked":""} onchange="state.practice.src='osce';render()"> OSCE station</label>
     <label class="radio"><input type="radio" name="psrc" ${isComp?"checked":""} onchange="state.practice.src='comp';render()"> Comprehensive PE checklist</label></div>`;
+  const nAll=state.practice.notes==="all";
+  h+=`<div class="panel"><h2>Guidance notes</h2>
+    <div class="mini notesbtns">
+      <button class="${nAll?"on":""}" onclick="notesAll(true)">Show all</button>
+      <button class="${!nAll?"on":""}" onclick="notesAll(false)">Hide all</button>
+    </div>
+    <p class="hint-sm">Click any <b>i</b> to show or hide that item on its own.</p></div>`;
   h+=`<div class="panel"><h2>Timer</h2>
     <div class="tclock" id="pclock">${tfmt(pracLeft())}</div>
     <div class="tdur"><label for="pdur">Minutes</label><input id="pdur" type="number" min="1" max="120" value="${state.practice.dur}" onchange="pracDur(this.value)"></div>
@@ -2486,21 +2519,23 @@ function renderPractice(){
     if(m.phase && m.phase!==lastPhase){ html+=`<tr class="phase"><td colspan="2">${esc(m.phase)}</td></tr>`; lastPhase=m.phase; }
     html+=`<tr class="ghead"><td colspan="2">${esc(m.section)}</td></tr>`;
     m.rows.forEach(r=>{
-      if(r.footnote){ const fk=r.fkind||"boards";
+      if(r.footnote){ if(!noteOpen("fn:"+m.section+":"+(r.fkind||"b"))) { html+=`<tr class="footnote-row"><td colspan="2"><button class="info fnbtn" onclick="noteToggle('fn:${m.section}:${r.fkind||"b"}')">i</button><span class="fnstub">${(r.fkind==="pocus")?"Recommended POCUS":"Know the name, not scored"}</span></td></tr>`; return; }
+        const fk=r.fkind||"boards";
         const FL={boards:"Know the name, not scored", pocus:"Recommended POCUS"};
-        html+=`<tr class="footnote-row"><td colspan="2"><div class="offrubric ${fk}"><span class="oflabel">&#42; ${FL[fk]}</span>${esc(r.footnote)}</div></td></tr>`; return; }
+        html+=`<tr class="footnote-row"><td colspan="2"><div class="offrubric ${fk}"><button class="info open fnbtn" onclick="noteToggle('fn:${m.section}:${r.fkind||"b"}')">i</button><span class="oflabel">&#42; ${FL[fk]}</span>${esc(r.footnote)}</div></td></tr>`; return; }
       if(r.head){ html+=`<tr class="ghead"><td colspan="2">${esc(r.head)}</td></tr>`; return; }
       if(r.sub){ html+=`<tr class="item subrow"><td class="what subc">${esc(r.text)}</td><td class="opts"></td></tr>`; return; }
       const pid="p|"+r.id;
       total+=r.max; earned+=state.scores[pid]||0;
       const LBL={say:"Try saying",narrate:"Narrate aloud",tip:"Tip",how:"How to"};
-      let guide="";
+      let guide="", ibtn="";
       if(r.d){
-        const k=r.hk||"how";
-        guide=`<div class="help ${k}"><span class="hlabel">${LBL[k]||"How to"}</span><span class="htext">${esc(r.d)}</span>`+
-          (r.url?`<a class="reflink" href="${r.url}" target="_blank" rel="noopener">Watch demonstration &rarr;</a>`:"")+`</div>`;
+        const k=r.hk||"how", op=noteOpen(r.id);
+        ibtn=`<button class="info${op?" open":""}" title="${op?"Hide":"Show"} guidance" aria-expanded="${op}" onclick="noteToggle('${r.id}')">i</button>`;
+        guide=op?(`<div class="help ${k}"><span class="hlabel">${LBL[k]||"How to"}</span><span class="htext">${esc(r.d)}</span>`+
+          (r.url?`<a class="reflink" href="${r.url}" target="_blank" rel="noopener">Watch demonstration &rarr;</a>`:"")+`</div>`):"";
       }
-      html+=`<tr class="item${r.local?" local":""}"><td class="what">${esc(r.text)}${r.local?` <span class="local-chip">PROGRAM-SPECIFIC</span>`:""}${guide}</td><td class="opts">${pickCells(pid,r.max)}</td></tr>`;
+      html+=`<tr class="item${r.local?" local":""}"><td class="what">${ibtn}<span class="rtxt">${esc(r.text)}${r.local?` <span class="local-chip">PROGRAM-SPECIFIC</span>`:""}</span>${guide}</td><td class="opts">${pickCells(pid,r.max)}</td></tr>`;
     });
   });
   html+=`</table>`;
@@ -2534,7 +2569,7 @@ function compModel(){
   COMP.forEach((s,i)=>{
     if(!state.comp.enabled[i]) return;
     const rows=[];
-    s.groups.forEach((g,gi)=>{ rows.push({head:g.name}); g.items.forEach((it,ii)=>rows.push({id:"c:"+i+":"+gi+":"+ii, text:it.text, max:it.sub?0:1, sub:it.sub, hk:it.hk, d:it.d, url:it.url})); if(g.footnote) rows.push({footnote:g.footnote, fkind:"boards"}); if(g.pocus) rows.push({footnote:g.pocus, fkind:"pocus"}); });
+    s.groups.forEach((g,gi)=>{ rows.push({head:g.name}); g.items.forEach((it,ii)=>rows.push({id:"c:"+i+":"+gi+":"+ii, text:it.text, max:it.sub?0:1, sub:it.sub, hk:it.hk, d:it.d, url:it.url})); if(g.items.length){ if(g.footnote) rows.push({footnote:g.footnote, fkind:"boards"}); if(g.pocus) rows.push({footnote:g.pocus, fkind:"pocus"}); } });
     if(state.comp.local[i].length){ rows.push({head:"Program-specific additions"});
       state.comp.local[i].forEach((t,li)=>rows.push({id:"cl:"+i+":"+li, text:t, max:1, local:true})); }
     secs.push({section:s.title, rows:rows});
