@@ -118,15 +118,6 @@
   body.practice td.opts{width:180px}
   body.practice tr.item td{padding:10px 10px; font-size:15.5px}
   body.practice .addrow,body.practice .rmspec,body.practice .vchip{display:none}
-  .video-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-  .video-link{display:inline-flex;align-items:center;gap:5px;border:1px solid #B8C7D8;background:#F3F7FA;color:var(--accent);border-radius:5px;padding:3px 8px;font-size:11.5px;font-weight:700;text-decoration:none;line-height:1.25}
-  .video-link:hover{background:var(--accent-soft);border-color:var(--accent)}
-  .video-link.public{background:#FFF8E1;border-color:#D9BD63;color:#5E4B00}
-  .video-link.special{background:#F0F8F2;border-color:#78A985;color:#245E33}
-  .video-note{display:block;margin-top:4px;color:var(--muted);font-size:11px;line-height:1.3}
-  .video-missing{display:inline-block;margin:5px 0 0 6px;border:1px solid #C66;background:#FFF1F1;color:#8B2525;border-radius:5px;padding:3px 8px;font-size:11px;font-weight:700}
-  .video-optional{display:inline-block;margin:5px 0 0 6px;border:1px solid #AAB6C2;background:#F5F7F9;color:#536273;border-radius:5px;padding:3px 8px;font-size:11px;font-weight:700}
-  .linked-note{display:inline-block;margin-left:7px;color:#526579;font-size:11px;font-weight:700}
   .tclock{font-size:34px; font-weight:700; text-align:center; font-variant-numeric:tabular-nums; color:var(--accent); margin:2px 0 8px; letter-spacing:1px}
   .tclock.low{color:#B3261E}
   .tdur{display:flex; align-items:center; gap:8px; font-size:13px; margin-bottom:8px}
@@ -147,11 +138,43 @@
     section.sys{break-inside:auto}
     .sys-head,tr.phase td{border-radius:0; -webkit-print-color-adjust:exact; print-color-adjust:exact}
     tr.item{break-inside:avoid}
-    .rm,.addrow,.video-links,.video-note,.video-missing,.video-optional{display:none}
+    .rm,.addrow{display:none}
     .pick{border-color:#999}
     .pick.on{background:var(--accent) !important; color:#fff !important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
     tr.local td{background:#FFF8E1 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
   }
+
+  /* ---- practice guidance (410D pattern) ---- */
+  .help{margin:7px 0 2px;font-size:12.6px;line-height:1.5;background:#F7F9FB;
+        border-left:3px solid var(--gold);padding:7px 11px;border-radius:0 7px 7px 0;max-width:70ch}
+  .help .hlabel{display:block;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;
+        font-weight:700;color:var(--gold-dark);margin-bottom:2px}
+  .help .htext{color:#2A3340}
+  .help.say{border-left-color:var(--accent)}
+  .help.say .hlabel{color:var(--accent)}
+  .help.say .htext{font-style:italic}
+  .help.narrate{border-left-color:#6B46C1}
+  .help.narrate .hlabel{color:#6B46C1}
+  .help.narrate .htext{font-style:italic}
+  .help.tip{border-left-color:var(--muted)}
+  .help.tip .hlabel{color:var(--muted)}
+  .help.tip .htext{color:var(--muted)}
+  .reflink{display:inline-block;margin-top:7px;font-size:12px;font-weight:700;color:var(--accent);
+        text-decoration:none;border:1px solid #CFE0F3;background:#fff;border-radius:6px;padding:3px 10px}
+  .reflink:hover{background:var(--accent-soft)}
+  body:not(.practice) .help{display:none}
+  @media print{ .help{background:#fff;border-left:2px solid #999} .reflink{display:none} }
+
+  /* ---- practice-only "named but not scored" footnote ---- */
+  .offrubric{margin:8px 0 2px;padding:9px 12px;border:1px dashed var(--line);border-radius:8px;
+        background:#FBFAF6;font-size:12.3px;line-height:1.55;color:var(--muted);max-width:76ch}
+  .offrubric .oflabel{display:block;font-size:11px;letter-spacing:0;
+        font-weight:700;color:var(--gold-dark);margin-bottom:3px}
+  body:not(.practice) .footnote-row{display:none}
+  @media print{ .footnote-row{display:none} }
+
+  .offrubric.pocus{background:#F2F8F5;border-color:#BBD9C9;border-style:solid}
+  .offrubric.pocus .oflabel{color:#2E6B4F}
 </style>
 </head>
 <body>
@@ -199,7 +222,7 @@
 <script>
 const COMP = [
  {
-  "title": "Encounter Set-up and Introduction",
+  "title": "Setting the Stage and the Comprehensive History",
   "ros": null,
   "note": null,
   "groups": [
@@ -207,25 +230,45 @@ const COMP = [
     "name": "Encounter set-up",
     "items": [
      {
-      "text": "Professional dress; identification visible"
+      "text": "Professional dress; identification visible",
+      "hk": "tip",
+      "d": "Bates opens the encounter with professional appearance and a visible identifier. Check the coat and badge before entering."
      },
      {
-      "text": "Introduce yourself by name and role"
+      "text": "Introduce yourself by name and role",
+      "hk": "say",
+      "d": "Hi, I'm [name], one of the PA students on your care team today."
      },
      {
-      "text": "Wash hands in view of the patient"
+      "text": "Wash hands in view of the patient",
+      "hk": "tip",
+      "d": "Do it where the patient can see you, not in the hallway. It is scored on being witnessed."
      },
      {
-      "text": "Verify patient name and date of birth"
+      "text": "Verify patient name and date of birth",
+      "hk": "say",
+      "d": "Before we start, can you tell me your full name and date of birth?"
      },
      {
-      "text": "Ask how the patient wishes to be addressed (including pronouns)"
+      "text": "Ask how the patient wishes to be addressed (including pronouns)",
+      "hk": "say",
+      "d": "How would you like me to address you? I use [pronouns] — do you have pronouns you'd like me to use?"
      },
      {
-      "text": "Explain the physical examination and obtain permission to proceed"
+      "text": "Set the agenda and expected visit length",
+      "hk": "say",
+      "d": "We have about [X] minutes today. I'd like to hear what brought you in, then do an exam. Anything else you want to be sure we cover?"
      },
      {
-      "text": "Maintain patient comfort and privacy with appropriate positioning and draping"
+      "text": "Explain the physical examination and obtain permission to proceed",
+      "hk": "say",
+      "d": "I'd like to examine you now. I'll tell you what I'm doing as I go — is that okay?"
+     },
+     {
+      "text": "Maintain patient comfort and privacy with appropriate positioning and draping",
+      "short": "Patient comfort, privacy, positioning, draping",
+      "hk": "tip",
+      "d": "Curtain closed, gown on, drape folded down only to the area you are examining, then covered right back up."
      }
     ]
    },
@@ -233,34 +276,114 @@ const COMP = [
     "name": "History",
     "items": [
      {
-      "text": "Chief complaint in the patient's own words"
+      "text": "Chief complaint in the patient's own words",
+      "hk": "say",
+      "d": "What brings you in today? — then chart the answer in their words, not a diagnosis."
      },
      {
-      "text": "Allow an uninterrupted opening statement"
+      "text": "Allow an uninterrupted opening statement",
+      "hk": "tip",
+      "d": "Stay quiet for the first 60–90 seconds. Most patients finish on their own, and interrupting is the commonest scored error."
      },
      {
-      "text": "HPI: OLDCARTS (Onset, Location, Duration, Character, Alleviating/Aggravating, Radiation, Timing, Severity)"
+      "text": "Opens with an open-ended question before narrowing to closed questions",
+      "hk": "say",
+      "d": "Tell me more about that. — Open first, then narrow to yes/no questions once the story is out."
      },
      {
-      "text": "Pertinent positives and negatives for the chief complaint"
+      "text": "Elicits the patient's ideas, concerns, and expectations (ICE)",
+      "hk": "say",
+      "d": "What do you think might be going on? What worries you most about it? What were you hoping we could do today?"
      },
      {
-      "text": "Past medical history (diagnoses, control, last follow-up)"
+      "text": "Responds to emotion with empathy (PEARLS: partnership, empathy, apology, respect, support)",
+      "short": "Responds to emotion with empathy (PEARLS)",
+      "hk": "say",
+      "d": "That sounds really frustrating. — Name the emotion, then partner: We'll work on this together."
      },
      {
-      "text": "Surgical history (type, year, indication)"
+      "text": "HPI: OLDCARTS (Onset, Location, Duration, Character, Alleviating/Aggravating, Radiation, Timing, Severity)",
+      "split": [
+       "Onset",
+       "Location",
+       "Duration",
+       "Character / quality",
+       "Aggravating factors",
+       "Alleviating factors",
+       "Radiation",
+       "Timing (constant vs. intermittent; frequency)",
+       "Severity (0-10 or functional impact)"
+      ],
+      "hk": "tip",
+      "d": "Onset, Location, Duration, Character, Alleviating/Aggravating, Radiation, Timing, Severity. Work through them in whatever order the story flows."
      },
      {
-      "text": "Family history (pertinent to the complaint)"
+      "text": "Setting in which the symptom occurs (Bates' 7th attribute)",
+      "short": "Setting",
+      "hk": "say",
+      "d": "Where are you and what are you doing when this happens?"
      },
      {
-      "text": "Social history: FED TACOS (Food, Exercise, Drugs, Tobacco, Alcohol, Caffeine, Occupation, Sexual/Safety)"
+      "text": "Associated symptoms (pertinent positives and negatives)",
+      "hk": "say",
+      "d": "Have you noticed anything else along with it? — then ask directly about the red flags for your differential."
      },
      {
-      "text": "Medications (name, dose, route, frequency)"
+      "text": "Recent travel or sick contacts",
+      "hk": "say",
+      "d": "Any travel recently, or anyone around you sick?"
      },
      {
-      "text": "Allergies (substance and reaction)"
+      "text": "Pertinent positives and negatives for the chief complaint",
+      "hk": "tip",
+      "d": "Ask about the symptoms that would confirm or exclude your top differentials, and document the negatives too."
+     },
+     {
+      "text": "Past medical history (diagnoses, control, last follow-up)",
+      "hk": "say",
+      "d": "What medical problems do you have? When were you diagnosed, how well is it controlled, and when were you last seen for it?"
+     },
+     {
+      "text": "Surgical history (type, year, indication)",
+      "hk": "say",
+      "d": "Any surgeries? What was it for, what year, and were there any complications?"
+     },
+     {
+      "text": "Family history: first-degree relatives and grandparents - age, health, or age and cause of death",
+      "short": "Family history: first-degree relatives and grandparents",
+      "hk": "say",
+      "d": "Tell me about your parents, brothers and sisters, and grandparents — are they living, and what health problems run in the family?"
+     },
+     {
+      "text": "Social history: FED TACOS (Food, Exercise, Drugs, Tobacco, Alcohol, Caffeine, Occupation, Stress/sleep/SES/sexual health/safety/support)",
+      "split": [
+       "Social history — Food / diet",
+       "Social history — Exercise",
+       "Social history — Drugs",
+       "Social history — Tobacco / nicotine",
+       "Social history — Alcohol",
+       "Social history — Caffeine",
+       "Social history — Occupation",
+       "Social history — Stress, sleep, SES, sexual health, safety, support"
+      ],
+      "hk": "tip",
+      "d": "Food, Exercise, Drugs, Tobacco, Alcohol, Caffeine, Occupation, and Stress/sleep/SES/sexual health/safety/support. Normalize before the sensitive ones."
+     },
+     {
+      "text": "Medications: name, dose, route, frequency - including OTC, supplements, eye drops, patches, creams, and medicines borrowed from others",
+      "short": "Medications: name, dose, route, frequency",
+      "hk": "say",
+      "d": "What medicines do you take? — and prompt for over-the-counter, supplements, eye drops, patches, creams, and anything borrowed from family."
+     },
+     {
+      "text": "Allergies: drug, food, and environmental - with the reaction (or NKDA)",
+      "hk": "say",
+      "d": "Any allergies to medicines, foods, or things in the environment? What happens when you're exposed?"
+     },
+     {
+      "text": "Immunizations and age-appropriate screenings - up to date or not",
+      "hk": "say",
+      "d": "Are your vaccines up to date? Have you had the screenings due for your age?"
      }
     ]
    }
@@ -275,19 +398,40 @@ const COMP = [
     "name": "General survey",
     "items": [
      {
-      "text": "Level of consciousness and orientation (A&O x4)"
+      "text": "Level of consciousness and orientation (A&O x4)",
+      "hk": "narrate",
+      "d": "Patient is awake, alert, and oriented to person, place, time, and situation."
      },
      {
-      "text": "Signs of distress"
+      "text": "Apparent state of health",
+      "hk": "narrate",
+      "d": "Patient appears generally well, in no acute distress."
      },
      {
-      "text": "Posture, gait, movement, body build"
+      "text": "Skin color and obvious lesions",
+      "hk": "narrate",
+      "d": "Bates general-survey component: report skin colour and any obvious lesions — e.g. no jaundice, pallor, cyanosis or obvious lesions.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/dermatology.html"
      },
      {
-      "text": "Grooming, hygiene, body odor, facial expression"
+      "text": "Signs of distress",
+      "hk": "narrate",
+      "d": "No respiratory distress, no guarding or pain behaviour, resting comfortably."
      },
      {
-      "text": "Apparent versus stated age and sexual development"
+      "text": "Posture, gait, movement, body build",
+      "hk": "narrate",
+      "d": "Posture upright, gait steady, movements symmetric, build within normal limits."
+     },
+     {
+      "text": "Grooming, hygiene, body odor, facial expression",
+      "hk": "narrate",
+      "d": "Well-groomed and appropriately dressed, no unusual odour, facial expression appropriate."
+     },
+     {
+      "text": "Apparent versus stated age and sexual development",
+      "hk": "narrate",
+      "d": "Appears consistent with the stated age, with age-appropriate development."
      }
     ]
    },
@@ -297,22 +441,36 @@ const COMP = [
      {
       "text": "Blood pressure, correct technique",
       "lr": "(hospitalized SBP < 90 predicts mortality, +LR ~15; Holler 2015)",
-      "tier": "C"
+      "tier": "C",
+      "hk": "say",
+      "d": "I'm going to check your blood pressure. Rest your arm here at heart level.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/bppp.html"
      },
      {
-      "text": "Pulse: rate, rhythm, amplitude"
+      "text": "Pulse: rate, rhythm, amplitude",
+      "hk": "say",
+      "d": "I'm going to feel your pulse at the wrist. — Count 30 s x 2 if regular, a full 60 s if irregular."
      },
      {
-      "text": "Respiratory rate (count unobtrusively)"
+      "text": "Respiratory rate: count for one full minute, unobtrusively",
+      "short": "Respiratory rate",
+      "hk": "tip",
+      "d": "Count for a full minute while you still appear to be holding the wrist, so the patient doesn't alter their breathing."
      },
      {
-      "text": "Temperature (document route)"
+      "text": "Temperature (document route)",
+      "hk": "say",
+      "d": "I'm going to take your temperature. — Record the route; oral, tympanic and rectal are not interchangeable."
      },
      {
-      "text": "Height, weight, and calculated BMI"
+      "text": "Height, weight, and calculated BMI",
+      "hk": "tip",
+      "d": "Record height and weight and state the calculated BMI aloud — the calculation is the scored part."
      },
      {
-      "text": "Pulse oximetry"
+      "text": "Pulse oximetry",
+      "hk": "say",
+      "d": "This clip on your finger measures your oxygen level. It doesn't hurt."
      }
     ]
    }
@@ -329,47 +487,65 @@ const COMP = [
      {
       "text": "Inspect skin: color, moisture, texture",
       "lr": "(central cyanosis, +LR 7.4 for hypoxemia; palmar crease pallor +LR 7.9, palmar pallor +LR 5.6 for anemia)",
-      "tier": "B"
+      "tier": "B",
+      "hk": "narrate",
+      "d": "Bates: inspect colour, moisture and texture over the whole surface — e.g. skin colour normal, warm and dry, texture normal.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/dermatology.html"
      },
      {
       "text": "Palpate skin: temperature, turgor, mobility",
       "lr": "(skin tenting, +LR 3.5 for hypovolemia; less reliable in the elderly)",
-      "tier": "C"
+      "tier": "C",
+      "hk": "say",
+      "d": "I'm going to touch your skin in a few places. — Bates: use the backs of your fingers for temperature; lift a fold over the forearm or sternum for turgor and mobility."
      },
      {
-      "text": "Inspect and palpate lesions: size, shape, color, asymmetry (ABCDEs), distribution"
+      "text": "Inspect and palpate lesions: number, size, shape, color, texture, primary lesion type, configuration, distribution; ABCDE-EFG if pigmented",
+      "short": "Inspect and palpate lesions (full morphologic description)",
+      "hk": "narrate",
+      "d": "Describe number, size, shape, colour, texture, primary lesion type, configuration and distribution. For pigmented lesions add ABCDE-EFG.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/dermatology.html"
      },
      {
-      "text": "Inspect and palpate hair and scalp: texture, distribution, moisture"
+      "text": "Inspect and palpate hair and scalp: texture, distribution, moisture",
+      "hk": "say",
+      "d": "I'm going to look through your hair and scalp."
      },
      {
       "text": "Inspect nails and interdigital spaces; assess for clubbing (Schamroth window)",
       "lr": "(digital clubbing, +LR ~8; Pallares-Sanmartin 2010)",
-      "tier": "B"
+      "tier": "B",
+      "short": "Inspect nails and interdigital spaces; assess for clubbing",
+      "hk": "how",
+      "d": "Inspect nails and between the toes and fingers. For clubbing, put the nails of the two index fingers back to back — loss of the Schamroth window is positive."
      }
-    ]
+    ],
+    "pocus": "Cellulitis, abscess, foreign body, lipoma, cyst, soft-tissue mass. (STFM Delphi 2026)"
    }
   ]
  },
  {
   "title": "Head, Eyes, Ears, Nose, and Throat",
   "ros": "Head: headache, injury, dizziness. Eyes: vision, pain, redness, diplopia, floaters/flashes. Ears: hearing, tinnitus, vertigo, discharge. Nose: congestion, epistaxis, sinus pain. Throat/mouth: dental, gums, sore throat, hoarseness.",
-  "note": "For acute vestibular syndrome (continuous vertigo with nystagmus), the HINTS exam is more sensitive than early MRI for posterior-circulation stroke (\u2212LR 0.00; Kattah 2009). It is valid only in true acute vestibular syndrome, and a NORMAL head-impulse test is the worrisome result.",
+  "note": "For acute vestibular syndrome (continuous vertigo with nystagmus), the HINTS exam is more sensitive than early MRI for posterior-circulation stroke (−LR 0.00; Kattah 2009). It is valid only in true acute vestibular syndrome, and a NORMAL head-impulse test is the worrisome result.",
   "groups": [
    {
     "name": "Head",
     "items": [
      {
-      "text": "Inspect and palpate skull: symmetry, shape, deformity, trauma"
+      "text": "Inspect and palpate skull: symmetry, shape, deformity, trauma",
+      "hk": "say",
+      "d": "I'm going to feel over your scalp and skull. Tell me if anything is tender."
      },
      {
-      "text": "Inspect scalp and hair"
+      "text": "Inspect scalp and hair",
+      "hk": "say",
+      "d": "I'm going to part your hair and look at your scalp. — Bates: inspect scalp and hair for texture, distribution, and any lesions or scaling."
      },
      {
-      "text": "Inspect facial bones and features for symmetry"
-     },
-     {
-      "text": "Palpate the cervical lymph node chain (10 stations)"
+      "text": "Inspect facial bones and features for symmetry",
+      "hk": "narrate",
+      "d": "Facial features symmetric, no swelling, asymmetry or deformity."
      }
     ]
    },
@@ -379,58 +555,104 @@ const COMP = [
      {
       "text": "Inspect position, conjunctiva, sclera, pupils",
       "lr": "(conjunctival rim pallor, +LR 4.5 for anemia; sunken eyes +LR 3.4 but NS, CI 1.0-12.2, for hypovolemia)",
-      "tier": "C"
+      "tier": "C",
+      "hk": "say",
+      "d": "Look straight ahead for me while I look at your eyes."
      },
      {
-      "text": "Inspect brows, eyelids, lacrimal system"
+      "text": "Inspect brows, eyelids, lacrimal system",
+      "hk": "say",
+      "d": "Just looking around your eyelids and the inner corner of each eye."
      },
      {
-      "text": "Visual acuity (Snellen)"
+      "text": "Visual acuity (Snellen)",
+      "hk": "say",
+      "d": "Cover one eye and read the smallest line you can. — Bates: Snellen at 20 ft with glasses on; record the smallest line read and whether corrected."
      },
      {
-      "text": "Visual fields by confrontation"
+      "text": "Visual fields by confrontation",
+      "hk": "say",
+      "d": "Look right at my nose and tell me when you see my fingers move. — Bates: test each of the four quadrants of each eye; fields extend farthest temporally."
      },
      {
-      "text": "Six cardinal directions of gaze; convergence; accommodation"
+      "text": "Six cardinal directions of gaze; convergence; accommodation",
+      "hk": "say",
+      "d": "Keep your head still and follow my finger with just your eyes. Now watch it come in toward your nose."
      },
      {
-      "text": "Ophthalmoscopy: red reflex, iris, cornea"
+      "text": "Oblique lighting: inspect the cornea and iris",
+      "hk": "how",
+      "d": "Shine a penlight across the eye from the side, not straight on. The oblique beam shows corneal opacities and the iris detail."
      },
      {
-      "text": "Ophthalmoscopy: pupil and light reaction (PERRLA)",
+      "text": "Pupillary light reaction: dim room, bright light obliquely, patient gazing into the distance (direct and consensual)",
       "lr": "(consensual photophobia, +LR 28.8 for serious eye disease; wide CI)",
-      "tier": "A"
+      "tier": "A",
+      "short": "Pupillary light reaction (direct and consensual)",
+      "hk": "say",
+      "d": "Look at the wall behind me. — Bates: in dim light, shine a bright light obliquely into each pupil; the distant gaze and oblique beam both prevent a near reaction. Note direct and consensual.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/pupillary.html"
      },
      {
-      "text": "Ophthalmoscopy: retina, vessels, optic disc"
+      "text": "Ophthalmoscopy: red reflex (about 15 in away, 15 degrees lateral to the line of vision)",
+      "short": "Ophthalmoscopy: red reflex",
+      "hk": "how",
+      "d": "From about 15 inches away and 15 degrees lateral to the line of vision, shine the scope at the pupil and look for the orange glow.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/fundoscopic.html"
+     },
+     {
+      "text": "Ocular alignment: corneal light reflection and cover-uncover test",
+      "hk": "how",
+      "d": "Shine a light at both eyes from 2 ft and check the reflection sits at the same spot on each cornea, then cover and uncover each eye watching for a shift."
+     },
+     {
+      "text": "Ophthalmoscopy: retina, vessels, optic disc",
+      "hk": "say",
+      "d": "I'll dim the lights and look into the back of your eye. Keep looking at the spot on the wall behind me.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/fundoscopic.html"
      }
-    ]
+    ],
+    "pocus": "Retinal detachment. (STFM Delphi 2026)"
    },
    {
     "name": "Ears",
     "items": [
      {
-      "text": "Inspect and palpate the auricle, mastoid, TMJ"
+      "text": "Inspect and palpate the auricle, tragus, and mastoid (tragus tug)",
+      "hk": "say",
+      "d": "I'm going to look at and press around your ear. Tell me if this is sore. — Pain on tragal tug suggests otitis externa rather than media."
      },
      {
-      "text": "Auditory acuity: whisper test at 2\u20133 ft"
+      "text": "Auditory acuity: whisper test at 2–3 ft",
+      "hk": "how",
+      "d": "Stand behind the patient, occlude and rub the opposite tragus, exhale fully, then whisper a set of letters/numbers from 2–3 ft. 3 of 6 correct passes."
      },
      {
-      "text": "Finger-rub test bilaterally"
+      "text": "Finger-rub test bilaterally",
+      "hk": "how",
+      "d": "Rub your fingers together about 6 inches from each ear and ask whether the patient hears it on both sides."
      },
      {
-      "text": "Otoscopy bilaterally: canal and tympanic membrane"
+      "text": "Otoscopy bilaterally: canal and tympanic membrane",
+      "hk": "say",
+      "d": "I'll look inside your ear now. — Bates: largest speculum that fits, pull the auricle up, back and slightly out, insert down and forward. Identify the cone of light, umbo, malleus handle and short process, pars flaccida and tensa."
      }
     ]
    },
    {
-    "name": "Ears \u2014 special tests",
+    "name": "Ears — special tests",
     "items": [
      {
-      "text": "Rinne test"
+      "text": "Rinne test",
+      "hk": "how",
+      "d": "Bates: quiet room, 512-Hz fork. Place the base on the mastoid until sound stops, then hold the prongs near the ear canal. Normally air conduction outlasts bone conduction (AC > BC). Use only in a patient who fails the whispered voice test.",
+      "url": "https://www.physio-pedia.com/Rinne_Test"
      },
      {
-      "text": "Weber test"
+      "text": "Weber test",
+      "hk": "how",
+      "d": "Bates: quiet room, 512-Hz fork on the vertex in the midline. Ask where the sound is heard — normally midline. Lateralizes to the affected ear in conductive loss and away from it in sensorineural loss.",
+      "url": "https://www.physio-pedia.com/Weber_Test"
      }
     ]
    },
@@ -438,19 +660,25 @@ const COMP = [
     "name": "Nose",
     "items": [
      {
-      "text": "Inspect position, symmetry, skin"
+      "text": "Inspect position, symmetry, skin",
+      "hk": "narrate",
+      "d": "Nose midline and symmetric, no external deformity or skin change."
      },
      {
-      "text": "Palpate nasal bones; test patency of each nostril"
+      "text": "Test patency of each nostril; inspect the nasal tip (manipulate as little as possible if tender)",
+      "short": "Test patency of each nostril; inspect the nasal tip",
+      "hk": "say",
+      "d": "Press this nostril closed and breathe in through the other side for me."
      },
      {
-      "text": "Smell sensation (CN I)"
+      "text": "Palpate the frontal and maxillary sinuses",
+      "hk": "say",
+      "d": "I'm going to press on your forehead and cheeks. Tell me if it's tender. — Bates: upward pressure under the brows for the frontal, upward under the zygoma for the maxillary."
      },
      {
-      "text": "Palpate, percuss, and transilluminate sinuses"
-     },
-     {
-      "text": "Internal inspection with otoscope and speculum"
+      "text": "Internal inspection with otoscope and speculum",
+      "hk": "say",
+      "d": "I'm going to look inside your nose with this light. — Inspect mucosa, septum, and inferior and middle turbinates."
      }
     ]
    },
@@ -458,16 +686,26 @@ const COMP = [
     "name": "Mouth and throat",
     "items": [
      {
-      "text": "Inspect lips, teeth, gums, tongue, hard/soft palate, pharynx, buccal mucosa"
+      "text": "Inspect lips, teeth, gums, tongue, hard/soft palate, pharynx, buccal mucosa",
+      "hk": "say",
+      "d": "Open up for me and I'll shine a light inside.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/tongue.html"
      },
      {
-      "text": "Palpate the floor of the mouth (bimanual), tongue (including lateral borders), buccal mucosa, gums, and teeth"
+      "text": "Palpate the floor of the mouth (bimanual), tongue (including lateral borders), buccal mucosa, gums, and teeth",
+      "short": "Palpate floor of mouth, tongue, buccal mucosa, gums, teeth",
+      "hk": "say",
+      "d": "I'm going to feel under your tongue with a gloved finger. Say if it's uncomfortable. — Inspect and palpate the lateral tongue borders; this is the oral-cancer check."
      },
      {
-      "text": "Tongue protrusion (CN XII)"
+      "text": "Tongue protrusion (CN XII)",
+      "hk": "say",
+      "d": "Stick your tongue straight out. — Bates: also inspect the tongue at rest for atrophy or fasciculations; watch for deviation on protrusion."
      },
      {
-      "text": "Palate rise on \u201cAhh\u201d (CN IX/X); assess swallow"
+      "text": "Palate rise on “Ahh” (CN IX/X); assess swallow",
+      "hk": "say",
+      "d": "Open and say ahh for me while I watch the roof of your mouth."
      }
     ]
    }
@@ -482,21 +720,42 @@ const COMP = [
     "name": "Core examination",
     "items": [
      {
-      "text": "Inspect neck, thyroid, tracheal position"
+      "text": "Inspect neck, thyroid, tracheal position",
+      "hk": "narrate",
+      "d": "Neck symmetric, trachea midline, no visible thyroid enlargement or masses.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/thyroid.html"
      },
      {
-      "text": "Observe swallowing for thyroid motion"
+      "text": "Observe swallowing for thyroid motion",
+      "hk": "say",
+      "d": "Take a sip of water, hold it, and swallow when I say. — Watch the thyroid and cricoid rise.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/thyroid.html"
      },
      {
-      "text": "Palpate the thyroid (behind, during swallow): size, shape, consistency, nodules"
+      "text": "Palpate the thyroid (from behind and in front, during a swallow): size, shape, consistency, nodules, tenderness",
+      "short": "Palpate the thyroid",
+      "hk": "say",
+      "d": "I'm going to feel your thyroid from behind while you swallow again.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/thyroid.html"
      },
      {
-      "text": "Palpate the cervical lymph node chain"
+      "text": "Palpate the cervical lymph node chains: preauricular, retroauricular, occipital, tonsillar, submandibular, submental, superficial and deep cervical, posterior triangle, supraclavicular",
+      "short": "Palpate the cervical lymph node chains",
+      "hk": "say",
+      "d": "I'm going to feel the glands in your neck. — Work a set order: preauricular, retroauricular, occipital, tonsillar, submandibular, submental, superficial and deep cervical, posterior triangle, supraclavicular.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/lymph.html"
      },
      {
       "text": "Assess for nuchal rigidity when meningeal irritation is suspected",
       "lr": "(neck stiffness, +LR 6.6 for subarachnoid hemorrhage; Carpenter 2016)",
-      "tier": "B"
+      "tier": "B",
+      "hk": "how",
+      "d": "With the patient supine, passively flex the neck. Resistance or pain suggests meningeal irritation. Confirm no cervical injury first."
+     },
+     {
+      "text": "Auscultate the thyroid for a bruit if enlarged",
+      "hk": "how",
+      "d": "If the gland is enlarged, listen over each lobe with the bell for a bruit."
      }
     ]
    }
@@ -511,51 +770,113 @@ const COMP = [
     "name": "Core examination",
     "items": [
      {
-      "text": "Inspect rate, rhythm, depth, effort, expiratory time"
+      "text": "Inspect rate, rhythm, depth, effort, expiratory time",
+      "hk": "narrate",
+      "d": "Breathing is unlaboured at a normal rate, no accessory muscle use, expiratory phase not prolonged."
      },
      {
-      "text": "Inspect chest shape, size, symmetry"
+      "text": "Inspect chest shape, size, symmetry",
+      "hk": "narrate",
+      "d": "Bates: note the anteroposterior-to-lateral diameter ratio (normally 0.7–0.9; over 0.9 suggests barrel chest) and any deformity or asymmetry."
      },
      {
-      "text": "Inspect skin and chest landmarks"
+      "text": "Inspect skin and chest landmarks",
+      "hk": "narrate",
+      "d": "Chest wall skin intact, no scars, lesions or asymmetry of landmarks."
      },
      {
-      "text": "Compress the chest wall (anterior, lateral, posterior)"
+      "text": "Compress the chest wall anteroposteriorly (only if rib fracture is suspected)",
+      "short": "Compress the chest wall AP (if rib fracture suspected)",
+      "hk": "how",
+      "d": "Only if a rib fracture is suspected: one hand on the sternum, one on the thoracic spine, and compress. Localized pain suggests fracture."
      },
      {
-      "text": "Assess chest expansion (anterior and posterior)"
+      "text": "Assess chest expansion (anterior and posterior)",
+      "hk": "say",
+      "d": "Take a deep breath in for me. — Bates: thumbs at about the level of the 10th ribs posteriorly, fingers loosely parallel to the lateral rib cage, sliding medially to raise a loose skin fold over the spine. Watch your thumbs move apart."
      },
      {
       "text": "Assess tactile fremitus (anterior and posterior)",
-      "lr": "(reduced fremitus is the best rule-out for effusion, \u2212LR 0.21; Wong 2009)",
-      "tier": "C"
+      "lr": "(reduced fremitus is the best rule-out for effusion, −LR 0.21; Wong 2009)",
+      "tier": "C",
+      "hk": "say",
+      "d": "Say ninety-nine each time I touch your back. — Bates: use the ball or ulnar surface of the hand, comparing symmetric areas, and identify any increased, decreased or absent fremitus."
      },
      {
-      "text": "Percuss \u2265 6 areas anterior and posterior, plus 2 lateral"
+      "text": "Percuss the posterior chest at 3 paired sites (left and right at each level); expand if abnormal",
+      "short": "Percuss posterior chest (3 paired sites; expand if abnormal)",
+      "hk": "say",
+      "d": "I'm going to tap down your back. — Bates: ladder pattern, one side then the other at each level, two strikes per site, omitting over the scapulae. Three paired levels is the core; if you find an abnormal note, expand to map its borders.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/pulmonary.html"
      },
      {
-      "text": "Identify diaphragmatic excursion posteriorly"
+      "text": "Percuss the anterior and lateral chest if clinically indicated",
+      "short": "Percuss anterior / lateral chest (if indicated)",
+      "hk": "tip",
+      "d": "Bates percusses the anterior and lateral chest only if clinically indicated, in the same ladder pattern. Displace the breast or ask the patient to move it."
      },
      {
-      "text": "Auscultate \u2265 6 areas anterior and posterior, plus 2 lateral"
+      "text": "Identify diaphragmatic excursion posteriorly",
+      "hk": "say",
+      "d": "Take a deep breath in and hold it… now let it all out and hold. — Percuss the level of dullness in each phase; normal excursion is 3–5.5 cm.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/pulmonary.html"
+     },
+     {
+      "text": "Auscultate the posterior chest at 3 paired sites (left and right at each level); expand if abnormal",
+      "short": "Auscultate posterior chest (3 paired sites; expand if abnormal)",
+      "hk": "say",
+      "d": "Cross your arms in front and breathe deeply through your mouth. — Bates: same ladder pattern as percussion, comparing side to side at each level. Three paired levels is the core; expand if you hear anything abnormal.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/pulmonary.html"
+     },
+     {
+      "text": "Auscultate the lateral chest at 1 paired site (mid-axillary, left and right); expand if abnormal",
+      "short": "Auscultate lateral chest (1 paired site; expand if abnormal)",
+      "hk": "say",
+      "d": "A couple more deep breaths while I listen under each arm. — Bates: compare the two sides at the same level through the full expiratory phase. Expand if abnormal."
+     },
+     {
+      "text": "Auscultate the anterior chest at 2 paired sites above the breast; expand if abnormal",
+      "short": "Auscultate anterior chest (2 paired sites above the breast; expand if abnormal)",
+      "hk": "say",
+      "d": "A couple of breaths while I listen high on your chest. — Bates: compare symmetric anterior sites; above the breast covers the upper lobes and avoids displacing breast tissue. Expand if abnormal."
+     },
+     {
+      "text": "Characterize breath sounds: vesicular, bronchovesicular, bronchial - and note any in an unexpected location",
+      "short": "Characterize breath sounds",
+      "hk": "narrate",
+      "d": "Breath sounds vesicular throughout, with no bronchial breathing in an unexpected location."
+     },
+     {
+      "text": "Identify adventitious sounds: crackles (fine/coarse), wheezes, rhonchi, stridor, pleural rub",
+      "short": "Identify adventitious sounds",
+      "hk": "narrate",
+      "d": "No crackles, wheezes, rhonchi, stridor or pleural rub. — If present, say where and in which phase.",
+      "url": "https://www.physio-pedia.com/Lung_Sounds"
      }
-    ]
+    ],
+    "pocus": "Pleural effusion, pneumonia, pulmonary edema, pneumothorax. (STFM Delphi 2026)"
    },
    {
     "name": "Special tests",
     "items": [
      {
       "text": "Bronchophony",
-      "lr": "(egophony/bronchophony, +LR ~4\u20136 for consolidation)",
-      "tier": "C"
+      "lr": "(egophony/bronchophony, +LR ~4–6 for consolidation)",
+      "tier": "C",
+      "hk": "how",
+      "d": "Bates: auscultate while the patient says ninety-nine. Normally the words sound muffled; louder, clearer words suggest consolidation. Perform only if bronchial or bronchovesicular sounds are heard where they do not belong."
      },
      {
       "text": "Egophony",
-      "lr": "(\u201cE-to-A\u201d change, +LR ~4 for consolidation)",
-      "tier": "C"
+      "lr": "(“E-to-A” change, +LR ~4 for consolidation)",
+      "tier": "C",
+      "hk": "how",
+      "d": "Bates: auscultate while the patient says ee. A change from ee to ay is egophony and suggests consolidation."
      },
      {
-      "text": "Whispered pectoriloquy"
+      "text": "Whispered pectoriloquy",
+      "hk": "how",
+      "d": "Bates: auscultate while the patient whispers ninety-nine or one-two-three. Normally the whisper is faint; louder, clearer whispered words suggest consolidation."
      }
     ]
    }
@@ -564,62 +885,100 @@ const COMP = [
  {
   "title": "Cardiovascular",
   "ros": "Chest pain, exertional dyspnea, palpitations, orthopnea/PND, edema, non-healing sores.",
-  "note": "Echocardiography is the diagnostic standard for valve disease (ACC/AHA Class I); the exam decides whom to image. Heart-failure bedside signs: S3 +LR 4.0 and JVD +LR 2.8 (Martindale 2016 pooled), B-lines +LR ~9; a low BNP (< 100) is the best rule-out (\u2212LR 0.11).",
+  "note": "Echocardiography is the diagnostic standard for valve disease (ACC/AHA Class I); the exam decides whom to image. Heart-failure bedside signs: S3 +LR 4.0 and JVD +LR 2.8 (Martindale 2016 pooled), B-lines +LR ~9; a low BNP (< 100) is the best rule-out (−LR 0.11).",
   "groups": [
    {
     "name": "Core examination",
     "items": [
      {
-      "text": "Note general appearance, blood pressure, heart rate"
+      "text": "Note general appearance, blood pressure, heart rate",
+      "hk": "narrate",
+      "d": "Comfortable at rest, blood pressure and heart rate as recorded."
      },
      {
-      "text": "Inspect neck: great vessels and carotid pulsation"
+      "text": "Inspect neck: great vessels and carotid pulsation",
+      "hk": "narrate",
+      "d": "Carotid upstroke visible and brisk, no abnormal venous distension.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/neck-exam-jugular-venous-pressure-measurement.html"
      },
      {
-      "text": "Evaluate and measure the JVP at 45\u00b0",
+      "text": "Evaluate and measure the JVP with the head of the bed at 30-45 degrees (adjust to see the meniscus)",
       "lr": "(elevated JVP, +LR 4.1 for volume overload; Drum 2026)",
-      "tier": "C"
+      "tier": "C",
+      "short": "Evaluate and measure the JVP",
+      "hk": "how",
+      "d": "Head of bed 30–45 degrees, head turned slightly away, tangential light. Find the meniscus of the internal jugular pulsation and measure vertically from the sternal angle, then add 5 cm.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/neck-exam-jugular-venous-pressure-measurement.html"
      },
      {
-      "text": "Auscultate the carotids for bruits"
+      "text": "Auscultate the carotids for bruits",
+      "hk": "say",
+      "d": "Take a breath in and hold it for me while I listen to your neck. — Always listen before you palpate."
      },
      {
-      "text": "Palpate the carotid pulse: amplitude and contour"
+      "text": "Palpate the carotid pulse: amplitude and contour",
+      "hk": "say",
+      "d": "Now I'll feel the pulse in your neck, one side at a time."
      },
      {
-      "text": "Inspect the anterior chest for the apical impulse (sitting, supine, LLD)"
+      "text": "Inspect the anterior chest for the apical impulse (sitting, supine, LLD)",
+      "hk": "narrate",
+      "d": "Apical impulse not visible on inspection. — Look sitting, supine, and in left lateral decubitus."
      },
      {
-      "text": "Palpate for thrills at 4 areas (bony hand)"
+      "text": "Palpate for thrills at 4 areas (bony hand)",
+      "hk": "how",
+      "d": "Use the bony heel of the hand at the aortic, pulmonic, tricuspid and mitral areas. A palpable thrill means at least a grade 4 murmur.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/precordial.html"
      },
      {
-      "text": "Palpate for heaves and lifts at 4 areas (finger pads)"
+      "text": "Palpate for heaves and lifts at 4 areas (finger pads)",
+      "hk": "how",
+      "d": "Use the finger pads over the same four areas, feeling for a sustained lift of a hypertrophied ventricle.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/precordial.html"
      },
      {
-      "text": "Palpate and locate the PMI"
+      "text": "Palpate and locate the PMI",
+      "hk": "say",
+      "d": "I'm going to feel for your heartbeat on your chest. — Normally 5th interspace, mid-clavicular line, under 2.5 cm.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/precordial.html"
      },
      {
-      "text": "Auscultate 4 areas (bell and diaphragm), upright"
+      "text": "Auscultate all areas with the diaphragm, then repeat with the bell",
+      "hk": "say",
+      "d": "I'm going to listen to your heart in several spots. Just breathe normally.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/cardiac.html"
      },
      {
-      "text": "Auscultate leaning forward (aortic regurgitation)"
+      "text": "Auscultate leaning forward (aortic regurgitation)",
+      "hk": "say",
+      "d": "Sit up and lean forward for me, breathe all the way out and hold. — Diaphragm at the left sternal border for aortic regurgitation."
      },
      {
-      "text": "Auscultate in the left lateral decubitus (mitral, S3/S4)"
+      "text": "Auscultate in the left lateral decubitus (mitral, S3/S4)",
+      "hk": "say",
+      "d": "Roll onto your left side for me. — Bell at the apex for S3, S4 and mitral stenosis."
      }
-    ]
+    ],
+    "pocus": "Pericardial effusion, tamponade, HFrEF, LVH, dilated cardiomyopathy, RV strain. (STFM Delphi 2026)"
    },
    {
     "name": "Special tests (dynamic auscultation)",
     "items": [
      {
-      "text": "Squatting-to-standing maneuver (HOCM vs. others)"
+      "text": "Squatting-to-standing maneuver (HOCM vs. others)",
+      "hk": "how",
+      "d": "Auscultate squatting, then have the patient stand. A murmur that gets louder on standing suggests HOCM; most others get softer."
      },
      {
-      "text": "Valsalva maneuver"
+      "text": "Valsalva maneuver",
+      "hk": "say",
+      "d": "Take a breath in and bear down like you're straining. — HOCM and MVP get louder; most murmurs soften."
      },
      {
-      "text": "Isometric hand grip"
+      "text": "Isometric hand grip",
+      "hk": "say",
+      "d": "Squeeze my hands as hard as you can and keep squeezing. — Raises afterload: MR, VSD and AR get louder; AS and HOCM soften."
      }
     ]
    }
@@ -634,56 +993,60 @@ const COMP = [
     "name": "Core examination",
     "items": [
      {
-      "text": "Inspect arms fingertips-to-shoulders; legs groin-to-feet (size, symmetry, color, veins, ulcers, nails)"
+      "text": "Inspect arms fingertips-to-shoulders; legs groin-to-feet (size, symmetry, color, veins, ulcers, nails)",
+      "short": "Inspect arms and legs",
+      "hk": "narrate",
+      "d": "Extremities symmetric, normal colour, no varicosities, ulcers or nail changes. — Inspect varicosities with the patient standing."
      },
      {
-      "text": "Palpate for skin temperature difference and screen for PAD",
+      "text": "Assess skin temperature with the backs of the fingers, comparing side to side",
       "lr": "(cool skin, +LR 5.9; any bruit +LR 5.6; Khan 2006)",
-      "tier": "B"
+      "tier": "B",
+      "short": "Assess skin temperature, comparing side to side",
+      "hk": "how",
+      "d": "Use the dorsum of your fingers and compare one limb with the other at the same level. Asymmetric coolness carries a +LR of about 6 for PAD."
      },
      {
-      "text": "Palpate pulses bilaterally: radial, brachial, femoral, popliteal, dorsalis pedis, posterior tibial"
+      "text": "Palpate pulses bilaterally: radial, brachial, femoral, popliteal, dorsalis pedis, posterior tibial",
+      "short": "Palpate 6 pulses bilaterally: radial, brachial, femoral, popliteal, DP, PT",
+      "hk": "say",
+      "d": "I'm going to check the pulses in your arms and legs. Socks off for me."
      },
      {
-      "text": "Palpate epitrochlear and superficial inguinal nodes"
+      "text": "Palpate epitrochlear and superficial inguinal nodes",
+      "hk": "how",
+      "d": "Epitrochlear: elbow flexed about 90 degrees, reach into the groove ~3 cm above the medial epicondyle. Then palpate the horizontal and vertical inguinal groups."
      },
      {
-      "text": "Assess pretibial and forefoot edema"
+      "text": "Assess for pitting edema: press with the thumb for at least 2 seconds over the dorsum of each foot, behind each medial malleolus, and over the shins",
+      "short": "Assess for pitting edema",
+      "hk": "say",
+      "d": "I'm going to press on your shins and feet for a few seconds. — Thumb pressure for at least 2 s over the dorsum of each foot, behind each medial malleolus, and over the shins."
      },
      {
-      "text": "Palpate calves for cords"
+      "text": "Palpate calves for cords",
+      "hk": "say",
+      "d": "I'm going to squeeze your calf gently. Tell me if it's tender. — Feeling for tenderness or a palpable cord."
      }
-    ]
+    ],
+    "pocus": "Proximal DVT, AAA, IVC collapsibility. (STFM Delphi 2026)"
    },
    {
     "name": "Special tests",
     "items": [
      {
-      "text": "Allen test (before radial access)"
+      "text": "Allen test (before radial access)",
+      "hk": "how",
+      "d": "Bates: hands resting palm-up, patient makes a tight fist. Compress both the radial and ulnar arteries, then have them open the hand relaxed and slightly flexed - fully extending it causes false pallor. Release the ulnar alone: colour should return in 3-5 seconds. Then repeat for the radial."
      },
      {
-      "text": "PAD cluster (absent pedal pulse + femoral bruit; +LR 34.2 for PAD; Armstrong 2010)"
-     },
-     {
-      "text": "Absent dorsalis pedis / posterior tibial pulse",
-      "sub": true
-     },
-     {
-      "text": "Femoral artery bruit",
-      "sub": true
-     },
-     {
-      "text": "Homan sign",
-      "lr": "(unreliable for DVT; use Wells score + D-dimer + compression ultrasound)",
-      "tier": "D"
-     },
-     {
-      "text": "Buerger test"
-     },
-     {
-      "text": "Ankle-brachial index (ABI < 0.9)"
+      "text": "Ankle-brachial index (ABI < 0.9)",
+      "hk": "how",
+      "d": "Bates: supine and rested. With a handheld Doppler take brachial pressures in both arms and DP and PT pressures in both ankles; ABI is the higher ankle pressure over the higher brachial. Ankle pressure is normally higher than the arm. Under 0.90 is diagnostic of PAD; under 0.50 suggests severe PAD; over 1.40 suggests a noncompressible calcified vessel.",
+      "url": "https://www.physio-pedia.com/Ankle_Brachial_Pressure_Index"
      }
-    ]
+    ],
+    "footnote": "Homan sign, Buerger test — asked on boards, weak evidence, not in Bates."
    }
   ]
  },
@@ -696,68 +1059,120 @@ const COMP = [
     "name": "Core examination (auscultate before percussion/palpation)",
     "items": [
      {
-      "text": "Position the patient (knees bent, feet flat) to relax the wall"
+      "text": "Position the patient (knees bent, feet flat) to relax the wall",
+      "hk": "say",
+      "d": "Lie back with your arms at your sides. I'll bend your knees to relax your belly."
      },
      {
-      "text": "Inspect: skin, contour, symmetry, peristalsis, pulsations"
+      "text": "Ask the patient to point to any area of pain, and examine that area last",
+      "short": "Examines any painful area last",
+      "hk": "say",
+      "d": "Before I start — can you point to where it hurts most? I'll examine that part last."
      },
      {
-      "text": "Auscultate bowel sounds"
+      "text": "Inspect: skin, contour, symmetry, peristalsis, pulsations",
+      "hk": "narrate",
+      "d": "Abdomen flat and symmetric, no scars, distension, visible peristalsis or pulsation."
      },
      {
-      "text": "Auscultate for bruits (aortic, renal, iliac, femoral)"
+      "text": "Auscultate bowel sounds (one area is usually sufficient; listen at least 2 minutes before calling them absent)",
+      "short": "Auscultate bowel sounds",
+      "hk": "say",
+      "d": "I'm going to listen to your belly first, before I press anywhere. — One area is enough; listen at least 2 minutes before calling them absent."
      },
      {
-      "text": "Auscultate for friction rubs (liver, spleen)"
+      "text": "Auscultate for bruits (aortic, renal, iliac, femoral)",
+      "hk": "how",
+      "d": "Listen with the diaphragm over the aorta, both renal arteries, both iliacs and both femorals."
      },
      {
-      "text": "Percuss all four quadrants and the gastric bubble"
+      "text": "Auscultate for friction rubs (liver, spleen)",
+      "hk": "how",
+      "d": "Listen over the liver and spleen for a grating sound with respiration, which suggests tumour, infarct or inflammation."
      },
      {
-      "text": "Percuss the liver span at the MCL"
+      "text": "Percuss all four quadrants and the gastric bubble",
+      "hk": "say",
+      "d": "I'm going to tap around your belly now.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/abdominal.html"
      },
      {
-      "text": "Percuss Traube space / Castell sign for spleen"
+      "text": "Percuss the liver span at the MCL",
+      "hk": "how",
+      "d": "Percuss down from the nipple line and up from the RLQ in the mid-clavicular line. Normal span is 6–12 cm.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/liver.html"
      },
      {
-      "text": "Light palpation of all quadrants"
+      "text": "Percuss Traube space / Castell sign for spleen",
+      "hk": "how",
+      "d": "Traube space: percuss the left lower anterior chest, normally tympanic. Castell: percuss the lowest intercostal space in the anterior axillary line in full expiration and inspiration — a change to dullness suggests splenomegaly.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/spleen.html"
      },
      {
-      "text": "Deep palpation of all quadrants"
+      "text": "Light palpation of all quadrants",
+      "hk": "say",
+      "d": "I'm going to press gently. Tell me if anything is tender. — Watch the patient's face, not your hands."
      },
      {
-      "text": "Palpate and characterize the liver edge"
+      "text": "Deep palpation of all quadrants",
+      "hk": "say",
+      "d": "Now a bit deeper. Let me know if it's sore anywhere."
      },
      {
-      "text": "Palpate the gallbladder"
+      "text": "Palpate and characterize the liver edge",
+      "hk": "say",
+      "d": "Take a deep breath in for me. — Fingers lateral to the rectus below the costal margin, press in and up on inspiration.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/liver.html"
      },
      {
-      "text": "Palpate the spleen (supine and right lateral decubitus)"
+      "text": "Palpate the gallbladder",
+      "hk": "how",
+      "d": "Palpate below the right costal margin at the lateral border of the rectus. A palpable, non-tender gallbladder with jaundice is Courvoisier sign."
+     },
+     {
+      "text": "Palpate the spleen (supine and right lateral decubitus)",
+      "hk": "say",
+      "d": "Roll toward me onto your right side. — Reach over from the left with your left hand lifting the rib cage and press in under the costal margin on inspiration.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/spleen.html"
      },
      {
       "text": "Palpate the aorta",
       "lr": "(palpable widened aorta, +LR 2.7 for AAA; do not cite pooled 12)",
-      "tier": "C"
+      "tier": "C",
+      "hk": "how",
+      "d": "Press deeply in the epigastrium slightly left of midline, one hand each side, and estimate the width between your fingers. Over 3 cm is abnormal."
      },
      {
-      "text": "Assess CVA tenderness"
+      "text": "Assess CVA tenderness",
+      "hk": "say",
+      "d": "I'm going to tap on your back over each kidney. — Place a hand over the costovertebral angle and strike with the ulnar fist."
      }
-    ]
+    ],
+    "pocus": "Free fluid, cholelithiasis, cholecystitis, hydronephrosis, bladder volume, nephrolithiasis. (STFM Delphi 2026)"
    },
    {
     "name": "Peritoneal signs",
     "items": [
      {
-      "text": "Rigidity"
+      "text": "Rigidity",
+      "hk": "how",
+      "d": "Involuntary, board-like, persistent wall tightening that does not relax with distraction. Component of the peritoneal picture."
      },
      {
-      "text": "Guarding"
+      "text": "Guarding",
+      "hk": "how",
+      "d": "Voluntary tightening on palpation. It relaxes if you distract the patient or ask them to bend their knees; involuntary guarding does not."
      },
      {
-      "text": "Rebound / Blumberg sign"
+      "text": "Rebound / Blumberg sign",
+      "hk": "how",
+      "d": "Press deeply, hold, then release quickly and ask whether pressing in or letting go hurt more. More pain on release is positive.",
+      "url": "https://www.physio-pedia.com/Abdominal_Examination"
      },
      {
-      "text": "Cough test"
+      "text": "Cough test",
+      "hk": "say",
+      "d": "Give me a cough. — Localized abdominal pain on coughing suggests peritoneal irritation."
      }
     ]
    },
@@ -767,28 +1182,44 @@ const COMP = [
      {
       "text": "Murphy sign (cholecystitis)",
       "lr": "(clinical +LR 2.8; sonographic Murphy +LR ~9.9)",
-      "tier": "C"
+      "tier": "C",
+      "hk": "how",
+      "d": "Bates gates this: use it when RUQ pain suggests cholecystitis BUT there is no RUQ tenderness on palpation. Palpate deeply at the site of pain and ask the patient to take a deep breath; a sharp halt in inspiration is positive.",
+      "url": "https://www.physio-pedia.com/Murphys_Sign"
      },
      {
       "text": "McBurney point tenderness (appendicitis)",
       "lr": "(+LR 3.4; Wagner 1996)",
-      "tier": "C"
+      "tier": "C",
+      "hk": "how",
+      "d": "Bates: McBurney point lies in the RLQ about two-thirds of the way from the umbilicus to the ASIS. Appendicitis is about three times more likely with McBurney point tenderness."
      },
      {
       "text": "Rovsing sign (appendicitis)",
       "lr": "(+LR 2.3)",
-      "tier": "C"
+      "tier": "C",
+      "hk": "how",
+      "d": "Bates: press deeply and evenly in the LLQ, then release quickly. Pain felt in the RLQ is a positive (indirect) sign and roughly doubles the likelihood of appendicitis.",
+      "url": "https://www.physio-pedia.com/Rovsing_Sign"
      },
      {
       "text": "Psoas sign (appendicitis)",
       "lr": "(+LR 2.0)",
-      "tier": "D"
+      "tier": "D",
+      "hk": "how",
+      "d": "Bates: place your hand above the patient's right knee and ask them to raise the thigh against it, or lie them on the left side and extend the right leg at the hip. RLQ pain is positive."
      },
      {
-      "text": "Shifting dullness (ascites)"
+      "text": "Shifting dullness (ascites)",
+      "hk": "how",
+      "d": "Percuss from tympany outward to dullness with the patient supine, mark it, then roll them and re-percuss. Movement of the border suggests ascites.",
+      "url": "https://www.physio-pedia.com/Abdominal_Examination"
      },
      {
-      "text": "Fluid wave (ascites)"
+      "text": "Fluid wave (ascites)",
+      "hk": "how",
+      "d": "An assistant presses the ulnar edge of a hand on the midline; tap one flank and feel for the impulse on the other.",
+      "url": "https://www.physio-pedia.com/Abdominal_Examination"
      }
     ]
    }
@@ -797,19 +1228,25 @@ const COMP = [
  {
   "title": "Musculoskeletal",
   "ros": "Joint or muscle pain, stiffness, swelling, redness, weakness, limited motion; back or neck pain; systemic features (fever, rash, weight loss).",
-  "note": "Ottawa ankle/foot/knee and Canadian C-Spine rules safely exclude fracture and cut imaging (high-sensitivity screens). Clusters beat single tests: the Park cluster (painful arc + Hawkins + infraspinatus weakness), all three positive, gives +LR 10.6 for impingement; CTS-6 is the AAOS-preferred construct (2024) over Phalen or Tinel alone. Most single low-back red flags carry +LR ~1; a cancer history is the exception (+LR ~15).",
+  "note": "Ottawa ankle/foot/knee and Canadian C-Spine rules safely exclude fracture and cut imaging (high-sensitivity screens).6 for impingement; CTS-6 is the AAOS-preferred construct (2024) over Phalen or Tinel alone. Most single low-back red flags carry +LR ~1; a cancer history is the exception (+LR ~15). For elbow pain, ask about occupational biomechanical exposure: there is limited evidence of a causal relationship with lateral elbow tendinopathy (a Strain Index >5–6.1 roughly doubles risk), and insufficient evidence for medial tendinopathy (Curti 2021 SR).",
   "groups": [
    {
     "name": "TMJ",
     "items": [
      {
-      "text": "Inspect for symmetry, swelling, redness"
+      "text": "Inspect for symmetry, swelling, redness",
+      "hk": "narrate",
+      "d": "TMJs symmetric, no swelling or erythema."
      },
      {
-      "text": "Palpate joint and muscles of mastication"
+      "text": "Palpate joint and muscles of mastication",
+      "hk": "say",
+      "d": "Open and close for me while I feel just in front of your ears. — Then palpate masseter and temporalis; the lateral pterygoid cannot be palpated directly."
      },
      {
-      "text": "AROM: opening/closing, lateral, protrusion/retraction"
+      "text": "AROM: opening/closing, lateral, protrusion/retraction",
+      "hk": "say",
+      "d": "Open wide, move your jaw side to side, then forward and back. — Normal opening is about 35–55 mm, or three fingers between the incisors."
      }
     ]
    },
@@ -817,13 +1254,21 @@ const COMP = [
     "name": "Shoulders",
     "items": [
      {
-      "text": "Inspect for swelling, deformity, atrophy, scars, positioning"
+      "text": "Inspect for swelling, deformity, atrophy, scars, positioning",
+      "hk": "narrate",
+      "d": "Shoulders symmetric, no deformity, atrophy or scars.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/shoulder.html"
      },
      {
-      "text": "Palpate SC/AC joints, clavicle, subacromial bursa, bicipital groove, humerus, scapula"
+      "text": "Palpate SC/AC joints, clavicle, subacromial bursa, bicipital groove, humerus, scapula",
+      "hk": "say",
+      "d": "I'm going to press along your collarbone and shoulder. Tell me what's tender. — Include acromion and coracoid.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/shoulder.html"
      },
      {
-      "text": "AROM: abduction/adduction, flexion/extension, internal/external rotation"
+      "text": "AROM: abduction/adduction, flexion/extension, internal/external rotation",
+      "hk": "say",
+      "d": "Raise your arms out to the side and overhead, forward and back, then reach behind your head and behind your back."
      }
     ]
    },
@@ -831,13 +1276,25 @@ const COMP = [
     "name": "Elbows",
     "items": [
      {
-      "text": "Inspect for swelling or abnormal contours"
+      "text": "Inspect for swelling or abnormal contours",
+      "hk": "narrate",
+      "d": "Elbows without swelling, effusion or abnormal contour."
      },
      {
-      "text": "Palpate olecranon, epicondyles, groove, ulnar nerve, bursa"
+      "text": "Palpate olecranon, epicondyles, groove, ulnar nerve, bursa",
+      "hk": "say",
+      "d": "I'm going to feel around your elbow. Tell me if anything's sore. — Ulnar nerve sits between olecranon and medial epicondyle."
      },
      {
-      "text": "AROM: flexion/extension, pronation/supination"
+      "text": "AROM: flexion/extension, pronation/supination",
+      "hk": "say",
+      "d": "Bend your knee up, then straighten it out. — Bates: knee flexion 0 to about 135 degrees; also check medial rotation 10–30 degrees and lateral rotation 30–40 degrees with the knee flexed."
+     },
+     {
+      "text": "Palpate the radial head (about two fingerbreadths distal to the lateral epicondyle) during pronation/supination",
+      "short": "Palpate the radial head",
+      "hk": "how",
+      "d": "Find the radial head about two fingerbreadths distal to the lateral epicondyle and feel it turn as the patient pronates and supinates."
      }
     ]
    },
@@ -845,16 +1302,26 @@ const COMP = [
     "name": "Wrists / hands",
     "items": [
      {
-      "text": "Inspect hands in motion and at rest, palmar and dorsal surfaces"
+      "text": "Inspect hands in motion and at rest, palmar and dorsal surfaces",
+      "hk": "narrate",
+      "d": "Hands without deformity, swelling or muscle wasting, palmar and dorsal surfaces normal.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/hand.html"
      },
      {
-      "text": "Palpate distal radius/ulna, snuffbox, carpals, MCPs, phalanges"
+      "text": "Palpate distal radius/ulna, snuffbox, carpals, MCPs, phalanges",
+      "hk": "say",
+      "d": "I'm going to press along your wrist and hand. — Snuffbox tenderness suggests a scaphoid fracture.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/hand.html"
      },
      {
-      "text": "AROM wrist: flexion/extension, ulnar/radial deviation"
+      "text": "AROM wrist: flexion/extension, ulnar/radial deviation",
+      "hk": "say",
+      "d": "Bend your wrist up and down, then tilt it toward your thumb and your little finger."
      },
      {
-      "text": "AROM digits: flexion/extension, abduction/adduction, opposition"
+      "text": "AROM digits: flexion/extension, abduction/adduction, opposition",
+      "hk": "say",
+      "d": "Make a fist, straighten your fingers, spread them apart, and touch your thumb to each fingertip."
      }
     ]
    },
@@ -862,16 +1329,24 @@ const COMP = [
     "name": "Spine",
     "items": [
      {
-      "text": "Inspect cervical/thoracic/lumbar curves and posture"
+      "text": "Inspect cervical/thoracic/lumbar curves and posture",
+      "hk": "narrate",
+      "d": "Normal cervical lordosis, thoracic kyphosis and lumbar lordosis; shoulders and pelvis level."
      },
      {
-      "text": "Palpate spinous processes, paravertebral muscles, SI joints"
+      "text": "Palpate the spinous processes, paravertebral muscles, SI joints, and lumbosacral junction",
+      "hk": "say",
+      "d": "I'm going to press down your spine and the muscles either side. Tell me where it's tender."
      },
      {
-      "text": "AROM cervical: flexion/extension, rotation, lateral bending"
+      "text": "AROM cervical: flexion/extension, rotation, lateral bending",
+      "hk": "say",
+      "d": "Chin to chest, look up, turn side to side, then tip each ear toward your shoulder."
      },
      {
-      "text": "AROM thoracolumbar: flexion/extension, rotation, lateral bending"
+      "text": "AROM thoracolumbar: flexion/extension, rotation, lateral bending",
+      "hk": "say",
+      "d": "Bend forward, lean back, twist each way, then slide each hand down the side of your leg."
      }
     ]
    },
@@ -879,13 +1354,20 @@ const COMP = [
     "name": "Hips",
     "items": [
      {
-      "text": "Inspect lumbar spine and hips for atrophy or bruising; assess leg-length symmetry"
+      "text": "Inspect lumbar spine and hips for atrophy or bruising; assess leg-length symmetry",
+      "short": "Inspect lumbar spine and hips; assess leg-length symmetry",
+      "hk": "narrate",
+      "d": "No gluteal atrophy or bruising; leg lengths appear symmetric. — Measure ASIS to medial malleolus if asymmetry is suspected; 1 cm or more matters."
      },
      {
-      "text": "Palpate ASIS/iliac crest/greater trochanter/PSIS, SI joints, trochanteric bursa, inguinal nodes"
+      "text": "Palpate ASIS/iliac crest/greater trochanter/PSIS, SI joints, trochanteric bursa, inguinal nodes",
+      "hk": "say",
+      "d": "I'm going to press around your hip and pelvis. — Palpate the greater trochanter on its anterior, superior and posterior aspects."
      },
      {
-      "text": "AROM: flexion/extension, abduction/adduction, internal/external rotation"
+      "text": "AROM: flexion/extension, abduction/adduction, internal/external rotation",
+      "hk": "say",
+      "d": "Bend your knee up, then straighten it out. — Bates: knee flexion 0 to about 135 degrees; also check medial rotation 10–30 degrees and lateral rotation 30–40 degrees with the knee flexed."
      }
     ]
    },
@@ -893,137 +1375,244 @@ const COMP = [
     "name": "Knees",
     "items": [
      {
-      "text": "Inspect alignment, contours, atrophy, swelling, bruising"
+      "text": "Inspect alignment, contours, atrophy, swelling, bruising",
+      "hk": "narrate",
+      "d": "Knees in normal alignment, no effusion, quadriceps bulk symmetric.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/knee.html"
      },
      {
-      "text": "Palpate 3 compartments (medial, lateral, patellofemoral) and bursae"
+      "text": "Palpate 3 compartments (medial, lateral, patellofemoral) and bursae",
+      "hk": "say",
+      "d": "I'm going to press around your knee. Tell me where it hurts. — Medial and lateral joint lines, patellofemoral, then the bursae.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/knee.html"
      },
      {
-      "text": "AROM: flexion/extension"
+      "text": "AROM: flexion/extension",
+      "hk": "say",
+      "d": "Bend your knee up, then straighten it out. — Bates: knee flexion 0 to about 135 degrees; also check medial rotation 10–30 degrees and lateral rotation 30–40 degrees with the knee flexed."
      }
-    ]
+    ],
+    "pocus": "Knee effusion, Baker's cyst. (STFM Delphi 2026)"
    },
    {
     "name": "Feet / ankles",
     "items": [
      {
-      "text": "Inspect all surfaces (weight-bearing and non-weight-bearing): arches, deformity, swelling, calluses"
+      "text": "Inspect all surfaces (weight-bearing and non-weight-bearing): arches, deformity, swelling, calluses",
+      "short": "Inspect all surfaces, weight-bearing and non-weight-bearing",
+      "hk": "narrate",
+      "d": "Feet without deformity, swelling or callus; arches maintained standing and sitting."
      },
      {
-      "text": "Palpate joint lines, malleoli, plantar fascia, MTPs, metatarsal heads"
+      "text": "Palpate joint lines, malleoli, plantar fascia, MTPs, metatarsal heads",
+      "hk": "say",
+      "d": "I'm going to press around your ankle and foot. — Include the base of the fifth metatarsal and the distal tips of tibia and fibula."
      },
      {
-      "text": "AROM ankle (plantar/dorsiflexion, inversion/eversion) and toes"
+      "text": "AROM ankle (plantar/dorsiflexion, inversion/eversion) and toes",
+      "hk": "say",
+      "d": "Point your toes down, pull them up, then turn your sole in and out. — Bates: dorsiflexion and plantar flexion at the ankle, inversion and eversion at the subtalar and transverse tarsal joints, plus toe flexion and extension."
      }
-    ]
+    ],
+    "pocus": "Achilles tear, fracture, hematoma. (STFM Delphi 2026)"
    },
    {
     "name": "Special tests: shoulder",
     "items": [
      {
-      "text": "Park impingement cluster (all 3 positive, +LR 10.56)"
-     },
-     {
       "text": "Hawkins-Kennedy",
-      "sub": true
+      "sub": true,
+      "hk": "how",
+      "d": "Bates: flex the shoulder and elbow to 90 degrees, then internally rotate. The modified Hawkins–Kennedy passively brings the forearm across the body instead of forcing internal rotation. Pain suggests subacromial impingement, rotator cuff pathology or bicipital tendinitis.",
+      "url": "https://www.physio-pedia.com/Hawkins_/_Kennedy_Impingement_Test_of_the_Shoulder"
      },
      {
       "text": "Infraspinatus (resisted external rotation) test",
-      "sub": true
+      "sub": true,
+      "hk": "how",
+      "d": "Elbows at 90 degrees tucked at the sides; the patient externally rotates against your resistance. Weakness or pain suggests infraspinatus pathology.",
+      "url": "https://www.physio-pedia.com/Infraspinatus_Test"
      },
      {
       "text": "Painful arc",
-      "sub": true
+      "sub": true,
+      "hk": "say",
+      "d": "Raise your arm out to the side all the way up. — Pain between about 60 and 120 degrees suggests subacromial impingement.",
+      "url": "https://www.physio-pedia.com/Painful_Arc"
      },
      {
       "text": "Neer impingement sign",
       "lr": "(+LR ~1.9)",
-      "tier": "D"
+      "tier": "D",
+      "hk": "how",
+      "d": "Bates: stabilize the scapula and passively forward-flex the internally rotated arm. Pain suggests subacromial impingement or a rotator cuff tear. Bates notes its likelihood ratio is weak.",
+      "url": "https://www.physio-pedia.com/Neer_Test"
      },
      {
       "text": "Drop-arm test (cuff tear)",
       "lr": "(+LR 3.3)",
-      "tier": "C"
+      "tier": "C",
+      "hk": "how",
+      "d": "Passively abduct the arm to 90 degrees and ask the patient to lower it slowly. A sudden drop suggests a supraspinatus tear.",
+      "url": "https://www.physio-pedia.com/Drop_Arm_Test"
      },
      {
       "text": "Empty-can / Jobe (supraspinatus)",
       "lr": "(+LR ~1.8; low yield)",
-      "tier": "D"
+      "tier": "D",
+      "hk": "how",
+      "d": "Arms at 90 degrees abduction, 30 degrees forward, thumbs down; press down while the patient resists.",
+      "url": "https://www.physio-pedia.com/Empty_Can_Test"
      },
      {
-      "text": "Internal rotation lag / lift-off (subscapularis)"
+      "text": "Internal rotation lag / lift-off (subscapularis)",
+      "hk": "how",
+      "d": "Place the hand behind the lower back and lift it off; inability to hold it off suggests subscapularis pathology.",
+      "url": "https://www.physio-pedia.com/Internal_Rotation_Lag_Sign"
      },
      {
-      "text": "Cross-body adduction / scarf (AC joint)"
+      "text": "Cross-body adduction / scarf (AC joint)",
+      "hk": "say",
+      "d": "Bring your arm across your chest toward the other shoulder. — Pain localized to the AC joint is positive.",
+      "url": "https://www.physio-pedia.com/Scarf_Test"
      },
      {
       "text": "Yergason test (biceps/labrum)",
       "lr": "(+LR ~2.0)",
-      "tier": "D"
+      "tier": "D",
+      "hk": "how",
+      "d": "Elbow at 90 degrees, forearm pronated; the patient supinates and externally rotates against resistance. Bicipital groove pain is positive.",
+      "url": "https://www.physio-pedia.com/Yergason%27s_Test"
      },
      {
-      "text": "O'Brien active compression (SLAP)"
+      "text": "O'Brien active compression (SLAP)",
+      "hk": "how",
+      "d": "Arm at 90 degrees forward flexion, 10–15 degrees adducted, thumb down; resist downward force, then repeat palm up. Pain that is worse thumb-down and better palm-up is positive.",
+      "url": "https://www.physio-pedia.com/O%27Brien%27s_Test"
      },
      {
-      "text": "Apprehension + relocation (instability)"
+      "text": "Apprehension + relocation (instability)",
+      "hk": "how",
+      "d": "Supine, shoulder abducted 90 degrees, externally rotate slowly. Apprehension is positive; relief when you apply a posterior force on the humeral head confirms it.",
+      "url": "https://www.physio-pedia.com/Apprehension_Test"
      }
-    ]
+    ],
+    "pocus": "Shoulder effusion. (STFM Delphi 2026)"
    },
    {
     "name": "Special tests: elbow and wrist",
     "items": [
      {
-      "text": "Elbow flexion test (cubital tunnel)"
+      "text": "Elbow flexion test (cubital tunnel)",
+      "lr": "(cubital tunnel: mean +LR 27.66, −LR 0.72 across 3 studies — HIGHLY RECOMMENDED, Valdes & LaStayo 2013 J Hand Ther SR. Note the wide spread: Cheng +LR 45.99, Ochi +LR infinity, Beekman +LR 1.0; the mean −LR 0.72 means a negative test does NOT rule out cubital tunnel)",
+      "tier": "B",
+      "hk": "how",
+      "d": "Valdes/Ochi: seated, shoulder neutral, elbow in maximum flexion, forearm supinated, wrist neutral. Hold actively for 60 seconds up to 3 minutes. Positive if the patient reports paraesthesia, or worsening of existing paraesthesia, in the ulnar nerve distribution.",
+      "url": "https://www.physio-pedia.com/Elbow_Flexion_Test"
      },
      {
-      "text": "Finkelstein test (de Quervain)"
+      "text": "Tinel sign at the cubital tunnel (ulnar neuropathy)",
+      "short": "Tinel sign at the cubital tunnel",
+      "tier": "B",
+      "lr": "(cubital tunnel: mean +LR 27.65, −LR 0.59 across 2 studies — HIGHLY RECOMMENDED, Valdes & LaStayo 2013)",
+      "hk": "how",
+      "d": "Valdes/Beekman: tap lightly over the ulnar nerve in the groove between the medial epicondyle and the olecranon. Positive if the patient reports tingling or electrical sensations radiating to the 4th and 5th digits."
+     },
+     {
+      "text": "Scratch collapse test (cubital tunnel)",
+      "short": "Scratch collapse test (cubital tunnel)",
+      "tier": "B",
+      "lr": "(cubital tunnel, pooled: sens 60.5%, spec 97.8%, kappa 0.64 — Jain 2023 Hand SR. Rule-IN only: pooled across all compressive neuropathies sens is just 37.5%, and for carpal tunnel it is 29.4% with kappa 0.18, so a negative result means nothing)",
+      "hk": "how",
+      "d": "Jain 2023: patient seated with elbows flexed and arms adducted, resisting bilateral shoulder external rotation. Scratch the skin over the site of suspected compression, then immediately retest resisted external rotation. A brief loss of resistance on the affected side is positive. Use it to confirm, not to screen."
+     },
+     {
+      "text": "Hook test (distal biceps tendon rupture)",
+      "lr": "(sens 81%, spec 100%, −LR 0.19 for distal biceps rupture; Zwerus 2018 SR)",
+      "tier": "B",
+      "hk": "how",
+      "d": "Elbow flexed 90 degrees, forearm supinated. Hook your index finger under the lateral edge of the biceps tendon. Inability to hook a cord-like tendon is positive."
+     },
+     {
+      "text": "Passive forearm pronation test (distal biceps rupture)",
+      "lr": "(sens 95.2%, spec 100%, −LR 0.05 — the best rule-out for distal biceps rupture; Zwerus 2018 SR)",
+      "tier": "B",
+      "short": "Passive forearm pronation (distal biceps)",
+      "hk": "how",
+      "d": "With the elbow flexed 90 degrees, passively pronate the forearm and watch the biceps muscle belly. Failure of the belly to move distally suggests rupture. Best rule-out for distal biceps rupture."
+     },
+     {
+      "text": "Moving valgus stress test (MCL insufficiency)",
+      "lr": "(MCL insufficiency: +LR infinity, −LR 0.05 — O'Driscoll 2005, rated 9/12 and listed as a recommended test in Valdes & LaStayo 2013; also in Zwerus 2018)",
+      "tier": "B",
+      "short": "Moving valgus stress test (MCL)",
+      "hk": "how",
+      "d": "Shoulder abducted, apply constant valgus stress while moving the elbow from 120 to 70 degrees of flexion. Medial pain reproduced in that arc suggests MCL insufficiency."
+     },
+     {
+      "text": "Grip strength test with dynamometer (lateral epicondylosis)",
+      "lr": "(the only lateral-epicondylosis test with accuracy data: sens 78–85%, spec 80–90% for a 5–10% decrease; needs a dynamometer; Zwerus 2018 SR)",
+      "tier": "C",
+      "short": "Grip strength test (dynamometer)",
+      "hk": "how",
+      "d": "Measure grip with a handheld dynamometer in neutral and again with the elbow extended; a 5–10% decrease supports lateral epicondylosis. The only lateral epicondylosis test with accuracy data."
+     },
+     {
+      "text": "Finkelstein test (de Quervain)",
+      "hk": "how",
+      "d": "Bates: the patient tucks the thumb into a fist and the wrist is ulnar-deviated. Pain along the radial side of the wrist suggests de Quervain tenosynovitis.",
+      "url": "https://www.physio-pedia.com/Finkelstein_Test"
      },
      {
       "text": "Phalen test (carpal tunnel)",
-      "lr": "(pooled +LR ~2.7; Valdes 2013)",
-      "tier": "C"
+      "lr": "(carpal tunnel: mean +LR 2.68, −LR 0.54 across 5 studies — highly recommended, Valdes & LaStayo 2013)",
+      "tier": "C",
+      "hk": "how",
+      "d": "Bates: hold the wrists in full flexion for up to 60 seconds. Numbness or tingling in the median distribution within 60 seconds suggests carpal tunnel syndrome.",
+      "url": "https://www.physio-pedia.com/Phalen%E2%80%99s_Test"
      },
      {
       "text": "Tinel sign at the wrist (carpal tunnel)",
-      "lr": "(pooled +LR ~3.0)",
-      "tier": "C"
+      "lr": "(carpal tunnel: mean +LR 2.94, −LR 0.57 across 5 studies — highly recommended, Valdes & LaStayo 2013)",
+      "tier": "C",
+      "hk": "how",
+      "d": "Bates: tap lightly over the median nerve at the carpal tunnel. Shooting pain or worsening numbness in the median distribution suggests carpal tunnel syndrome.",
+      "url": "https://www.physio-pedia.com/Tinel%E2%80%99s_Test"
      },
      {
-      "text": "Median / ulnar / radial sensory testing of the hand"
+      "text": "Median / ulnar / radial sensory testing of the hand",
+      "hk": "say",
+      "d": "Close your eyes and tell me if this feels the same. — Median at the index pad, ulnar at the little finger, radial over the dorsal first web space."
      }
-    ]
+    ],
+    "footnote": "Cozen, Mill, Maudsley, golfer's elbow — asked on boards, no accuracy data (Zwerus 2018; Valdes 2013).",
+    "pocus": "Carpal tunnel syndrome, ganglion cyst. (STFM Delphi 2026)"
    },
    {
     "name": "Special tests: spine",
     "items": [
      {
-      "text": "Wainner cervical radiculopathy cluster (4/4 +LR 30.3, 3/4 +LR 6.1)"
-     },
-     {
       "text": "Spurling A",
-      "sub": true
-     },
-     {
-      "text": "Cervical distraction",
-      "sub": true
-     },
-     {
-      "text": "Upper limb tension test A (median)",
-      "sub": true
-     },
-     {
-      "text": "Cervical rotation <60 deg to the involved side",
-      "sub": true
+      "sub": true,
+      "hk": "how",
+      "d": "Side-bend the head toward the symptomatic side and apply gentle axial compression. Reproduction of radicular arm pain is positive.",
+      "url": "https://www.physio-pedia.com/Spurling%27s_Test"
      },
      {
       "text": "Straight-leg raise (lumbar radiculopathy)",
       "lr": "(+LR ~1.3; a rule-out test, van der Windt 2010)",
-      "tier": "D"
+      "tier": "D",
+      "hk": "how",
+      "d": "Bates: supine, raise the straight leg until pain occurs, then dorsiflex the foot. Radicular pain below the knee is positive. Sensitive (65–98%) but not specific (10–60%), so it is a rule-out test.",
+      "url": "https://www.physio-pedia.com/Straight_Leg_Raise_Test"
      },
      {
       "text": "Crossed straight-leg raise (disc herniation)",
       "lr": "(+LR 3.4)",
-      "tier": "C"
+      "tier": "C",
+      "hk": "how",
+      "d": "Bates: supine, raise the straight leg until pain occurs, then dorsiflex the foot. Radicular pain below the knee is positive. Sensitive (65–98%) but not specific (10–60%), so it is a rule-out test.",
+      "url": "https://www.physio-pedia.com/Straight_Leg_Raise_Test"
      }
     ]
    },
@@ -1031,38 +1620,32 @@ const COMP = [
     "name": "Special tests: hip",
     "items": [
      {
-      "text": "Sutlive hip-OA cluster (4/5 +LR 24.3; derivation cohort, not yet externally validated)"
+      "text": "Hip scour test",
+      "sub": true,
+      "hk": "how",
+      "d": "Hip flexed 90 degrees, apply axial load through the femur while circumducting. Groin pain or catching is positive.",
+      "url": "https://www.physio-pedia.com/Hip_Quadrant_Test",
+      "short": "Hip scour test"
      },
      {
-      "text": "Hip scour test positive",
-      "sub": true
-     },
-     {
-      "text": "Passive internal rotation <=25 deg",
-      "sub": true
-     },
-     {
-      "text": "Pain with squatting",
-      "sub": true
-     },
-     {
-      "text": "Lateral hip pain on active flexion",
-      "sub": true
-     },
-     {
-      "text": "Painful active hip extension",
-      "sub": true
-     },
-     {
-      "text": "FABER (Patrick) test"
+      "text": "FABER (Patrick) test",
+      "hk": "how",
+      "d": "Bates: flexion, abduction and external rotation in a figure-4. Bates lists it twice — groin pain suggests hip pathology, and pain in the SI area suggests SI joint dysfunction.",
+      "url": "https://www.physio-pedia.com/FABER_Test"
      },
      {
       "text": "FADIR test (intra-articular / labral)",
       "lr": "(a rule-out test; +LR ~1-2)",
-      "tier": "D"
+      "tier": "D",
+      "hk": "how",
+      "d": "Flex the hip to 90 degrees, then adduct and internally rotate. Groin pain suggests femoroacetabular impingement or a labral tear. A rule-out test.",
+      "url": "https://www.physio-pedia.com/FADIR_(Flexion,_Adduction,_Internal_Rotation)_Test"
      },
      {
-      "text": "Log roll"
+      "text": "Log roll",
+      "hk": "how",
+      "d": "With the leg extended, roll the whole limb internally and externally. Pain suggests intra-articular hip pathology.",
+      "url": "https://www.physio-pedia.com/Hip_Examination"
      }
     ]
    },
@@ -1070,45 +1653,72 @@ const COMP = [
     "name": "Special tests: knee",
     "items": [
      {
-      "text": "Effusion: bulge, ballottement, sweep"
+      "text": "Effusion: bulge, ballottement, sweep",
+      "hk": "how",
+      "d": "Bulge sign for a small effusion: milk the medial side upward then stroke the lateral side and watch the medial dimple refill. Ballottement for a large effusion: push the patella down and feel it tap the femur.",
+      "url": "https://www.physio-pedia.com/Knee_Swelling"
      },
      {
       "text": "McMurray test (meniscus)",
       "lr": "(+LR ~2.7 composite; ~1.3 in isolation)",
-      "tier": "C"
+      "tier": "C",
+      "hk": "how",
+      "d": "Bates: flex the knee fully, then extend while rotating the tibia — external rotation with valgus for the medial meniscus, internal rotation with varus for the lateral. A palpable click or pain along the joint line is positive.",
+      "url": "https://www.physio-pedia.com/McMurrays_Test"
      },
      {
       "text": "Valgus stress at 30 deg (MCL)",
       "lr": "(+LR 6.4 with laxity + pain + history; Kastelein 2008)",
-      "tier": "B"
+      "tier": "B",
+      "hk": "how",
+      "d": "Knee flexed about 30 degrees with the thigh abducted; stabilize the femur and apply valgus force. Laxity plus pain plus a matching history gives +LR about 6.",
+      "url": "https://www.physio-pedia.com/Valgus_Stress_Test"
      },
      {
-      "text": "Varus stress (LCL)"
+      "text": "Varus stress (LCL)",
+      "hk": "how",
+      "d": "Same position, apply varus force. Laxity suggests LCL injury.",
+      "url": "https://www.physio-pedia.com/Varus_Stress_Test"
      },
      {
       "text": "Lachman test (ACL)",
       "lr": "(+LR 8.8-42; strongest ACL test)",
-      "tier": "A"
+      "tier": "A",
+      "hk": "how",
+      "d": "Knee flexed 20–30 degrees, stabilize the femur and draw the tibia forward. Increased translation with a soft endpoint is positive. The strongest ACL test.",
+      "url": "https://www.physio-pedia.com/Lachman_Test"
      },
      {
       "text": "Anterior drawer (ACL)",
       "lr": "(+LR ~3.8)",
-      "tier": "C"
+      "tier": "C",
+      "hk": "how",
+      "d": "Knee flexed 90 degrees, foot stabilized, draw the tibia forward. Less sensitive than Lachman.",
+      "url": "https://www.physio-pedia.com/Anterior_Drawer_Test_of_Knee"
      },
      {
       "text": "Pivot shift (ACL)",
       "lr": "(+LR 16.0 [7.34-34.87]; Huang 2016)",
-      "tier": "A"
+      "tier": "A",
+      "hk": "how",
+      "d": "Knee extended with internal rotation and valgus stress, then flex. A clunk of reduction at about 30 degrees is positive. Very high specificity.",
+      "url": "https://www.physio-pedia.com/Pivot_Shift"
      },
      {
       "text": "Lever / Lelli sign (ACL)",
       "lr": "(+LR 1.4 prospective, Mulligan 2017; MA 3.15-6.6; adjunct to Lachman)",
-      "tier": "D"
+      "tier": "D",
+      "hk": "how",
+      "d": "Place a fist under the proximal calf and press down on the distal thigh. Failure of the heel to lift suggests an ACL tear. Adjunct to Lachman.",
+      "url": "https://www.physio-pedia.com/Lever_Sign_Test"
      },
      {
       "text": "Posterior drawer (PCL)",
       "lr": "(+LR ~21; a single small high-bias study reports ~98)",
-      "tier": "A"
+      "tier": "A",
+      "hk": "how",
+      "d": "Knee flexed 90 degrees; look first for posterior sag, then push the tibia backward. Increased posterior translation is positive.",
+      "url": "https://www.physio-pedia.com/Posterior_Drawer_Test_(Knee)"
      }
     ]
    },
@@ -1118,26 +1728,44 @@ const COMP = [
      {
       "text": "Thompson / calf-squeeze (Achilles rupture)",
       "lr": "(+LR 13.7; complete acute ruptures; Reiman 2014)",
-      "tier": "A"
+      "tier": "A",
+      "hk": "how",
+      "d": "Patient prone with the knee flexed 90 degrees; squeeze the calf. Absent plantarflexion suggests an Achilles rupture.",
+      "url": "https://www.physio-pedia.com/Thompson_Test"
      },
      {
       "text": "Matles knee-flexion test (Achilles rupture)",
       "lr": "(+LR 6.29 [2.33-19.96]; Reiman 2014 SR of Maffulli 1998, single high-bias cohort)",
-      "tier": "B"
+      "tier": "B",
+      "hk": "how",
+      "d": "Prone, actively flex the knee to 90 degrees and watch the foot. Loss of the normal plantarflexed resting posture suggests Achilles rupture.",
+      "url": "https://www.physio-pedia.com/Matles_Test"
      },
      {
       "text": "Tendon-gap palpation (Achilles rupture)",
       "lr": "(+LR 6.64 [2.32-19.91]; Reiman 2014 SR of Maffulli 1998, single high-bias cohort)",
-      "tier": "B"
+      "tier": "B",
+      "hk": "how",
+      "d": "Palpate along the Achilles from the calcaneus upward; a palpable gap suggests rupture.",
+      "url": "https://www.physio-pedia.com/Achilles_Tendon_Rupture"
      },
      {
-      "text": "Anterior drawer of the ankle (ATFL)"
+      "text": "Anterior drawer of the ankle (ATFL)",
+      "hk": "how",
+      "d": "Foot in slight plantarflexion; stabilize the tibia and draw the heel forward. Increased translation suggests ATFL injury.",
+      "url": "https://www.physio-pedia.com/Anterior_Drawer_of_the_Ankle"
      },
      {
-      "text": "Talar tilt test"
+      "text": "Talar tilt test",
+      "hk": "how",
+      "d": "Hold the ankle in neutral and invert the talus. Increased tilt suggests calcaneofibular ligament injury.",
+      "url": "https://www.physio-pedia.com/Talar_Tilt"
      },
      {
-      "text": "Squeeze test (syndesmosis)"
+      "text": "Squeeze test (syndesmosis)",
+      "hk": "how",
+      "d": "Compress the tibia and fibula at mid-calf. Pain referred to the distal syndesmosis is positive.",
+      "url": "https://www.physio-pedia.com/Squeeze_Test"
      }
     ]
    }
@@ -1152,34 +1780,67 @@ const COMP = [
     "name": "Mental status and cranial nerves",
     "items": [
      {
-      "text": "Mental status: alertness, appropriateness, orientation"
+      "text": "Mental status: level of alertness, orientation, language (fluency, comprehension, repetition, naming), memory",
+      "short": "Mental status: alertness, orientation, language, memory",
+      "hk": "say",
+      "d": "I'm going to check a few things about memory and language. What do you call this? (hold up a pen, then a key) Now repeat after me: no ifs, ands, or buts."
      },
      {
-      "text": "CN I \u2014 smell"
+      "text": "CN I — smell",
+      "hk": "say",
+      "d": "Close your eyes and block one nostril. Can you tell me what this smells like?"
      },
      {
-      "text": "CN II \u2014 visual acuity and fields"
+      "text": "CN II — visual acuity and fields",
+      "hk": "say",
+      "d": "Cover one eye and read the smallest line you can, then look at my nose and tell me when my fingers move. — Bates tests CN II by acuity, visual fields and the fundoscopic exam."
      },
      {
-      "text": "CN III/IV/VI \u2014 EOMs, light reflex, accommodation"
+      "text": "CN III/IV/VI — EOMs in the six cardinal directions of gaze; note nystagmus and ptosis",
+      "short": "CN III/IV/VI — EOMs, six cardinal directions; nystagmus, ptosis",
+      "hk": "say",
+      "d": "Keep your head still and follow my finger with just your eyes. Now watch it come in toward your nose."
      },
      {
-      "text": "CN V \u2014 motor (clench, jaw excursion); sensory (V1/V2/V3)"
+      "text": "CN II/III — pupillary light reflex, direct and consensual",
+      "hk": "say",
+      "d": "Look at the wall behind me. — Bates heads this Cranial Nerves II and III: the afferent limb is CN II, the efferent CN III. Note both the direct and the consensual response.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/pupillary.html"
      },
      {
-      "text": "CN VII \u2014 facial expression (brow, eyes, cheeks, smile)"
+      "text": "CN III — accommodation and convergence",
+      "hk": "say",
+      "d": "Look at the wall behind me, now look at my finger as I bring it toward your nose."
      },
      {
-      "text": "CN VIII \u2014 hearing (whisper test)"
+      "text": "CN V — motor (clench, jaw excursion); sensory (V1/V2/V3); corneal reflex",
+      "hk": "say",
+      "d": "Clench your teeth for me. Now open and move your jaw side to side. Close your eyes and tell me if this feels the same on your forehead, cheek and chin."
      },
      {
-      "text": "CN IX/X \u2014 palate rise, swallow, phonation"
+      "text": "CN VII — facial expression (brow, eyes, cheeks, smile)",
+      "hk": "say",
+      "d": "Raise your eyebrows, squeeze your eyes shut, puff out your cheeks, and give me a big smile."
      },
      {
-      "text": "CN XI \u2014 shoulder shrug, head turn against resistance"
+      "text": "CN VIII — hearing (whisper test)",
+      "hk": "say",
+      "d": "I'm going to whisper some numbers behind you. Repeat what you hear."
      },
      {
-      "text": "CN XII \u2014 tongue protrusion without deviation"
+      "text": "CN IX/X — palate rise, swallow, phonation, gag reflex",
+      "hk": "say",
+      "d": "Open and say ahh. — Watch the palate rise symmetrically and listen to the voice quality."
+     },
+     {
+      "text": "CN XI — shoulder shrug, head turn against resistance",
+      "hk": "say",
+      "d": "Turn your head against my hand, now shrug your shoulders while I press down. — Bates: watch the OPPOSITE sternocleidomastoid contract on head turning, and note the force of the trapezius on shrugging."
+     },
+     {
+      "text": "CN XII — tongue protrusion without deviation",
+      "hk": "say",
+      "d": "Stick your tongue straight out. — Bates: inspect the tongue at rest for atrophy or fasciculations first, then watch for deviation on protrusion."
      }
     ]
    },
@@ -1187,25 +1848,44 @@ const COMP = [
     "name": "Motor",
     "items": [
      {
-      "text": "Inspect bulk, tone, and involuntary movements"
+      "text": "Inspect bulk, tone, and involuntary movements",
+      "hk": "how",
+      "d": "Look at the interossei, thenar and hypothenar eminences, shoulders, thighs and calves for wasting. Passively move each joint at varying speed to characterize tone as normal, spastic, rigid or flaccid."
      },
      {
-      "text": "UE strength: elbow flexion/extension"
+      "text": "Pronator drift",
+      "hk": "say",
+      "d": "Hold both arms out in front, palms up, and close your eyes. — Drift and pronation suggests a contralateral corticospinal lesion."
      },
      {
-      "text": "UE strength: wrist flexion/extension"
+      "text": "UE strength: elbow flexion/extension",
+      "hk": "say",
+      "d": "Bend your elbow and don't let me straighten it. Now push me away. — Grade 0–5 and support the upper arm to isolate the movement."
      },
      {
-      "text": "UE strength: fingers abduction/adduction, thumb opposition, grip"
+      "text": "UE strength: wrist flexion/extension",
+      "hk": "say",
+      "d": "Hold your wrist up and don't let me push it down."
      },
      {
-      "text": "LE strength: hip flexion/extension/abduction/adduction"
+      "text": "UE strength: fingers abduction/adduction, thumb opposition, grip",
+      "hk": "say",
+      "d": "Spread your fingers and don't let me squeeze them together. Touch your thumb to your little finger and hold. Squeeze my fingers."
      },
      {
-      "text": "LE strength: knee flexion/extension"
+      "text": "LE strength: hip flexion/extension/abduction/adduction",
+      "hk": "say",
+      "d": "Lift your leg and don't let me push it down. — Test hip extension prone."
      },
      {
-      "text": "LE strength: ankle dorsiflexion/plantarflexion"
+      "text": "LE strength: knee flexion/extension",
+      "hk": "say",
+      "d": "Kick out against my hand, now pull your heel back toward you."
+     },
+     {
+      "text": "LE strength: ankle dorsiflexion/plantarflexion",
+      "hk": "say",
+      "d": "Pull your toes up toward your nose, now push down like a gas pedal."
      }
     ]
    },
@@ -1213,28 +1893,35 @@ const COMP = [
     "name": "Coordination and gait",
     "items": [
      {
-      "text": "Rapid alternating movements (bilateral)"
+      "text": "Rapid alternating movements (bilateral)",
+      "hk": "say",
+      "d": "Pat your hand on your thigh, flipping it over and back as fast as you can. Now the other side.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/cerebellar.html"
      },
      {
-      "text": "Point-to-point (finger-to-nose or heel-to-shin)"
+      "text": "Point-to-point (finger-to-nose and heel-to-shin), then repeat with the eyes closed",
+      "short": "Point-to-point, then repeat with eyes closed",
+      "hk": "say",
+      "d": "Touch my finger, then your nose, back and forth. Now run your heel down your shin. Now close your eyes and do it again. — Worsening with eyes closed means sensory, not cerebellar, ataxia.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/cerebellar.html"
      },
      {
-      "text": "Romberg test"
+      "text": "Observe gait",
+      "hk": "say",
+      "d": "Walk to the far wall and back for me, normally.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/gait.html"
      },
      {
-      "text": "Pronator drift"
+      "text": "Heel-to-toe (tandem) walk",
+      "hk": "say",
+      "d": "Now walk heel to toe along this line, like a tightrope.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/gait.html"
      },
      {
-      "text": "Observe gait"
-     },
-     {
-      "text": "Heel-to-toe (tandem) walk"
-     },
-     {
-      "text": "Walk on toes and heels"
-     },
-     {
-      "text": "Shallow knee bend"
+      "text": "Walk on toes and heels",
+      "hk": "say",
+      "d": "Walk on your tiptoes, then on your heels. — Toe walking tests S1 plantarflexion, heel walking L4–L5 dorsiflexion.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/gait.html"
      }
     ]
    },
@@ -1242,27 +1929,53 @@ const COMP = [
     "name": "Sensory",
     "items": [
      {
-      "text": "Pain (sharp/dull)"
+      "text": "Pain (sharp/dull)",
+      "hk": "say",
+      "d": "Close your eyes and tell me if this is sharp or dull, and whether it feels the same on both sides. — Bates: compare symmetric areas, vary the rhythm so the pattern is not predictable, and map from abnormal toward normal."
      },
      {
-      "text": "Light touch (cotton wisp, compare symmetry)"
+      "text": "Temperature sensation",
+      "hk": "how",
+      "d": "Touch a cool metal object such as the tuning fork to the skin and ask the patient to compare sides, eyes closed."
      },
      {
-      "text": "Vibratory sense (tuning fork)"
+      "text": "Light touch (cotton wisp, compare symmetry)",
+      "hk": "say",
+      "d": "Close your eyes and say now each time you feel this. — Vary the rhythm and compare sides at each dermatome."
+     },
+     {
+      "text": "Vibratory sense (tuning fork)",
+      "hk": "say",
+      "d": "Close your eyes and tell me when the buzzing stops. — 128 Hz fork on a distal interphalangeal joint; move proximally only if impaired."
      },
      {
       "text": "10-g monofilament at plantar sites (loss of protective sensation)",
       "lr": "(ADA/IDF/WHO standard screen for LOPS; sens ~57-93%, spec ~75-100% by technique; Feng 2009 J Vasc Surg SR)",
-      "tier": "C"
+      "tier": "C",
+      "short": "10-g monofilament at plantar sites",
+      "hk": "say",
+      "d": "Close your eyes and say yes when you feel me touch your foot. — Press until the filament buckles, at the standard plantar sites."
      },
      {
-      "text": "Proprioception (big toe)"
+      "text": "Proprioception (big toe)",
+      "hk": "say",
+      "d": "Close your eyes. Tell me if I move your toe up or down. — Hold the toe on the sides to avoid pressure cues."
      },
      {
-      "text": "Stereognosis"
+      "text": "Stereognosis",
+      "hk": "how",
+      "d": "Bates: place a familiar object — coin, paper clip, key, pencil or cotton ball — in the hand with the eyes closed. The patient should manipulate and identify it within 5 seconds. Inability is astereognosis."
      },
      {
-      "text": "Graphesthesia"
+      "text": "Graphesthesia",
+      "hk": "how",
+      "d": "Bates: with the blunt end of a pen or pencil, draw a large number in the patient's palm and ask them to identify it, eyes closed."
+     },
+     {
+      "text": "Romberg test (station and position sense): feet together, arms at sides, ~30 s eyes open then ~30 s eyes closed",
+      "short": "Romberg test",
+      "hk": "say",
+      "d": "Stand with your feet together and arms at your sides. Now close your eyes and hold still. — Stay close to steady them. Positive means sensory ataxia, not cerebellar."
      }
     ]
    },
@@ -1270,16 +1983,34 @@ const COMP = [
     "name": "Reflexes",
     "items": [
      {
-      "text": "DTR biceps or brachioradialis"
+      "text": "DTR biceps",
+      "hk": "say",
+      "d": "Let your arm go loose. — Thumb on the tendon, strike your thumb. Biceps, C5–C6. Grade 0 to 4+.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/tendon.html"
      },
      {
-      "text": "DTR triceps"
+      "text": "DTR brachioradialis",
+      "hk": "say",
+      "d": "Relax your forearm for me. — Strike 1–2 inches above the wrist on the radial side. C5–C6.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/tendon.html"
      },
      {
-      "text": "DTR patellar"
+      "text": "DTR triceps",
+      "hk": "say",
+      "d": "Let your arm hang loose. — Support the arm and strike just above the olecranon. C6–C7.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/tendon.html"
      },
      {
-      "text": "DTR ankle"
+      "text": "DTR patellar",
+      "hk": "say",
+      "d": "Let your leg dangle and go loose. — Strike the tendon below the patella. L2–L4.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/tendon.html"
+     },
+     {
+      "text": "DTR ankle",
+      "hk": "say",
+      "d": "Let your foot relax. — Dorsiflex the foot slightly and strike the Achilles. S1.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/tendon.html"
      }
     ]
    },
@@ -1287,37 +2018,72 @@ const COMP = [
     "name": "Special tests",
     "items": [
      {
-      "text": "Babinski (plantar response)"
+      "text": "Babinski (plantar response)",
+      "hk": "how",
+      "d": "Stroke the lateral sole from heel to the ball of the foot, curving medially. Extension of the great toe is an abnormal (extensor) response.",
+      "url": "https://www.physio-pedia.com/Babinski_Sign"
      },
      {
-      "text": "Ankle clonus"
+      "text": "Ankle clonus",
+      "hk": "how",
+      "d": "Only if reflexes are hyperactive. Support the knee partly flexed, dorsiflex and plantarflex a few times, then dorsiflex sharply and hold.",
+      "url": "https://www.physio-pedia.com/Clonus"
      },
      {
-      "text": "Asterixis"
+      "text": "Asterixis",
+      "hk": "say",
+      "d": "Hold your arms out and cock your wrists back like you're stopping traffic. Hold it there. — A flapping tremor suggests metabolic encephalopathy.",
+      "url": "https://stanfordmedicine25.stanford.edu/the25/involuntary-movements-and-tremors.html"
      },
      {
       "text": "Kernig and Brudzinski signs",
       "lr": "(poor, non-reproducible sensitivity; do not use to exclude meningitis - an LP does that)",
-      "tier": "D"
+      "tier": "D",
+      "hk": "how",
+      "d": "Kernig: flex the hip and knee, then straighten the knee — pain or resistance is positive. Brudzinski: flex the neck and watch for involuntary hip and knee flexion. Both are insensitive; do not use them to exclude meningitis.",
+      "url": "https://www.physio-pedia.com/Kernig%27s_Sign"
      },
      {
-      "text": "HINTS for acute vestibular syndrome (expert-performed +LR 25, -LR 0.00; competency-gated)"
+      "text": "Nuchal rigidity (confirm no cervical injury before neck flexion)",
+      "short": "Nuchal rigidity",
+      "hk": "how",
+      "d": "Involuntary, board-like, persistent wall tightening that does not relax with distraction. Component of the peritoneal picture."
+     },
+     {
+      "text": "HINTS for acute vestibular syndrome (expert-performed +LR 25, -LR 0.00; competency-gated)",
+      "short": "HINTS for acute vestibular syndrome",
+      "hk": "tip",
+      "d": "Only valid in continuous vertigo with nystagmus, and only when expert-performed. A NORMAL head impulse is the worrying result.",
+      "url": "https://www.physio-pedia.com/HINTS"
      },
      {
       "text": "Head impulse test",
-      "sub": true
+      "sub": true,
+      "hk": "how",
+      "d": "Patient fixates on your nose; turn the head rapidly about 20 degrees. A corrective saccade suggests a peripheral cause. No saccade in acute vestibular syndrome is worrying for stroke.",
+      "url": "https://www.physio-pedia.com/Head_Impulse_Test"
      },
      {
       "text": "Nystagmus (direction-changing)",
-      "sub": true
+      "sub": true,
+      "hk": "how",
+      "d": "Observe in primary gaze and on lateral gaze. Nystagmus that changes direction with gaze suggests a central cause.",
+      "url": "https://www.physio-pedia.com/HINTS"
      },
      {
       "text": "Test of skew (alternate cover)",
-      "sub": true
+      "sub": true,
+      "hk": "how",
+      "d": "Cover and uncover each eye alternately; a vertical corrective movement is a skew deviation and suggests a central cause.",
+      "url": "https://www.physio-pedia.com/HINTS"
      },
      {
       "text": "Dix-Hallpike for positional vertigo (pc-BPPV); if positive, treat with Epley",
-      "lr": "(diagnostic maneuver for pc-BPPV; Epley Level A, NNT 3; Khoujah 2023, Imai 2023)"
+      "lr": "(diagnostic maneuver for pc-BPPV; Epley Level A, NNT 3; Khoujah 2023, Imai 2023)",
+      "short": "Dix-Hallpike for positional vertigo",
+      "hk": "how",
+      "d": "Head turned 45 degrees, lie the patient back quickly to head-hanging and watch for upbeat–torsional nystagmus. If positive, treat with the Epley manoeuvre.",
+      "url": "https://www.physio-pedia.com/Dix-Hallpike_Test"
      }
     ]
    }
@@ -1332,28 +2098,44 @@ const COMP = [
     "name": "Mental status examination",
     "items": [
      {
-      "text": "Appearance, behavior, psychomotor activity"
+      "text": "Appearance, behavior, psychomotor activity",
+      "hk": "narrate",
+      "d": "Appearance appropriate, no psychomotor agitation or retardation, behaviour cooperative."
      },
      {
-      "text": "Mood (patient's own words) and affect"
+      "text": "Mood (patient's own words) and affect",
+      "hk": "say",
+      "d": "How would you describe your mood these past couple of weeks? — Record mood in their words; describe affect as you observe it."
      },
      {
-      "text": "Speech: rate, rhythm, volume, fluency"
+      "text": "Speech: rate, rhythm, volume, fluency",
+      "hk": "narrate",
+      "d": "Speech normal in rate, rhythm and volume, fluent and spontaneous."
      },
      {
-      "text": "Thought process: linear, goal-directed"
+      "text": "Thought process: linear, goal-directed",
+      "hk": "narrate",
+      "d": "Thought process linear and goal-directed, no tangentiality or flight of ideas."
      },
      {
-      "text": "Thought content: SI/HI, delusions, obsessions"
+      "text": "Thought content: SI/HI, delusions, obsessions",
+      "hk": "say",
+      "d": "Have you had any thoughts of harming yourself or anyone else? — Ask directly; asking does not plant the idea."
      },
      {
-      "text": "Perceptions: hallucinations"
+      "text": "Perceptions: hallucinations",
+      "hk": "say",
+      "d": "Do you ever hear or see things that other people don't?"
      },
      {
-      "text": "Cognition: orientation, attention, memory"
+      "text": "Cognition: orientation, attention, memory",
+      "hk": "say",
+      "d": "Tell me your name, where we are, and today's date. Now spell the word world backward."
      },
      {
-      "text": "Insight and judgment"
+      "text": "Insight and judgment",
+      "hk": "say",
+      "d": "What do you think is causing this? What would you do if you noticed it getting worse?"
      }
     ]
    },
@@ -1361,185 +2143,37 @@ const COMP = [
     "name": "Structured instruments",
     "items": [
      {
-      "text": "PHQ-9 (depression), GAD-7 (anxiety), AUDIT-C or CAGE (alcohol)"
+      "text": "PHQ-9 (depression), GAD-7 (anxiety), AUDIT-C or CAGE (alcohol)",
+      "short": "PHQ-9, GAD-7, AUDIT-C or CAGE",
+      "hk": "tip",
+      "d": "Administer the structured screen rather than an unstructured question — PHQ-9 for depression, GAD-7 for anxiety, AUDIT-C or CAGE for alcohol."
      },
      {
-      "text": "Columbia (C-SSRS) when suicide risk is a concern"
+      "text": "Columbia (C-SSRS) when suicide risk is a concern",
+      "short": "Columbia C-SSRS when suicide risk is a concern",
+      "hk": "tip",
+      "d": "Use the C-SSRS when suicide risk is a concern. Structured screening outperforms clinical impression."
      },
      {
-      "text": "MoCA (more sensitive than MMSE for mild impairment); CAM for delirium"
+      "text": "MoCA (more sensitive than MMSE for mild impairment); CAM for delirium",
+      "short": "MoCA; CAM for delirium",
+      "hk": "tip",
+      "d": "MoCA is more sensitive than MMSE for mild cognitive impairment; use CAM when delirium is the question."
      }
     ]
    }
   ]
  }
 ];
-const OSCE = {"spine":[{"section":"Introduction, identification & hand hygiene","phase":"SUBJECTIVE","rows":[{"text":"Introduces self by name and states role to the patient (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true,"verify":"sp"},{"text":"Confirms patient identity: full name and a second identifier (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true,"verify":"sp"},{"text":"Asks the patient's pronouns and uses them throughout (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true,"verify":"sp"},{"text":"Washes or sanitizes hands before patient contact","max":1,"base":true,"verify":"sp"}]},{"section":"HPI: chief complaint & symptom characterization (OLDCARTS)","phase":"SUBJECTIVE","rows":[{"text":"Elicits chief complaint in the patient's own words","max":1,"base":true},{"text":"Opens with an open-ended question before narrowing to closed questions","max":1,"base":true,"verify":"sp"},{"text":"Elicits the patient's ideas, concerns, and expectations (ICE)","max":1,"base":true,"verify":"sp"},{"text":"Responds to emotion with empathy (PEARLS: partnership, empathy, apology, respect, support)","max":1,"base":true,"verify":"sp"},{"text":"Onset","max":1,"base":true},{"text":"Location","max":1,"base":true},{"text":"Duration","max":1,"base":true},{"text":"Character / quality","max":1,"base":true},{"text":"Aggravating factors","max":1,"base":true},{"text":"Alleviating factors (incl. self-treatment and response)","max":1,"base":true},{"text":"Radiation","max":1,"base":true},{"text":"Timing (constant vs. intermittent; frequency)","max":1,"base":true},{"text":"Severity (0-10 or functional impact)","max":1,"base":true},{"text":"Associated symptoms","max":1,"base":true},{"text":"Recent travel or sick contacts","max":1,"base":true}]},{"section":"Summarize & transition (after HPI)","phase":"SUBJECTIVE","rows":[{"text":"Summarizes the HPI back to the patient and checks accuracy (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true,"verify":"sp"},{"text":"Transition statement from HPI into the review of systems","max":1,"base":true,"verify":"sp"}]},{"section":"Review of systems","phase":"SUBJECTIVE","rows":[{"text":"Constitutional (fever/chills, weight change, fatigue, night sweats, appetite) - criterion: asks >=3 of the 5","max":1,"base":true}],"ros_slot":true},{"section":"Summarize & transition (after ROS)","phase":"SUBJECTIVE","rows":[{"text":"Transition statement from ROS into the histories","max":1,"base":true,"verify":"sp"}]},{"section":"Past histories, medications, allergies & immunizations","phase":"SUBJECTIVE","rows":[{"text":"PMH - each condition with diagnosis and year if known (or none)","max":1,"base":true},{"text":"PSH - each surgery with year and complications (or none)","max":1,"base":true},{"text":"FH - first-degree relatives: age, alive/deceased (cause), chronic conditions","max":1,"base":true},{"text":"Social Hx (FED TACOS) - Food / diet","max":1,"base":true},{"text":"Social Hx - Exercise / physical activity","max":1,"base":true},{"text":"Social Hx - Drugs (recreational / illicit)","max":1,"base":true},{"text":"Social Hx - Tobacco / nicotine","max":1,"base":true},{"text":"Social Hx - Alcohol","max":1,"base":true},{"text":"Social Hx - Caffeine","max":1,"base":true},{"text":"Social Hx - Occupation","max":1,"base":true},{"text":"Social Hx - Stress, sleep, SES, sex, support - criterion: asks >=3 of the 5","max":1,"base":true},{"text":"Medications - name, dose, route, frequency incl. OTC/supplements (or none)","max":1,"base":true},{"text":"Allergies - allergen and reaction (or NKDA)","max":1,"base":true},{"text":"Immunizations and age-appropriate screenings - UTD or not","max":1,"base":true}]},{"section":"Summarize & transition (after histories)","phase":"SUBJECTIVE","rows":[{"text":"Summarizes the histories / medications / allergies","max":1,"base":true,"verify":"sp"},{"text":"Transition statement from histories into the physical exam","max":1,"base":true,"verify":"sp"}]},{"section":"Physical exam: general survey","phase":"OBJECTIVE","rows":[{"text":"General survey - reports all components: LOC/orientation, distress, posture/habitus, grooming, stated age (criterion: all 5)","max":1,"base":true},{"text":"General survey - reports vital signs","max":1,"base":true}]},{"section":"Physical exam: vital signs","phase":"OBJECTIVE","rows":[{"text":"Blood pressure (correct technique) and report","max":1,"base":true},{"text":"Pulse: rate, rhythm, amplitude, and report","max":1,"base":true},{"text":"Respiratory rate and report","max":1,"base":true},{"text":"Temperature (document route) and report","max":1,"base":true},{"text":"Height","max":1,"base":true},{"text":"Weight and calculated BMI","max":1,"base":true}],"vitals_slot":true,"alt":[{"text":"Acknowledges the recorded vital signs and verbalizes each (BP, HR, RR, T, and SpO2/BMI as available)","max":1,"base":true},{"text":"Identifies abnormal vital signs and states their clinical significance (or states all within normal limits)","max":1,"base":true}]},{"section":"Skin, hair & nails","phase":"OBJECTIVE","rows":[{"text":"Inspect overall skin appearance: color, moisture, texture","max":1},{"text":"Inspect/palpate temperature, turgor, mobility","max":1},{"text":"Inspect/palpate lesions (size, shape, color, asymmetry, distribution)","max":1},{"text":"Inspect/palpate hair and scalp","max":1},{"text":"Inspect/palpate finger and toe nails","max":1}]},{"section":"HEENT: head","phase":"OBJECTIVE","rows":[{"text":"Inspect/palpate skull for symmetry, shape, deformity, trauma","max":1},{"text":"Inspect/palpate scalp and hair","max":1},{"text":"Inspect facial bones and features for symmetry and position","max":1}]},{"section":"HEENT: eyes","phase":"OBJECTIVE","rows":[{"text":"Test visual acuity (Snellen)","max":1},{"text":"Test visual fields by confrontation","max":1},{"text":"Inspect position/shape/symmetry of eyes, conjunctiva, sclera, pupil","max":1},{"text":"Inspect/palpate brows, eyelids, lacrimal system","max":1},{"text":"Check extra-ocular movements; convergence; accommodation","max":1},{"text":"Ophthalmoscope: red reflex, iris, cornea","max":1},{"text":"Ophthalmoscope: pupil and light reaction (PERRLA)","max":1},{"text":"Ophthalmoscope: retina, vessels, optic disc","max":1}]},{"section":"HEENT: ears","phase":"OBJECTIVE","rows":[{"text":"Inspect auricle shape, size, symmetry, placement","max":1},{"text":"Palpate auricle, mastoid, TMJ, parotid","max":1},{"text":"Auditory acuity (whisper test 2-3 ft, bilateral)","max":1},{"text":"Otoscope: external canal and TM (bilateral)","max":1},{"text":"Weber test","max":1},{"text":"Rinne test","max":1}]},{"section":"HEENT: nose","phase":"OBJECTIVE","rows":[{"text":"Inspect position, symmetry, skin changes","max":1},{"text":"Palpate nasal bones","max":1},{"text":"Test nasal patency of each nostril","max":1},{"text":"Test smell sensation (CN I)","max":1},{"text":"Palpate sinuses","max":1},{"text":"Percuss sinuses","max":1},{"text":"Transilluminate sinuses","max":1},{"text":"Otoscope: mucosa, septum, turbinate","max":1}]},{"section":"HEENT: throat, mouth & neck","phase":"OBJECTIVE","rows":[{"text":"Inspect lips and mouth (symmetry, color, lesions, moisture)","max":1},{"text":"Inspect teeth, gums, tongue, palate, pharynx, buccal mucosa","max":1},{"text":"Inspect floor of mouth","max":1},{"text":"Palpate floor of mouth (bimanual), tongue (incl. lateral borders), buccal mucosa, gums, teeth","max":1},{"text":"Tongue protrusion (CN XII)","max":1},{"text":"Say 'Ah': observe palate rise (CN IX/X)","max":1},{"text":"Assess swallowing","max":1},{"text":"Inspect neck for symmetry, contour, masses","max":1},{"text":"Palpate cervical lymph nodes","max":1},{"text":"Palpate thyroid","max":1},{"text":"Palpate neck midline: vessels, cartilage, trachea","max":1}]},{"section":"Physical exam: thorax & lungs","phase":"OBJECTIVE","rows":[{"text":"Inspect rate, rhythm, depth, effort, expiratory time","max":1},{"text":"Inspect shape, size, symmetry of chest","max":1},{"text":"Inspect skin and chest landmarks","max":1},{"text":"Compress anterior, lateral, posterior chest wall","max":1},{"text":"Assess chest expansion (anterior and posterior)","max":1},{"text":"Assess tactile fremitus (anterior and posterior)","max":1},{"text":"Percuss >=6 areas anterior/posterior incl. 2 lateral (criterion: >=6 areas)","max":1},{"text":"Identify diaphragmatic excursion posteriorly","max":1},{"text":"Auscultate lungs: >=6 areas anterior/posterior incl. 2 lateral, bilaterally (criterion: >=6 areas)","max":1,"base":true},{"text":"Special: bronchophony","max":1},{"text":"Special: egophony","max":1},{"text":"Special: whispered pectoriloquy","max":1}]},{"section":"Physical exam: cardiovascular","phase":"OBJECTIVE","rows":[{"text":"Inspect precordium for the apical impulse","max":1},{"text":"Assess JVP at 45 degrees","max":1},{"text":"Palpate carotids one at a time","max":1},{"text":"Auscultate carotids for bruits","max":1},{"text":"Palpate precordium for PMI, heaves, thrills","max":1},{"text":"Auscultate heart: all valve areas, bell and diaphragm (criterion: all valve areas)","max":1,"base":true},{"text":"Auscultate in left lateral decubitus (mitral, S3/S4)","max":1},{"text":"Auscultate leaning forward (aortic regurgitation)","max":1},{"text":"Palpate peripheral pulses (radial, femoral, popliteal, DP, PT) (criterion: all 5 sites)","max":1},{"text":"Assess for peripheral edema","max":1}]},{"section":"Physical exam: peripheral vascular","phase":"OBJECTIVE","rows":[{"text":"Inspect extremities for color, hair, ulcers, varicosities","max":1},{"text":"Assess extremity temperature","max":1},{"text":"Assess capillary refill","max":1},{"text":"Palpate peripheral pulses bilaterally","max":1},{"text":"Assess for edema","max":1},{"text":"Special: Allen test / ankle-brachial index","max":1},{"text":"Special: PAD cluster (absent pedal pulse + femoral bruit, +LR 34.2)","max":1},{"text":"Absent dorsalis pedis / posterior tibial pulse","sub":true},{"text":"Femoral artery bruit","sub":true}]},{"section":"Physical exam: abdomen / GI","phase":"OBJECTIVE","rows":[{"text":"Inspect contour, scars, distension, pulsations","max":1},{"text":"Auscultate bowel sounds in 4 quadrants","max":1},{"text":"Auscultate for aortic / renal bruits","max":1},{"text":"Percuss all 4 quadrants","max":1},{"text":"Percuss liver span","max":1},{"text":"Percuss spleen","max":1},{"text":"Light palpation of all 4 quadrants","max":1},{"text":"Deep palpation of all 4 quadrants","max":1},{"text":"Palpate liver edge","max":1},{"text":"Palpate spleen","max":1},{"text":"Assess CVA tenderness","max":1},{"text":"Special: rebound tenderness","max":1},{"text":"Special: Rovsing sign","max":1},{"text":"Special: psoas sign","max":1},{"text":"Special: Murphy sign","max":1}]},{"section":"Musculoskeletal: TMJ","phase":"OBJECTIVE","rows":[{"text":"Inspect for symmetry, swelling, redness","max":1},{"text":"Palpate joint and muscles","max":1},{"text":"ROM: opening/closing, lateral, protrusion/retraction","max":1}]},{"section":"Musculoskeletal: shoulders","phase":"OBJECTIVE","rows":[{"text":"Inspect for swelling, deformity, atrophy, scars, positioning","max":1},{"text":"Inspect/palpate SC/AC joints, clavicle, bursa, bicipital groove, humerus, scapula","max":1},{"text":"ROM: abd/add, flex/ext, internal/external rotation","max":1},{"text":"Special: Park impingement cluster (all 3 positive, +LR 10.56)","max":1},{"text":"Hawkins-Kennedy","sub":true},{"text":"Infraspinatus (resisted external rotation) test","sub":true},{"text":"Painful arc","sub":true},{"text":"Special (impingement): Neer","max":1},{"text":"Special (rotator cuff): drop-arm / empty-can / ER or IR lag","max":1},{"text":"Special (AC joint): cross-body / scarf","max":1},{"text":"Special (biceps): Yergason","max":1},{"text":"Special (instability): apprehension-relocation / O'Brien","max":1}]},{"section":"Musculoskeletal: elbows","phase":"OBJECTIVE","rows":[{"text":"Inspect for swelling or abnormal contours","max":1},{"text":"Palpate olecranon, epicondyles, grooves, bursa, ulnar nerve","max":1},{"text":"ROM: flex/ext, supination/pronation","max":1},{"text":"Special: elbow flexion test (cubital tunnel)","max":1}]},{"section":"Musculoskeletal: wrists / hands","phase":"OBJECTIVE","rows":[{"text":"Inspect hands in motion and rest, palmar/dorsal surfaces","max":1},{"text":"Palpate radius/ulna, snuff box, carpals, metacarpals, phalanges","max":1},{"text":"ROM wrist: flex/ext, ulnar/radial deviation","max":1},{"text":"ROM digits: flex/ext, abd/add, opposition","max":1},{"text":"Special: Finkelstein (de Quervain)","max":1},{"text":"Special: Phalen (carpal tunnel)","max":1},{"text":"Special: Tinel (carpal tunnel)","max":1}]},{"section":"Musculoskeletal: spine","phase":"OBJECTIVE","rows":[{"text":"Inspect cervical/thoracic/lumbar curves, posture","max":1},{"text":"Palpate spinous processes, iliac crests, PSIS incl. C7/L4","max":1},{"text":"Palpate paravertebral muscles","max":1},{"text":"Palpate sciatic nerve","max":1},{"text":"ROM cervical: flex/ext, rotation, lateral bending","max":1},{"text":"ROM thoracolumbar: flex/ext, rotation, lateral bending","max":1},{"text":"Special: Wainner cervical radiculopathy cluster (4/4 +LR 30.3, 3/4 +LR 6.1)","max":1},{"text":"Spurling A","sub":true},{"text":"Cervical distraction","sub":true},{"text":"Upper limb tension test A (median)","sub":true},{"text":"Cervical rotation <60 deg to the involved side","sub":true},{"text":"Special: straight-leg raise","max":1},{"text":"Special: crossed straight-leg raise","max":1}]},{"section":"Musculoskeletal: hips","phase":"OBJECTIVE","rows":[{"text":"Inspect lumbar spine and hips for atrophy/bruising","max":1},{"text":"Assess leg-length symmetry","max":1},{"text":"Palpate anterior structures: iliac crest, ASIS, greater trochanter","max":1},{"text":"Palpate posterior structures: PSIS and SI joints","max":1},{"text":"Palpate inguinal ligament and lymph nodes","max":1},{"text":"Palpate trochanteric bursa","max":1},{"text":"ROM: flex/ext, abd/add, internal/external rotation","max":1},{"text":"Special: Sutlive hip-OA cluster (4/5 +LR 24.3; derivation cohort, not yet externally validated)","max":1},{"text":"Hip scour test positive","sub":true},{"text":"Passive internal rotation <=25 deg","sub":true},{"text":"Pain with squatting","sub":true},{"text":"Lateral hip pain on active flexion","sub":true},{"text":"Painful active hip extension","sub":true},{"text":"Special: FABER","max":1},{"text":"Special: FADIR","max":1},{"text":"Special: log roll","max":1}]},{"section":"Musculoskeletal: knees","phase":"OBJECTIVE","rows":[{"text":"Inspect alignment, contours, atrophy, swelling, bruising","max":1},{"text":"Palpate medial compartment (condyle, plateau, MCL, meniscus)","max":1},{"text":"Palpate lateral compartment (condyle, plateau, LCL, meniscus)","max":1},{"text":"Palpate patellofemoral (patella, tendon, tibial tuberosity)","max":1},{"text":"Palpate suprapatellar, pre-patellar, pes anserine, popliteal bursa","max":1},{"text":"ROM: flex/ext","max":1},{"text":"Special: effusion (bulge/ballottement/sweep)","max":1},{"text":"Special: McMurray (meniscus)","max":1},{"text":"Special: MCL valgus stress","max":1},{"text":"Special: LCL varus stress","max":1},{"text":"Special: Lachman (ACL)","max":1},{"text":"Special: anterior drawer (ACL)","max":1},{"text":"Special: posterior drawer (PCL)","max":1}]},{"section":"Musculoskeletal: feet / ankles","phase":"OBJECTIVE","rows":[{"text":"Inspect all surfaces for deformity, swelling, calluses","max":1},{"text":"Inspect weight-bearing & non-weight-bearing; arches, inversion/eversion","max":1},{"text":"Palpate anterior ankle joint, medial and lateral malleoli","max":1},{"text":"Palpate heel and plantar fascia","max":1},{"text":"Palpate MTP joints incl. metatarsal heads","max":1},{"text":"ROM ankle (plantar/dorsiflexion, inversion/eversion) and toes","max":1},{"text":"Special: Thompson / calf-squeeze (Achilles)","max":1},{"text":"Special: Matles knee-flexion test (Achilles)","max":1},{"text":"Special: tendon-gap palpation (Achilles)","max":1},{"text":"Special: anterior drawer (ankle)","max":1},{"text":"Special: talar tilt","max":1},{"text":"Special: squeeze test (syndesmosis)","max":1}]},{"section":"Neurologic: mental status & cranial nerves","phase":"OBJECTIVE","rows":[{"text":"Mental status: alertness, appropriateness, orientation","max":1},{"text":"CN I - smell","max":1},{"text":"CN II - visual acuity and fields","max":1},{"text":"CN III - EOM","max":1},{"text":"CN III - pupillary light reflex","max":1},{"text":"CN III - accommodation","max":1},{"text":"CN IV - EOM","max":1},{"text":"CN V - motor (clench / jaw excursion)","max":1},{"text":"CN V - sensory (V1/V2/V3, sharp-dull, light touch)","max":1},{"text":"CN VI - EOM","max":1},{"text":"CN VII - brow, eye closure, cheeks, smile","max":1},{"text":"CN VIII - auditory acuity (whisper test)","max":1},{"text":"CN IX/X - speech","max":1},{"text":"CN IX/X - swallow","max":1},{"text":"CN IX/X - palate rise with 'Ah'","max":1},{"text":"CN XI - shoulder shrug against resistance","max":1},{"text":"CN XI - head turn against resistance","max":1},{"text":"CN XII - tongue protrudes without deviation","max":1}]},{"section":"Neurologic: motor","phase":"OBJECTIVE","rows":[{"text":"Inspect bulk, tone, involuntary movements","max":1},{"text":"UE strength: elbow flexion/extension","max":1},{"text":"UE strength: wrist flexion/extension","max":1},{"text":"UE strength: fingers abd/add, thumb opposition, grip","max":1},{"text":"LE strength: hip flexion/extension/abd/add","max":1},{"text":"LE strength: knee flexion/extension","max":1},{"text":"LE strength: ankle dorsiflexion/plantarflexion","max":1}]},{"section":"Neurologic: coordination / cerebellar","phase":"OBJECTIVE","rows":[{"text":"Rapid alternating movements (bilateral)","max":1},{"text":"Point-to-point (finger-to-nose or heel-to-shin)","max":1},{"text":"Romberg test","max":1},{"text":"Pronator drift","max":1},{"text":"Observe gait","max":1},{"text":"Heel-to-toe walk","max":1},{"text":"Walk on toes and heels","max":1},{"text":"Shallow knee bend","max":1},{"text":"Special: HINTS for acute vestibular syndrome (expert / competency-gated)","max":1},{"text":"Head impulse test","sub":true},{"text":"Nystagmus (direction-changing)","sub":true},{"text":"Test of skew (alternate cover)","sub":true},{"text":"Special: Dix-Hallpike for positional vertigo (pc-BPPV); if positive, treat with Epley maneuver","max":1}]},{"section":"Neurologic: sensory","phase":"OBJECTIVE","rows":[{"text":"Pain (sharp/dull)","max":1},{"text":"Light touch (cotton wisp, compare symmetry)","max":1},{"text":"Vibratory sense (tuning fork)","max":1},{"text":"10-g monofilament at plantar sites (loss of protective sensation)","max":1},{"text":"Proprioception (big toe)","max":1},{"text":"Stereognosis","max":1},{"text":"Graphesthesia","max":1}]},{"section":"Neurologic: reflexes & special tests","phase":"OBJECTIVE","rows":[{"text":"DTR biceps or brachioradialis","max":1},{"text":"DTR triceps","max":1},{"text":"DTR patellar","max":1},{"text":"DTR ankle","max":1},{"text":"Special: Babinski (plantar response)","max":1},{"text":"Special: ankle clonus","max":1},{"text":"Special: asterixis","max":1},{"text":"Special: Kernig and Brudzinski","max":1}]},{"section":"Assessment & plan","phase":"ASSESSMENT & PLAN","rows":[{"text":"States the primary (most likely) diagnosis","max":1,"base":true},{"text":"Differential 1 - names it and gives >=3 supporting/refuting data points (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true},{"text":"Differential 2 - names it and gives >=3 supporting/refuting data points (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true},{"text":"Differential 3 - names it and gives >=3 supporting/refuting data points (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true},{"text":"Plan - states the diagnostic workup and the management steps (count: 2 = both, 1 = one, 0 = neither)","max":2,"base":true},{"text":"Teach-back - confirms patient understanding of the assessment and plan","max":1,"base":true,"verify":"sp"}]},{"section":"Closure","phase":"CLOSURE","rows":[{"text":"Invites final questions and addresses patient concerns","max":1,"base":true,"verify":"sp"}]}],"ros_options":[{"text":"Skin (rashes, lumps, sores, itching, color change) - criterion: asks >=3 of the 5","max":1},{"text":"HEENT (headache, vision change, hearing change, congestion, sore throat) - criterion: asks >=3 of the 5","max":1},{"text":"Respiratory (cough, dyspnea, wheeze, sputum, hemoptysis) - criterion: asks >=3 of the 5","max":1},{"text":"Cardiovascular (chest pain, palpitations, edema, orthopnea, PND) - criterion: asks >=3 of the 5","max":1},{"text":"Peripheral vascular (claudication, leg swelling, varicosities, cold extremities, non-healing wounds) - criterion: asks >=3 of the 5","max":1},{"text":"Gastrointestinal (nausea/vomiting, abdominal pain, bowel changes, blood in stool, heartburn) - criterion: asks >=3 of the 5","max":1},{"text":"Genitourinary (dysuria, frequency, hematuria, flank pain, discharge) - criterion: asks >=3 of the 5","max":1},{"text":"Musculoskeletal (joint pain, stiffness, swelling, weakness, back pain) - criterion: asks >=3 of the 5","max":1},{"text":"Neurologic (dizziness, numbness/tingling, weakness, seizures, syncope) - criterion: asks >=3 of the 5","max":1},{"text":"Psychiatric (mood, anxiety, sleep, memory, SI/HI) - criterion: asks >=3 of the 5","max":1},{"text":"Endocrine (heat/cold intolerance, polyuria/polydipsia, weight change, hair/skin change) - criterion: asks >=3 of the 4","max":1},{"text":"Hematologic/lymphatic (easy bruising, bleeding, swollen glands) - criterion: asks >=2 of the 3","max":1}]};
+const OSCE = {"spine":[{"section":"Introduction, identification & hand hygiene","phase":"SUBJECTIVE","rows":[{"text":"Professional dress; identification visible","max":1,"base":true,"verify":"sp"},{"text":"Introduce yourself by name and role","max":1,"base":true,"verify":"sp"},{"text":"Wash hands in view of the patient","max":1,"base":true,"verify":"sp"},{"text":"Verify patient name and date of birth","max":1,"base":true,"verify":"sp"},{"text":"Ask how the patient wishes to be addressed (including pronouns)","max":1,"base":true,"verify":"sp"},{"text":"Set the agenda and expected visit length","max":1,"base":true,"verify":"sp"},{"text":"Explain the physical examination and obtain permission to proceed","max":1,"base":true,"verify":"sp"},{"text":"Patient comfort, privacy, positioning, draping","max":1,"base":true,"verify":"sp"}]},{"section":"HPI: chief complaint & symptom characterization (OLDCARTS)","phase":"SUBJECTIVE","rows":[{"text":"Chief complaint in the patient's own words","max":1,"base":true},{"text":"Allow an uninterrupted opening statement","max":1,"base":true},{"text":"Opens with an open-ended question before narrowing to closed questions","max":1,"base":true},{"text":"Elicits the patient's ideas, concerns, and expectations (ICE)","max":1,"base":true},{"text":"Responds to emotion with empathy (PEARLS)","max":1,"base":true},{"text":"Onset","max":1,"base":true},{"text":"Location","max":1,"base":true},{"text":"Duration","max":1,"base":true},{"text":"Character / quality","max":1,"base":true},{"text":"Aggravating factors","max":1,"base":true},{"text":"Alleviating factors","max":1,"base":true},{"text":"Radiation","max":1,"base":true},{"text":"Timing (constant vs. intermittent; frequency)","max":1,"base":true},{"text":"Severity (0-10 or functional impact)","max":1,"base":true},{"text":"Setting","max":1,"base":true},{"text":"Associated symptoms (pertinent positives and negatives)","max":1,"base":true},{"text":"Recent travel or sick contacts","max":1,"base":true},{"text":"Pertinent positives and negatives for the chief complaint","max":1,"base":true}]},{"section":"Summarize & transition (after HPI)","phase":"SUBJECTIVE","rows":[{"text":"Summarizes the HPI back to the patient and checks accuracy (2 = both, 1 = one)","max":2,"base":true,"verify":"sp"},{"text":"Transition statement from HPI into the review of systems","max":1,"base":true,"verify":"sp"}]},{"section":"Review of systems","phase":"SUBJECTIVE","rows":[{"text":"Constitutional (fever/chills, weight change, fatigue, night sweats, appetite) - criterion: asks >=3 of the 5","max":1,"base":true}],"ros_slot":true},{"section":"Summarize & transition (after ROS)","phase":"SUBJECTIVE","rows":[{"text":"Transition statement from ROS into the histories","max":1,"base":true,"verify":"sp"}]},{"section":"Past histories, medications, allergies & immunizations","phase":"SUBJECTIVE","rows":[{"text":"Past medical history (diagnoses, control, last follow-up)","max":1,"base":true},{"text":"Surgical history (type, year, indication)","max":1,"base":true},{"text":"Family history: first-degree relatives and grandparents","max":1,"base":true},{"text":"Social history — Food / diet","max":1,"base":true},{"text":"Social history — Exercise","max":1,"base":true},{"text":"Social history — Drugs","max":1,"base":true},{"text":"Social history — Tobacco / nicotine","max":1,"base":true},{"text":"Social history — Alcohol","max":1,"base":true},{"text":"Social history — Caffeine","max":1,"base":true},{"text":"Social history — Occupation","max":1,"base":true},{"text":"Social history — Stress, sleep, SES, sexual health, safety, support","max":1,"base":true},{"text":"Medications: name, dose, route, frequency","max":1,"base":true},{"text":"Allergies: drug, food, and environmental - with the reaction (or NKDA)","max":1,"base":true},{"text":"Immunizations and age-appropriate screenings - up to date or not","max":1,"base":true}]},{"section":"Summarize & transition (after histories)","phase":"SUBJECTIVE","rows":[{"text":"Summarizes the histories / medications / allergies","max":1,"base":true,"verify":"sp"},{"text":"Transition statement from histories into the physical exam","max":1,"base":true,"verify":"sp"}]},{"section":"Physical exam: general survey","phase":"OBJECTIVE","rows":[{"text":"Level of consciousness and orientation (A&O x4)","max":1,"base":true},{"text":"Apparent state of health","max":1,"base":true},{"text":"Skin color and obvious lesions","max":1,"base":true},{"text":"Signs of distress","max":1,"base":true},{"text":"Posture, gait, movement, body build","max":1,"base":true},{"text":"Grooming, hygiene, body odor, facial expression","max":1,"base":true},{"text":"Apparent versus stated age and sexual development","max":1,"base":true}]},{"section":"Physical exam: vital signs","phase":"OBJECTIVE","rows":[{"text":"Blood pressure, correct technique","max":1,"base":true},{"text":"Pulse: rate, rhythm, amplitude","max":1,"base":true},{"text":"Respiratory rate","max":1,"base":true},{"text":"Temperature (document route)","max":1,"base":true},{"text":"Height, weight, and calculated BMI","max":1,"base":true},{"text":"Pulse oximetry","max":1,"base":true}],"vitals_slot":true,"alt":[{"text":"Acknowledges the recorded vital signs and verbalizes each (BP, HR, RR, T, and SpO2/BMI as available)","max":1,"base":true},{"text":"Identifies abnormal vital signs and states their clinical significance (or states all within normal limits)","max":1,"base":true}]},{"section":"Skin, hair & nails","phase":"OBJECTIVE","rows":[{"text":"Inspect skin: color, moisture, texture","max":1},{"text":"Palpate skin: temperature, turgor, mobility","max":1},{"text":"Inspect and palpate lesions (full morphologic description)","max":1},{"text":"Inspect and palpate hair and scalp: texture, distribution, moisture","max":1},{"text":"Inspect nails and interdigital spaces; assess for clubbing","max":1}],"pocus":"Cellulitis, abscess, foreign body, lipoma, cyst, soft-tissue mass. (STFM Delphi 2026)"},{"section":"HEENT: head","phase":"OBJECTIVE","rows":[{"text":"Inspect and palpate skull: symmetry, shape, deformity, trauma","max":1},{"text":"Inspect scalp and hair","max":1},{"text":"Inspect facial bones and features for symmetry","max":1}]},{"section":"HEENT: eyes","phase":"OBJECTIVE","rows":[{"text":"Inspect position, conjunctiva, sclera, pupils","max":1},{"text":"Inspect brows, eyelids, lacrimal system","max":1},{"text":"Visual acuity (Snellen)","max":1},{"text":"Visual fields by confrontation","max":1},{"text":"Six cardinal directions of gaze; convergence; accommodation","max":1},{"text":"Oblique lighting: inspect the cornea and iris","max":1},{"text":"Pupillary light reaction (direct and consensual)","max":1},{"text":"Ophthalmoscopy: red reflex","max":1},{"text":"Ocular alignment: corneal light reflection and cover-uncover test","max":1},{"text":"Ophthalmoscopy: retina, vessels, optic disc","max":1}]},{"section":"HEENT: ears","phase":"OBJECTIVE","rows":[{"text":"Inspect and palpate the auricle, tragus, and mastoid (tragus tug)","max":1},{"text":"Auditory acuity: whisper test at 2–3 ft","max":1},{"text":"Finger-rub test bilaterally","max":1},{"text":"Otoscopy bilaterally: canal and tympanic membrane","max":1}]},{"section":"HEENT: ears - special tests","phase":"OBJECTIVE","rows":[{"text":"Rinne test","max":1},{"text":"Weber test","max":1}]},{"section":"HEENT: nose","phase":"OBJECTIVE","rows":[{"text":"Inspect position, symmetry, skin","max":1},{"text":"Test patency of each nostril; inspect the nasal tip","max":1},{"text":"Palpate the frontal and maxillary sinuses","max":1},{"text":"Internal inspection with otoscope and speculum","max":1}]},{"section":"HEENT: mouth & throat","phase":"OBJECTIVE","rows":[{"text":"Inspect lips, teeth, gums, tongue, hard/soft palate, pharynx, buccal mucosa","max":1},{"text":"Palpate floor of mouth, tongue, buccal mucosa, gums, teeth","max":1},{"text":"Tongue protrusion (CN XII)","max":1},{"text":"Palate rise on “Ahh” (CN IX/X); assess swallow","max":1}]},{"section":"Neck","phase":"OBJECTIVE","rows":[{"text":"Inspect neck, thyroid, tracheal position","max":1},{"text":"Observe swallowing for thyroid motion","max":1},{"text":"Palpate the thyroid","max":1},{"text":"Palpate the cervical lymph node chains","max":1},{"text":"Assess for nuchal rigidity when meningeal irritation is suspected","max":1},{"text":"Auscultate the thyroid for a bruit if enlarged","max":1}]},{"section":"Physical exam: thorax & lungs","phase":"OBJECTIVE","rows":[{"text":"Inspect rate, rhythm, depth, effort, expiratory time","max":1},{"text":"Inspect chest shape, size, symmetry","max":1},{"text":"Inspect skin and chest landmarks","max":1},{"text":"Compress the chest wall AP (if rib fracture suspected)","max":1},{"text":"Assess chest expansion (anterior and posterior)","max":1},{"text":"Assess tactile fremitus (anterior and posterior)","max":1},{"text":"Percuss posterior chest (3 paired sites; expand if abnormal)","max":1},{"text":"Percuss anterior / lateral chest (if indicated)","max":1},{"text":"Identify diaphragmatic excursion posteriorly","max":1},{"text":"Auscultate posterior chest (3 paired sites; expand if abnormal)","max":1,"base":true},{"text":"Auscultate lateral chest (1 paired site; expand if abnormal)","max":1},{"text":"Auscultate anterior chest (2 paired sites above the breast; expand if abnormal)","max":1},{"text":"Characterize breath sounds","max":1},{"text":"Identify adventitious sounds","max":1}],"pocus":"Pleural effusion, pneumonia, pulmonary edema, pneumothorax. (STFM Delphi 2026)"},{"section":"Thorax & lungs - special tests","phase":"OBJECTIVE","rows":[{"text":"Bronchophony","max":1},{"text":"Egophony","max":1},{"text":"Whispered pectoriloquy","max":1}]},{"section":"Physical exam: cardiovascular","phase":"OBJECTIVE","rows":[{"text":"Note general appearance, blood pressure, heart rate","max":1},{"text":"Inspect neck: great vessels and carotid pulsation","max":1},{"text":"Evaluate and measure the JVP","max":1},{"text":"Auscultate the carotids for bruits","max":1},{"text":"Palpate the carotid pulse: amplitude and contour","max":1},{"text":"Inspect the anterior chest for the apical impulse (sitting, supine, LLD)","max":1},{"text":"Palpate for thrills at 4 areas (bony hand)","max":1},{"text":"Palpate for heaves and lifts at 4 areas (finger pads)","max":1},{"text":"Palpate and locate the PMI","max":1},{"text":"Auscultate all areas with the diaphragm, then repeat with the bell","max":1,"base":true},{"text":"Auscultate leaning forward (aortic regurgitation)","max":1},{"text":"Auscultate in the left lateral decubitus (mitral, S3/S4)","max":1}],"pocus":"Pericardial effusion, tamponade, HFrEF, LVH, dilated cardiomyopathy, RV strain. (STFM Delphi 2026)"},{"section":"Cardiovascular - dynamic auscultation","phase":"OBJECTIVE","rows":[{"text":"Squatting-to-standing maneuver (HOCM vs. others)","max":1},{"text":"Valsalva maneuver","max":1},{"text":"Isometric hand grip","max":1}]},{"section":"Physical exam: peripheral vascular","phase":"OBJECTIVE","rows":[{"text":"Inspect arms and legs","max":1},{"text":"Assess skin temperature, comparing side to side","max":1},{"text":"Palpate 6 pulses bilaterally: radial, brachial, femoral, popliteal, DP, PT","max":1},{"text":"Palpate epitrochlear and superficial inguinal nodes","max":1},{"text":"Assess for pitting edema","max":1},{"text":"Palpate calves for cords","max":1}],"pocus":"Proximal DVT, AAA, IVC collapsibility. (STFM Delphi 2026)"},{"section":"Peripheral vascular - special tests","phase":"OBJECTIVE","rows":[{"text":"Allen test (before radial access)","max":1},{"text":"Ankle-brachial index (ABI < 0.9)","max":1}],"footnote":"Homan sign, Buerger test — asked on boards, weak evidence, not in Bates."},{"section":"Physical exam: abdomen / GI","phase":"OBJECTIVE","rows":[{"text":"Position the patient (knees bent, feet flat) to relax the wall","max":1},{"text":"Examines any painful area last","max":1},{"text":"Inspect: skin, contour, symmetry, peristalsis, pulsations","max":1},{"text":"Auscultate bowel sounds","max":1},{"text":"Auscultate for bruits (aortic, renal, iliac, femoral)","max":1},{"text":"Auscultate for friction rubs (liver, spleen)","max":1},{"text":"Percuss all four quadrants and the gastric bubble","max":1},{"text":"Percuss the liver span at the MCL","max":1},{"text":"Percuss Traube space / Castell sign for spleen","max":1},{"text":"Light palpation of all quadrants","max":1},{"text":"Deep palpation of all quadrants","max":1},{"text":"Palpate and characterize the liver edge","max":1},{"text":"Palpate the gallbladder","max":1},{"text":"Palpate the spleen (supine and right lateral decubitus)","max":1},{"text":"Palpate the aorta","max":1},{"text":"Assess CVA tenderness","max":1}]},{"section":"Abdomen - peritoneal signs","phase":"OBJECTIVE","rows":[{"text":"Rigidity","max":1},{"text":"Guarding","max":1},{"text":"Rebound / Blumberg sign","max":1},{"text":"Cough test","max":1}]},{"section":"Abdomen - special tests","phase":"OBJECTIVE","rows":[{"text":"Murphy sign (cholecystitis)","max":1},{"text":"McBurney point tenderness (appendicitis)","max":1},{"text":"Rovsing sign (appendicitis)","max":1},{"text":"Psoas sign (appendicitis)","max":1},{"text":"Shifting dullness (ascites)","max":1},{"text":"Fluid wave (ascites)","max":1}]},{"section":"Musculoskeletal: TMJ","phase":"OBJECTIVE","rows":[{"text":"Inspect for symmetry, swelling, redness","max":1},{"text":"Palpate joint and muscles of mastication","max":1},{"text":"AROM: opening/closing, lateral, protrusion/retraction","max":1}]},{"section":"Musculoskeletal: shoulders","phase":"OBJECTIVE","rows":[{"text":"Inspect for swelling, deformity, atrophy, scars, positioning","max":1},{"text":"Palpate SC/AC joints, clavicle, subacromial bursa, bicipital groove, humerus, scapula","max":1},{"text":"AROM: abduction/adduction, flexion/extension, internal/external rotation","max":1}]},{"section":"Musculoskeletal: elbows","phase":"OBJECTIVE","rows":[{"text":"Inspect for swelling or abnormal contours","max":1},{"text":"Palpate olecranon, epicondyles, groove, ulnar nerve, bursa","max":1},{"text":"AROM: flexion/extension, pronation/supination","max":1},{"text":"Palpate the radial head","max":1}]},{"section":"Musculoskeletal: wrists / hands","phase":"OBJECTIVE","rows":[{"text":"Inspect hands in motion and at rest, palmar and dorsal surfaces","max":1},{"text":"Palpate distal radius/ulna, snuffbox, carpals, MCPs, phalanges","max":1},{"text":"AROM wrist: flexion/extension, ulnar/radial deviation","max":1},{"text":"AROM digits: flexion/extension, abduction/adduction, opposition","max":1}]},{"section":"Musculoskeletal: spine","phase":"OBJECTIVE","rows":[{"text":"Inspect cervical/thoracic/lumbar curves and posture","max":1},{"text":"Palpate the spinous processes, paravertebral muscles, SI joints, and lumbosacral junction","max":1},{"text":"AROM cervical: flexion/extension, rotation, lateral bending","max":1},{"text":"AROM thoracolumbar: flexion/extension, rotation, lateral bending","max":1}]},{"section":"Musculoskeletal: hips","phase":"OBJECTIVE","rows":[{"text":"Inspect lumbar spine and hips; assess leg-length symmetry","max":1},{"text":"Palpate ASIS/iliac crest/greater trochanter/PSIS, SI joints, trochanteric bursa, inguinal nodes","max":1},{"text":"AROM: flexion/extension, abduction/adduction, internal/external rotation","max":1}]},{"section":"Musculoskeletal: knees","phase":"OBJECTIVE","rows":[{"text":"Inspect alignment, contours, atrophy, swelling, bruising","max":1},{"text":"Palpate 3 compartments (medial, lateral, patellofemoral) and bursae","max":1},{"text":"AROM: flexion/extension","max":1}]},{"section":"Musculoskeletal: feet / ankles","phase":"OBJECTIVE","rows":[{"text":"Inspect all surfaces, weight-bearing and non-weight-bearing","max":1},{"text":"Palpate joint lines, malleoli, plantar fascia, MTPs, metatarsal heads","max":1},{"text":"AROM ankle (plantar/dorsiflexion, inversion/eversion) and toes","max":1}]},{"section":"MSK special tests: shoulder","phase":"OBJECTIVE","rows":[{"text":"Hawkins-Kennedy","max":1},{"text":"Infraspinatus (resisted external rotation) test","max":1},{"text":"Painful arc","max":1},{"text":"Neer impingement sign","max":1},{"text":"Drop-arm test (cuff tear)","max":1},{"text":"Empty-can / Jobe (supraspinatus)","max":1},{"text":"Internal rotation lag / lift-off (subscapularis)","max":1},{"text":"Cross-body adduction / scarf (AC joint)","max":1},{"text":"Yergason test (biceps/labrum)","max":1},{"text":"O'Brien active compression (SLAP)","max":1},{"text":"Apprehension + relocation (instability)","max":1}],"pocus":"Shoulder effusion. (STFM Delphi 2026)"},{"section":"MSK special tests: elbow & wrist","phase":"OBJECTIVE","rows":[{"text":"Elbow flexion test (cubital tunnel)","max":1},{"text":"Tinel sign at the cubital tunnel","max":1},{"text":"Scratch collapse test (cubital tunnel)","max":1},{"text":"Hook test (distal biceps tendon rupture)","max":1},{"text":"Passive forearm pronation (distal biceps)","max":1},{"text":"Moving valgus stress test (MCL)","max":1},{"text":"Grip strength test (dynamometer)","max":1},{"text":"Finkelstein test (de Quervain)","max":1},{"text":"Phalen test (carpal tunnel)","max":1},{"text":"Tinel sign at the wrist (carpal tunnel)","max":1},{"text":"Median / ulnar / radial sensory testing of the hand","max":1}],"footnote":"Cozen, Mill, Maudsley, golfer's elbow — asked on boards, no accuracy data (Zwerus 2018; Valdes 2013).","pocus":"Carpal tunnel syndrome, ganglion cyst. (STFM Delphi 2026)"},{"section":"MSK special tests: spine","phase":"OBJECTIVE","rows":[{"text":"Spurling A","max":1},{"text":"Straight-leg raise (lumbar radiculopathy)","max":1},{"text":"Crossed straight-leg raise (disc herniation)","max":1}]},{"section":"MSK special tests: hip","phase":"OBJECTIVE","rows":[{"text":"Hip scour test","max":1},{"text":"FABER (Patrick) test","max":1},{"text":"FADIR test (intra-articular / labral)","max":1},{"text":"Log roll","max":1}]},{"section":"MSK special tests: knee","phase":"OBJECTIVE","rows":[{"text":"Effusion: bulge, ballottement, sweep","max":1},{"text":"McMurray test (meniscus)","max":1},{"text":"Valgus stress at 30 deg (MCL)","max":1},{"text":"Varus stress (LCL)","max":1},{"text":"Lachman test (ACL)","max":1},{"text":"Anterior drawer (ACL)","max":1},{"text":"Pivot shift (ACL)","max":1},{"text":"Lever / Lelli sign (ACL)","max":1},{"text":"Posterior drawer (PCL)","max":1}]},{"section":"MSK special tests: ankle & foot","phase":"OBJECTIVE","rows":[{"text":"Thompson / calf-squeeze (Achilles rupture)","max":1},{"text":"Matles knee-flexion test (Achilles rupture)","max":1},{"text":"Tendon-gap palpation (Achilles rupture)","max":1},{"text":"Anterior drawer of the ankle (ATFL)","max":1},{"text":"Talar tilt test","max":1},{"text":"Squeeze test (syndesmosis)","max":1}]},{"section":"Neurologic: mental status & cranial nerves","phase":"OBJECTIVE","rows":[{"text":"Mental status: alertness, orientation, language, memory","max":1},{"text":"CN I — smell","max":1},{"text":"CN II — visual acuity and fields","max":1},{"text":"CN III/IV/VI — EOMs, six cardinal directions; nystagmus, ptosis","max":1},{"text":"CN II/III — pupillary light reflex, direct and consensual","max":1},{"text":"CN III — accommodation and convergence","max":1},{"text":"CN V — motor (clench, jaw excursion); sensory (V1/V2/V3); corneal reflex","max":1},{"text":"CN VII — facial expression (brow, eyes, cheeks, smile)","max":1},{"text":"CN VIII — hearing (whisper test)","max":1},{"text":"CN IX/X — palate rise, swallow, phonation, gag reflex","max":1},{"text":"CN XI — shoulder shrug, head turn against resistance","max":1},{"text":"CN XII — tongue protrusion without deviation","max":1}]},{"section":"Neurologic: motor","phase":"OBJECTIVE","rows":[{"text":"Inspect bulk, tone, and involuntary movements","max":1},{"text":"Pronator drift","max":1},{"text":"UE strength: elbow flexion/extension","max":1},{"text":"UE strength: wrist flexion/extension","max":1},{"text":"UE strength: fingers abduction/adduction, thumb opposition, grip","max":1},{"text":"LE strength: hip flexion/extension/abduction/adduction","max":1},{"text":"LE strength: knee flexion/extension","max":1},{"text":"LE strength: ankle dorsiflexion/plantarflexion","max":1}]},{"section":"Neurologic: coordination & gait","phase":"OBJECTIVE","rows":[{"text":"Rapid alternating movements (bilateral)","max":1},{"text":"Point-to-point, then repeat with eyes closed","max":1},{"text":"Observe gait","max":1},{"text":"Heel-to-toe (tandem) walk","max":1},{"text":"Walk on toes and heels","max":1}]},{"section":"Neurologic: sensory","phase":"OBJECTIVE","rows":[{"text":"Pain (sharp/dull)","max":1},{"text":"Temperature sensation","max":1},{"text":"Light touch (cotton wisp, compare symmetry)","max":1},{"text":"Vibratory sense (tuning fork)","max":1},{"text":"10-g monofilament at plantar sites","max":1},{"text":"Proprioception (big toe)","max":1},{"text":"Stereognosis","max":1},{"text":"Graphesthesia","max":1},{"text":"Romberg test","max":1}]},{"section":"Neurologic: reflexes","phase":"OBJECTIVE","rows":[{"text":"DTR biceps","max":1},{"text":"DTR brachioradialis","max":1},{"text":"DTR triceps","max":1},{"text":"DTR patellar","max":1},{"text":"DTR ankle","max":1}]},{"section":"Neurologic: special tests","phase":"OBJECTIVE","rows":[{"text":"Babinski (plantar response)","max":1},{"text":"Ankle clonus","max":1},{"text":"Asterixis","max":1},{"text":"Kernig and Brudzinski signs","max":1},{"text":"Nuchal rigidity","max":1},{"text":"HINTS for acute vestibular syndrome","max":1},{"text":"Head impulse test","sub":true},{"text":"Nystagmus (direction-changing)","sub":true},{"text":"Test of skew (alternate cover)","sub":true},{"text":"Dix-Hallpike for positional vertigo","max":1}]},{"section":"Psychiatric & cognition: mental status","phase":"OBJECTIVE","rows":[{"text":"Appearance, behavior, psychomotor activity","max":1},{"text":"Mood (patient's own words) and affect","max":1},{"text":"Speech: rate, rhythm, volume, fluency","max":1},{"text":"Thought process: linear, goal-directed","max":1},{"text":"Thought content: SI/HI, delusions, obsessions","max":1},{"text":"Perceptions: hallucinations","max":1},{"text":"Cognition: orientation, attention, memory","max":1},{"text":"Insight and judgment","max":1}]},{"section":"Psychiatric & cognition: structured instruments","phase":"OBJECTIVE","rows":[{"text":"PHQ-9, GAD-7, AUDIT-C or CAGE","max":1},{"text":"Columbia C-SSRS when suicide risk is a concern","max":1},{"text":"MoCA; CAM for delirium","max":1}]},{"section":"Assessment & plan","phase":"ASSESSMENT & PLAN","rows":[{"text":"States the primary (most likely) diagnosis","max":1,"base":true},{"text":"Differential 1 - names it and gives >=3 supporting/refuting data points (2 = both, 1 = one)","max":2,"base":true},{"text":"Differential 2 - names it and gives >=3 supporting/refuting data points (2 = both, 1 = one)","max":2,"base":true},{"text":"Differential 3 - names it and gives >=3 supporting/refuting data points (2 = both, 1 = one)","max":2,"base":true},{"text":"Plan - states the diagnostic workup and the management steps (2 = both, 1 = one)","max":2,"base":true},{"text":"Teach-back - confirms patient understanding of the assessment and plan","max":1,"base":true,"verify":"sp"}]},{"section":"Closure","phase":"CLOSURE","rows":[{"text":"Invites final questions and addresses patient concerns","max":1,"base":true,"verify":"sp"}]}],"ros_options":[{"text":"Skin (rashes, lumps, sores, itching, color change) - criterion: asks >=3 of the 5","max":1},{"text":"HEENT (headache, vision change, hearing change, congestion, sore throat) - criterion: asks >=3 of the 5","max":1},{"text":"Respiratory (cough, dyspnea, wheeze, sputum, hemoptysis) - criterion: asks >=3 of the 5","max":1},{"text":"Cardiovascular (chest pain, palpitations, edema, orthopnea, PND) - criterion: asks >=3 of the 5","max":1},{"text":"Peripheral vascular (claudication, leg swelling, varicosities, cold extremities, non-healing wounds) - criterion: asks >=3 of the 5","max":1},{"text":"Gastrointestinal (nausea/vomiting, abdominal pain, bowel changes, blood in stool, heartburn) - criterion: asks >=3 of the 5","max":1},{"text":"Genitourinary (dysuria, frequency, hematuria, flank pain, discharge) - criterion: asks >=3 of the 5","max":1},{"text":"Musculoskeletal (joint pain, stiffness, swelling, weakness, back pain) - criterion: asks >=3 of the 5","max":1},{"text":"Neurologic (dizziness, numbness/tingling, weakness, seizures, syncope) - criterion: asks >=3 of the 5","max":1},{"text":"Psychiatric (mood, anxiety, sleep, memory, SI/HI) - criterion: asks >=3 of the 5","max":1},{"text":"Endocrine (heat/cold intolerance, polyuria/polydipsia, weight change, hair/skin change) - criterion: asks >=3 of the 4","max":1},{"text":"Hematologic/lymphatic (easy bruising, bleeding, swollen glands) - criterion: asks >=2 of the 3","max":1}]};
 
 const BREADTH_NOTE = "Programs may remove select items. The base items were selected to model the breadth a novice learner needs and the maneuvers tested on boards, even where practice has evolved. For standardized nationwide competence, teach the full breadth in the didactic phase and refine focused techniques and omissions through clinicals, residency, and practice.";
-
-/* ---------- PRACTICE VIDEO LIBRARY ----------
-   General Bates / Stanford references appear once at the section heading.
-   Special tests never inherit a general-exam video: each must resolve to a
-   test-specific public Physiopedia demonstration or be flagged for review. */
-const BATES_HOME = "https://www.wolterskluwer.com/en/solutions/lippincott-clinical-context/bates-visual-guide-to-examination";
-const BATES = {
-  full:"Bates 1.0 · Head-to-Toe Assessment: Adult",
-  survey:"Bates 1.3 · General Survey & Vital Signs",
-  skin:"Bates 1.4 · The Skin",
-  heent:"Bates 1.5 · HEENT",
-  cranial:"Bates 1.6 · Cranial Nerves",
-  neck:"Bates 1.7 · The Neck",
-  posteriorLungs:"Bates 1.8 · Back, Posterior Thorax & Lungs",
-  upper:"Bates 1.9 · Upper Extremities",
-  breast:"Bates 1.10 · Breasts",
-  anteriorLungs:"Bates 1.11 · Anterior Thorax & Lungs",
-  cardio:"Bates 1.12 · Cardiovascular System",
-  abdomen:"Bates 1.13 · Abdomen",
-  vascular:"Bates 1.14 · Peripheral Vascular System",
-  lower:"Bates 1.15 · Lower Extremities",
-  neuro:"Bates 1.16 · Nervous System",
-  genital:"Bates 1.17 · Genital & Rectal"
-};
-const STANFORD_SECTION_RULES = [
-  [/skin/i,"Stanford Medicine 25 · Dermatology exam","https://stanfordmedicine25.stanford.edu/the25/dermatology.html"],
-  [/eye|heent|head, eyes/i,"Stanford Medicine 25 · Fundoscopic exam","https://stanfordmedicine25.stanford.edu/the25/fundoscopic.html"],
-  [/throat|mouth|neck/i,"Stanford Medicine 25 · Thyroid / neck exam","https://stanfordmedicine25.stanford.edu/the25/thyroid.html"],
-  [/thorax|lung/i,"Stanford Medicine 25 · Pulmonary exam","https://stanfordmedicine25.stanford.edu/the25/pulmonary.html"],
-  [/cardiovascular/i,"Stanford Medicine 25 · Cardiac exam","https://stanfordmedicine25.stanford.edu/the25/cardiac.html"],
-  [/abdomen/i,"Stanford Medicine 25 · Abdominal exam","https://stanfordmedicine25.stanford.edu/the25/abdominal.html"],
-  [/shoulder/i,"Stanford Medicine 25 · Shoulder exam","https://stanfordmedicine25.stanford.edu/the25/shoulder.html"],
-  [/wrist|hand/i,"Stanford Medicine 25 · Hand and wrist exam","https://stanfordmedicine25.stanford.edu/the25/hand.html"],
-  [/knee/i,"Stanford Medicine 25 · Knee exam","https://stanfordmedicine25.stanford.edu/the25/knee.html"],
-  [/coordination|cerebellar/i,"Stanford Medicine 25 · Cerebellar exam","https://stanfordmedicine25.stanford.edu/the25/cerebellar.html"],
-  [/reflex/i,"Stanford Medicine 25 · Reflex exam","https://stanfordmedicine25.stanford.edu/the25/tendon.html"]
-];
-const SPECIAL_VIDEO_RULES = [
-  [/rinne/i,"Rinne test","https://www.physio-pedia.com/Rinne_Test"],
-  [/weber/i,"Weber test","https://www.physio-pedia.com/Weber_Test"],
-  [/bronchophony|egophony|pectoriloquy/i,"Transmitted voice sounds","https://www.physio-pedia.com/Lung_Sounds"],
-  [/allen test/i,"Allen test","https://www.physio-pedia.com/Allen%27s_Test"],
-  [/ankle.brachial|\babi\b/i,"Ankle-brachial index","https://www.physio-pedia.com/Ankle_Brachial_Pressure_Index"],
-  [/homan/i,"Homan sign","https://www.physio-pedia.com/Homan%27s_Sign_Test"],
-  [/buerger/i,"Buerger test","https://www.physio-pedia.com/Peripheral_Vascular_Examination"],
-  [/rebound|blumberg/i,"Rebound tenderness","https://www.physio-pedia.com/Abdominal_Examination"],
-  [/murphy/i,"Murphy sign","https://www.physio-pedia.com/Murphy%27s_Sign"],
-  [/mcburney/i,"McBurney point","https://www.physio-pedia.com/Abdominal_Examination"],
-  [/rovsing/i,"Rovsing sign","https://www.physio-pedia.com/Rovsing_Sign"],
-  [/psoas/i,"Psoas sign","https://www.physio-pedia.com/Psoas_Sign"],
-  [/shifting dullness/i,"Shifting dullness","https://www.physio-pedia.com/Abdominal_Examination"],
-  [/fluid wave|fluid thrill/i,"Fluid-wave test","https://www.physio-pedia.com/Abdominal_Examination"],
-  [/hawkins/i,"Hawkins-Kennedy test","https://www.physio-pedia.com/Hawkins-Kennedy_Test"],
-  [/infraspinatus|resisted external rotation/i,"Infraspinatus test","https://www.physio-pedia.com/Infraspinatus_Test"],
-  [/painful arc/i,"Painful arc","https://www.physio-pedia.com/Painful_Arc"],
-  [/neer/i,"Neer test","https://www.physio-pedia.com/Neer%27s_Test"],
-  [/drop.arm/i,"Drop-arm test","https://www.physio-pedia.com/Drop_Arm_Test"],
-  [/empty.can|jobe/i,"Empty-can / Jobe test","https://www.physio-pedia.com/Empty_Can_Test"],
-  [/internal rotation lag|lift.off/i,"Internal-rotation lag / lift-off","https://www.physio-pedia.com/Internal_Rotation_Lag_Sign"],
-  [/cross.body|scarf/i,"Scarf test","https://www.physio-pedia.com/Scarf_Test"],
-  [/yergason/i,"Yergason test","https://www.physio-pedia.com/Yergason%27s_Test"],
-  [/o.?brien|active compression/i,"O'Brien active-compression test","https://www.physio-pedia.com/O%27Brien%27s_Test"],
-  [/apprehension|relocation/i,"Apprehension / relocation test","https://www.physio-pedia.com/Apprehension_Test"],
-  [/elbow flexion test/i,"Elbow-flexion test","https://www.physio-pedia.com/Elbow_Flexion_Test"],
-  [/finkelstein/i,"Finkelstein test","https://www.physio-pedia.com/Finkelstein_Test"],
-  [/phalen/i,"Phalen test","https://www.physio-pedia.com/Phalen%27s_Test"],
-  [/tinel/i,"Tinel sign at wrist","https://www.physio-pedia.com/Tinel%27s_Sign_at_the_Wrist"],
-  [/spurling/i,"Spurling test","https://www.physio-pedia.com/Spurling%27s_Test"],
-  [/cervical distraction/i,"Cervical-distraction test","https://www.physio-pedia.com/Cervical_Distraction_Test"],
-  [/upper limb tension/i,"Upper-limb tension test","https://www.physio-pedia.com/Upper_Limb_Tension_Tests"],
-  [/wainner cervical radiculopathy cluster/i,"Wainner cervical-radiculopathy rule","https://www.physio-pedia.com/CPR_for_Cervical_Radiculopathy"],
-  [/cervical rotation.*60/i,"Cervical rotation component","https://www.physio-pedia.com/CPR_for_Cervical_Radiculopathy"],
-  [/straight.leg raise/i,"Straight-leg raise","https://www.physio-pedia.com/Straight_Leg_Raise_Test"],
-  [/faber|patrick/i,"FABER / Patrick test","https://www.physio-pedia.com/FABER_Test"],
-  [/fadir/i,"FADIR test","https://www.physio-pedia.com/FADIR_(Flexion,_Adduction,_Internal_Rotation)_Test"],
-  [/log roll/i,"Hip log-roll test","https://www.physio-pedia.com/Hip_Examination"],
-  [/hip scour/i,"Hip scour test","https://www.physio-pedia.com/Hip_Quadrant_Test"],
-  [/effusion|bulge|ballottement|sweep/i,"Knee-effusion tests","https://www.physio-pedia.com/Knee_Swelling"],
-  [/mcmurray/i,"McMurray test","https://www.physio-pedia.com/McMurrays_Test"],
-  [/valgus stress/i,"Valgus-stress test","https://www.physio-pedia.com/Valgus_Stress_Test"],
-  [/varus stress/i,"Varus-stress test","https://www.physio-pedia.com/Varus_Stress_Test"],
-  [/lachman/i,"Lachman test","https://www.physio-pedia.com/Lachman_Test"],
-  [/anterior drawer \(acl\)/i,"Anterior-drawer test (knee)","https://www.physio-pedia.com/Anterior_Drawer_Test_of_Knee"],
-  [/pivot shift/i,"Pivot-shift test","https://www.physio-pedia.com/Pivot_Shift"],
-  [/lever|lelli/i,"Lever / Lelli test","https://www.physio-pedia.com/Lever_Sign_Test"],
-  [/posterior drawer/i,"Posterior-drawer test (knee)","https://www.physio-pedia.com/Posterior_Drawer_Test_(Knee)"],
-  [/thompson|calf.squeez/i,"Thompson test","https://www.physio-pedia.com/Thompson_Test"],
-  [/matles/i,"Matles test","https://www.physio-pedia.com/Matles_Test"],
-  [/tendon.gap/i,"Achilles tendon-gap palpation","https://www.physio-pedia.com/Achilles_Tendon_Rupture"],
-  [/anterior drawer.*ankle|anterior drawer of the ankle/i,"Anterior drawer (ankle)","https://www.physio-pedia.com/Anterior_Drawer_of_the_Ankle"],
-  [/talar tilt/i,"Talar-tilt test","https://www.physio-pedia.com/Talar_Tilt"],
-  [/squeeze test.*syndesmosis/i,"Syndesmosis squeeze test","https://www.physio-pedia.com/Squeeze_Test"],
-  [/babinski|plantar response/i,"Babinski / plantar response","https://www.physio-pedia.com/Babinski_Sign"],
-  [/ankle clonus/i,"Ankle clonus","https://www.physio-pedia.com/Clonus"],
-  [/asterixis/i,"Asterixis","https://www.physio-pedia.com/Asterixis"],
-  [/kernig/i,"Kernig sign","https://www.physio-pedia.com/Kernig%27s_Sign"],
-  [/brudzinski/i,"Brudzinski sign","https://www.physio-pedia.com/Brudzinski%27s_Sign"],
-  [/head impulse/i,"Head-impulse test","https://www.physio-pedia.com/Head_Impulse_Test"],
-  [/nystagmus.*direction|direction.changing.*nystagmus/i,"Direction-changing nystagmus in HINTS","https://www.physio-pedia.com/HINTS"],
-  [/test of skew|alternate cover/i,"Test of skew","https://www.physio-pedia.com/HINTS"],
-  [/hints/i,"HINTS examination","https://www.physio-pedia.com/HINTS"],
-  [/dix.hallpike/i,"Dix-Hallpike test","https://www.physio-pedia.com/Dix-Hallpike_Test"]
-];
-const NO_VIDEO_NEEDED_RULES = [
-  /pad cluster/i, /park impingement cluster/i, /sutlive hip.oa cluster/i,
-  /absent dorsalis pedis|posterior tibial pulse/i, /femoral artery bruit/i,
-  /median.*ulnar.*radial sensory/i,
-  /passive internal rotation.*25/i, /pain with squatting/i,
-  /lateral hip pain on active flexion/i, /painful active hip extension/i,
-  /rigidity$/i, /guarding$/i
-];
-function isPhysicalVideoSection(section,group){
-  const k=(section+" "+(group||"")).toLowerCase();
-  if(k.includes("setting the stage")||k.includes("history")||k.includes("review of systems")||k.includes("assessment & plan")||k.includes("closure")||k.includes("psychiatric")) return false;
-  return /general survey|vital sign|skin|head|eye|ear|nose|throat|mouth|neck|thorax|lung|cardiovascular|peripheral vascular|abdomen|musculoskeletal|neurologic|cranial|motor|coordination|sensory|reflex|breast|genital|rectal/.test(k);
-}
-function batesVideoFor(section){
-  const k=section.toLowerCase();
-  if(!isPhysicalVideoSection(section,"")) return null;
-  if(/general survey|vital sign|blood pressure|pulse oxim|temperature|height|weight|bmi/.test(k)) return BATES.survey;
-  if(/skin|hair|nail|lesion|clubbing/.test(k)) return BATES.skin;
-  if(/cranial nerve|\bcn [ivx]+\b|neurologic: mental status/.test(k)) return BATES.cranial;
-  if(/neurolog|motor|coordination|cerebellar|sensory|reflex|romberg|pronator|gait|hints|hallpike|epley|asterixis|kernig|brudzinski/.test(k)) return BATES.neuro;
-  if(/neck/.test(k)&&!/c-spine|cervical/.test(k)) return BATES.neck;
-  if(/head|eye|ear|nose|mouth|throat|heent|tmj|sinus|ophthal|otoscop|weber|rinne/.test(k)) return BATES.heent;
-  if(/thorax|lung|pulmonary|fremitus|bronchophony|egophony|pectoriloquy|diaphragm/.test(k)) return BATES.posteriorLungs+" + "+BATES.anteriorLungs.replace("Bates ","");
-  if(/cardiovascular|cardiac|heart|precord|jvp|carotid|valsalva|squatting-to-standing/.test(k)) return BATES.cardio;
-  if(/peripheral vascular|pulse|edema|capillary|allen|ankle-brachial|abi|buerger|varicos/.test(k)) return BATES.vascular;
-  if(/abdomen|abdominal|bowel|liver|spleen|cva|rovsing|psoas|obturator|murphy|rebound|mcburney/.test(k)) return BATES.abdomen;
-  if(/breast|axilla/.test(k)) return BATES.breast;
-  if(/genital|rectal|prostate|pelvic/.test(k)) return BATES.genital;
-  if(/shoulder|elbow|wrist|hand|upper limb|c-spine|cervical/.test(k)) return BATES.upper;
-  if(/hip|knee|ankle|foot|lower limb|thoracolumbar|lumbar|spine/.test(k)) return BATES.lower;
-  if(/musculoskeletal/.test(k)) return BATES.upper+" + "+BATES.lower.replace("Bates ","");
-  return BATES.full;
-}
-function sectionVideoRefs(section){
-  const primary=batesVideoFor(section);
-  if(!primary) return [];
-  const refs=[{label:primary,url:BATES_HOME,kind:"bates"}];
-  for(const rule of STANFORD_SECTION_RULES){ if(rule[0].test(section)){ refs.push({label:rule[1],url:rule[2],kind:"public"}); break; } }
-  return refs;
-}
-function specialVideoRefs(text){
-  return SPECIAL_VIDEO_RULES.filter(rule=>rule[0].test(text))
-    .map(rule=>({label:"Physiopedia · "+rule[1],url:rule[2],kind:"special"}));
-}
-function noVideoNeeded(text){ return NO_VIDEO_NEEDED_RULES.some(rule=>rule.test(text)); }
-function videoLinksHtml(refs){
-  if(!refs||!refs.length) return "";
-  return `<span class="video-links">${refs.map(r=>`<a class="video-link ${r.kind==="public"?"public":r.kind==="special"?"special":""}" href="${r.url}" target="_blank" rel="noopener" title="Open demonstration in a new tab">&#9654; ${esc(r.label)}</a>`).join("")}</span>`;
-}
-function missingVideoHtml(isSpecial,refs,text){
-  if(!isSpecial || (refs&&refs.length)) return "";
-  if(noVideoNeeded(text||"")) return `<span class="video-optional">No separate video needed · simple finding or scoring criterion</span>`;
-  return `<span class="video-missing" title="No test-specific public demonstration has been verified">Video not verified · review for final checklist</span>`;
-}
 
 let mode = "comp";
 const state = {
   scores: {},
   comp: { enabled: COMP.map(()=>true), local: COMP.map(()=>[]),
-          opt:{ros:true, ev:true, history:true} },
+          opt:{ros:true, ev:true} },
   osce: { station: "comprehensive", inc: {}, ros: {}, local: {}, vitals: "verbalize", removed: {}, lens: "combined" },
   practice: { dur: 15, history: [] }
 };
@@ -1547,8 +2181,6 @@ try {
   const s = JSON.parse(localStorage.getItem("rubric_v04")||"null");
   if (s && s.comp && s.comp.local && s.comp.local.length===COMP.length){ Object.assign(state, s); }
   if (!state.scores) state.scores = {};
-  if (!state.comp.opt) state.comp.opt = {ros:true, ev:true, history:true};
-  if (state.comp.opt.history==null) state.comp.opt.history = true;
   if (!state.osce.inc) state.osce.inc = {};
   if (!state.osce.ros) state.osce.ros = {};
   if (!state.osce.vitals) state.osce.vitals = "verbalize";
@@ -1567,22 +2199,6 @@ function persist(){ try{
 function esc(t){ return String(t).replace(/&(?!amp;|lt;|gt;|#)/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
 /* ---------- scoring ---------- */
-/* Cranial-nerve maneuvers already performed in HEENT are mirrored in Neuro.
-   The Neuro mirror rows are informational and do not add points a second time. */
-const COMP_MIRRORS = {
-  "c:10:0:1":["c:3:4:2"],
-  "c:10:0:2":["c:3:1:2","c:3:1:3"],
-  "c:10:0:3":["c:3:1:4","c:3:1:6"],
-  "c:10:0:6":["c:3:2:1"],
-  "c:10:0:7":["c:3:5:3"],
-  "c:10:0:9":["c:3:5:2"]
-};
-function mirrorSources(id){ return COMP_MIRRORS[id]||null; }
-function mirrorChecked(id,prefix){ const src=mirrorSources(id); return !!src&&src.every(k=>state.scores[(prefix||"")+k]===1); }
-function mirrorToggle(id,checked,prefix){
-  (mirrorSources(id)||[]).forEach(k=>{ const key=(prefix||"")+k; if(checked) state.scores[key]=1; else delete state.scores[key]; });
-  render();
-}
 function setScore(id,v){
   if (state.scores[id]===v) delete state.scores[id]; else state.scores[id]=v;
   render();
@@ -1616,23 +2232,12 @@ function syncLensBtns(){
 }
 
 /* ---------- COMPREHENSIVE PE ---------- */
-function historyIncluded(){ return state.comp.opt.history!==false; }
-function compCount(i){
-  let n=0;
-  COMP[i].groups.forEach((g,gi)=>{
-    if(i===0&&gi===1&&!historyIncluded()) return;
-    g.items.forEach((it,ii)=>{ if(!it.sub&&!mirrorSources("c:"+i+":"+gi+":"+ii)) n++; });
-  });
-  return n+state.comp.local[i].length;
-}
+function compCount(i){ let n=COMP[i].groups.reduce((a,g)=>a+g.items.filter(it=>!it.sub).length,0); return n+state.comp.local[i].length; }
 function asideComp(){
   const o=state.comp.opt;
   return `<div class="panel"><h2>Systems in this rubric</h2><div id="systoggles">`+
     COMP.map((s,i)=>`<label class="toggle"><input type="checkbox" ${state.comp.enabled[i]?"checked":""} onchange="state.comp.enabled[${i}]=this.checked;render()"> ${esc(s.title)}<span class="pts">${compCount(i)}</span></label>`).join("")+
     `</div><div class="mini"><button onclick="compAll(true)">All</button><button onclick="compAll(false)">None</button></div></div>
-    <div class="panel"><h2>Rubric scope</h2>
-      <label class="toggle"><input type="checkbox" ${historyIncluded()?"checked":""} onchange="state.comp.opt.history=this.checked;render()"> Include history as a graded component</label>
-      <p style="font-size:11.5px;color:var(--muted);margin:7px 0 0">Turn off for a physical-examination-only assessment. Professional appearance and identification, introduction, patient verification, permission, hand hygiene, privacy, draping, and comfort remain graded.</p></div>
     <div class="panel"><h2>Display</h2>
       <label class="toggle"><input type="checkbox" ${o.ros?"checked":""} onchange="state.comp.opt.ros=this.checked;render()"> ROS screening lines</label>
       <label class="toggle"><input type="checkbox" ${o.ev?"checked":""} onchange="state.comp.opt.ev=this.checked;render()"> Evidence adjunct notes</label></div>
@@ -1643,10 +2248,6 @@ function asideComp(){
 function compAll(v){ state.comp.enabled=COMP.map(()=>v); render(); }
 function compRow(it,id){
   if(it.sub){ return `<tr class="item subrow"><td class="bx"></td><td class="what subc">${esc(it.text)}</td><td class="opts"></td></tr>`; }
-  if(mirrorSources(id)){
-    const on=mirrorChecked(id,"");
-    return `<tr class="item subrow"><td class="bx"><input type="checkbox" class="ck" ${on?"checked":""} onchange="mirrorToggle('${id}',this.checked,'')"></td><td class="what subc">${esc(it.text)}<span class="linked-note">Linked from HEENT · not scored twice</span></td><td class="opts"></td></tr>`;
-  }
   const on = state.scores[id]===1;
   return `<tr class="item"><td class="bx"><input type="checkbox" class="ck" ${on?"checked":""} onchange="ckToggle('${id}',this.checked)"></td><td class="what">${esc(it.text)}</td><td class="opts">${pickCells(id,1)}</td></tr>`;
 }
@@ -1658,11 +2259,8 @@ function renderComp(){
     html+=`<section class="sys"><div class="sys-head"><h3>${esc(s.title)}</h3><span class="pts">${n} items &middot; ${n} pts</span></div>`;
     if(o.ros&&s.ros) html+=`<div class="ros"><b>ROS screen (ask &ge; 3):</b> ${esc(s.ros)}</div>`;
     html+=`<table class="items">`;
-    s.groups.forEach((g,gi)=>{
-      if(i===0&&gi===1&&!historyIncluded()) return;
-      html+=`<tr class="ghead"><td colspan="3">${esc(g.name)}</td></tr>`;
-      g.items.forEach((it,ii)=>{ const id="c:"+i+":"+gi+":"+ii; if(!it.sub&&!mirrorSources(id)) earned+=state.scores[id]||0; html+=compRow(it,id); });
-    });
+    s.groups.forEach((g,gi)=>{ html+=`<tr class="ghead"><td colspan="3">${esc(g.name)}</td></tr>`;
+      g.items.forEach((it,ii)=>{ const id="c:"+i+":"+gi+":"+ii; if(!it.sub) earned+=state.scores[id]||0; html+=compRow(it,id); }); });
     if(state.comp.local[i].length){ html+=`<tr class="ghead"><td colspan="3">Program-specific additions</td></tr>`;
       state.comp.local[i].forEach((t,li)=>{ const id="cl:"+i+":"+li; earned+=state.scores[id]||0;
         html+=`<tr class="item local"><td class="bx"><input type="checkbox" class="ck" ${state.scores[id]===1?"checked":""} onchange="ckToggle('${id}',this.checked)"></td><td class="what">${esc(t)}<span class="local-chip">PROGRAM-SPECIFIC</span><button class="rm" onclick="state.comp.local[${i}].splice(${li},1);render()">&#x2715;</button></td><td class="opts">${pickCells(id,1)}</td></tr>`; }); }
@@ -1704,15 +2302,16 @@ function osceModel(){
       const id=(useAlt?"ov:":"o:")+si+":"+ri;
       ROWLABEL[id]=row.text;
       if(state.osce.removed[id]) return;
-      const special = row.text.indexOf("Special")===0 || !!row.sub || specialVideoRefs(row.text).length>0;
       rows.push({id, text:row.text, max:row.sub?0:(row.max||1), verify:row.verify, sub:row.sub,
-                 special:special, video:special?specialVideoRefs(row.text):[], removable: !row.sub && row.text.indexOf("Special")===0});
+                 removable: !row.sub});
     });
     if(sec.ros_slot){
       OSCE.ros_options.forEach((o,oi)=>{ if(state.osce.ros[oi]) rows.push({id:"or:"+oi, text:o.text, max:o.max||1}); });
     }
     (state.osce.local[localKey(si)]||[]).forEach((t,li)=>rows.push({id:"ol:"+state.osce.station+":"+si+":"+li, text:t, max:1, local:true, li:li}));
-    if(rows.length) secs.push({si:si, phase:sec.phase, section:sec.section, video:sectionVideoRefs(sec.section), rows:rows});
+    if(sec.footnote) rows.push({footnote:sec.footnote, fkind:"boards"});
+    if(sec.pocus) rows.push({footnote:sec.pocus, fkind:"pocus"});
+    if(rows.length) secs.push({si:si, phase:sec.phase, section:sec.section, rows:rows});
   });
   return secs;
 }
@@ -1772,7 +2371,7 @@ function renderOsce(){
   syncLensBtns();
   /* content vs. video-observed subtotals across the whole station */
   let cTot=0,cEarn=0,kTot=0,kEarn=0;
-  model.forEach(m=>m.rows.forEach(r=>{
+  model.forEach(m=>m.rows.forEach(r=>{ if(r.footnote) return;
     if(r.verify){ kTot+=r.max; kEarn+=state.scores[r.id]||0; }
     else { cTot+=r.max; cEarn+=state.scores[r.id]||0; }
   }));
@@ -1785,7 +2384,7 @@ function renderOsce(){
     if(!rows.length) return;
     if(m.phase && m.phase!==lastPhase){ html+=`<tr class="phase"><td colspan="2">${esc(m.phase)}</td></tr>`; lastPhase=m.phase; }
     html+=`<tr class="ghead"><td colspan="2">${esc(m.section)}</td></tr>`;
-    rows.forEach(r=>{
+    rows.forEach(r=>{ if(r.footnote) return;
       if(r.sub){ html+=`<tr class="item subrow"><td class="what subc">${esc(r.text)}</td><td class="opts"></td></tr>`; return; }
       let what=esc(r.text);
       if(r.verify) what+=` <span class="vchip">SP + faculty verify</span>`;
@@ -1834,12 +2433,12 @@ function pracReset(){ pracPause(); prac.left=state.practice.dur*60; pracDisp(); 
 function pracDur(v){ const n=Math.max(1,Math.min(120,parseInt(v,10)||15)); state.practice.dur=n; pracReset(); persist(); }
 function practiceSrc(){ return state.practice.src==="comp" ? "comp" : "osce"; }
 function practiceModel(){
-  if(practiceSrc()==="comp") return compModel().map(s=>({section:s.section, phase:null, video:s.video, rows:s.rows}));
+  if(practiceSrc()==="comp") return compModel().map(s=>({section:s.section, phase:null, rows:s.rows}));
   return osceModel();
 }
 function pracTally(){
   let total=0, earned=0; const missed=[];
-  practiceModel().forEach(m=>m.rows.forEach(r=>{
+  practiceModel().forEach(m=>m.rows.forEach(r=>{ if(r.footnote) return;
     if(r.head||r.sub) return;
     total+=r.max; const v=state.scores["p|"+r.id]||0; earned+=v;
     if(v<r.max) missed.push(r.text.split(" (")[0]);
@@ -1885,21 +2484,29 @@ function renderPractice(){
   html+=`<table class="items">`;
   model.forEach(m=>{
     if(m.phase && m.phase!==lastPhase){ html+=`<tr class="phase"><td colspan="2">${esc(m.phase)}</td></tr>`; lastPhase=m.phase; }
-    html+=`<tr class="ghead"><td colspan="2">${esc(m.section)}${videoLinksHtml(m.video)}</td></tr>`;
+    html+=`<tr class="ghead"><td colspan="2">${esc(m.section)}</td></tr>`;
     m.rows.forEach(r=>{
+      if(r.footnote){ const fk=r.fkind||"boards";
+        const FL={boards:"Know the name, not scored", pocus:"Recommended POCUS"};
+        html+=`<tr class="footnote-row"><td colspan="2"><div class="offrubric ${fk}"><span class="oflabel">&#42; ${FL[fk]}</span>${esc(r.footnote)}</div></td></tr>`; return; }
       if(r.head){ html+=`<tr class="ghead"><td colspan="2">${esc(r.head)}</td></tr>`; return; }
-      if(r.mirror){ const on=mirrorChecked(r.id,"p|");
-        html+=`<tr class="item subrow"><td class="what subc"><input type="checkbox" class="ck" ${on?"checked":""} onchange="mirrorToggle('${r.id}',this.checked,'p|')"> ${esc(r.text)}<span class="linked-note">Linked from HEENT · not scored twice</span></td><td class="opts"></td></tr>`; return; }
-      if(r.sub){ html+=`<tr class="item subrow"><td class="what subc">${esc(r.text)}${videoLinksHtml(r.video)}${missingVideoHtml(r.special,r.video,r.text)}</td><td class="opts"></td></tr>`; return; }
+      if(r.sub){ html+=`<tr class="item subrow"><td class="what subc">${esc(r.text)}</td><td class="opts"></td></tr>`; return; }
       const pid="p|"+r.id;
       total+=r.max; earned+=state.scores[pid]||0;
-      html+=`<tr class="item${r.local?" local":""}"><td class="what">${esc(r.text)}${r.local?` <span class="local-chip">PROGRAM-SPECIFIC</span>`:""}${videoLinksHtml(r.video)}${missingVideoHtml(r.special,r.video,r.text)}</td><td class="opts">${pickCells(pid,r.max)}</td></tr>`;
+      const LBL={say:"Try saying",narrate:"Narrate aloud",tip:"Tip",how:"How to"};
+      let guide="";
+      if(r.d){
+        const k=r.hk||"how";
+        guide=`<div class="help ${k}"><span class="hlabel">${LBL[k]||"How to"}</span><span class="htext">${esc(r.d)}</span>`+
+          (r.url?`<a class="reflink" href="${r.url}" target="_blank" rel="noopener">Watch demonstration &rarr;</a>`:"")+`</div>`;
+      }
+      html+=`<tr class="item${r.local?" local":""}"><td class="what">${esc(r.text)}${r.local?` <span class="local-chip">PROGRAM-SPECIFIC</span>`:""}${guide}</td><td class="opts">${pickCells(pid,r.max)}</td></tr>`;
     });
   });
   html+=`</table>`;
   document.getElementById("sheettitle").textContent=isComp?"Practice: Comprehensive PE":"Practice Station";
   document.getElementById("sheetmeta").textContent=(isComp?"Head-to-toe checklist":(isComprehensive()?"Comprehensive station":"Focused station"))+" · tap the score as each item is performed";
-  document.getElementById("osceBanner").innerHTML=`<div class="osce-banner"><b>Practice run.</b> Grade to the criterion: incorrect technique scores 0, same as omitted. General Bates / Stanford references appear once at each applicable section heading. Special-test rows use only test-specific public demonstrations. A red flag means the test needs a verified demonstration before the final standard is adopted. Press <b>Finish &amp; save attempt</b> to log the score and missed items.</div>`;
+  document.getElementById("osceBanner").innerHTML=`<div class="osce-banner"><b>Practice run.</b> Grade to the criterion: incorrect technique scores 0, same as omitted. Press <b>Finish &amp; save attempt</b> to log the score and missed items.</div>`;
   document.getElementById("sheetfoot").innerHTML="<p>Practice attempts stay on this device and never affect the grading rubric.</p><p>&copy; 2026 J. Moen &middot; CC BY-NC 4.0.</p>";
   return {html, total, earned};
 }
@@ -1927,18 +2534,10 @@ function compModel(){
   COMP.forEach((s,i)=>{
     if(!state.comp.enabled[i]) return;
     const rows=[];
-    s.groups.forEach((g,gi)=>{
-      if(i===0&&gi===1&&!historyIncluded()) return;
-      const specialGroup=/special|peritoneal/i.test(g.name);
-      rows.push({head:g.name});
-      g.items.forEach((it,ii)=>{ const id="c:"+i+":"+gi+":"+ii, mirror=!!mirrorSources(id);
-        rows.push({id:id, text:it.text, max:(it.sub||mirror)?0:1, sub:it.sub,
-          mirror:mirror, special:specialGroup, video:specialGroup?specialVideoRefs(it.text):[]});
-      });
-    });
+    s.groups.forEach((g,gi)=>{ rows.push({head:g.name}); g.items.forEach((it,ii)=>rows.push({id:"c:"+i+":"+gi+":"+ii, text:it.text, max:it.sub?0:1, sub:it.sub, hk:it.hk, d:it.d, url:it.url})); if(g.footnote) rows.push({footnote:g.footnote, fkind:"boards"}); if(g.pocus) rows.push({footnote:g.pocus, fkind:"pocus"}); });
     if(state.comp.local[i].length){ rows.push({head:"Program-specific additions"});
       state.comp.local[i].forEach((t,li)=>rows.push({id:"cl:"+i+":"+li, text:t, max:1, local:true})); }
-    secs.push({section:s.title, video:sectionVideoRefs(s.title), rows:rows});
+    secs.push({section:s.title, rows:rows});
   });
   return secs;
 }
@@ -1953,9 +2552,8 @@ function exportDoc(){
   let total=0, body="", lastPhase=null, hasVerify=false;
   model.forEach(m=>{
     let secPts=0, rowsHtml="";
-    m.rows.forEach(r=>{
+    m.rows.forEach(r=>{ if(r.footnote) return;
       if(r.head){ rowsHtml+=`<tr class="gh"><td colspan="${width}">${esc(r.head)}</td></tr>`; return; }
-      if(r.mirror){ rowsHtml+=`<tr><td class="it" style="padding-left:22pt;color:#526579">${esc(r.text)} <b>[Linked from HEENT; not scored twice]</b></td><td colspan="${cols}"></td></tr>`; return; }
       if(r.sub){ rowsHtml+=`<tr><td class="it" style="padding-left:22pt;font-style:italic;color:#5B6B7B">${esc(r.text)}</td><td colspan="${cols}"></td></tr>`; return; }
       secPts+=r.max; total+=r.max;
       if(r.verify) hasVerify=true;
